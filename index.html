@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lagos Life Guide — How to Play, Jobs, Money & Maps</title>
+<meta name="description" content="An independent, unofficial player guide to Lagos Life, the free browser life-sim set in Lagos, Nigeria: how to play, all careers and salaries, money, homes, venues and items.">
+<meta name="theme-color" content="#f7f5ef">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://lagoslife.homes/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lagos Life Guide">
+<meta property="og:title" content="Lagos Life Guide — How to Play, Jobs, Money & Maps">
+<meta property="og:description" content="Independent, unofficial player guide to the Lagos Life browser game: how to play, all careers and salaries, money, homes, venues and items.">
+<meta property="og:url" content="https://lagoslife.homes/">
+<meta property="og:image" content="https://lagoslife.homes/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lagos Life Guide">
+<meta name="twitter:description" content="Independent, unofficial player guide to the Lagos Life browser game.">
+<meta name="twitter:image" content="https://lagoslife.homes/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   LAGOS LIFE GUIDE — single-file site
+   Design language extracted by observation (tokens + components), code and
+   copy authored originally. No third-party logos, images or code reproduced.
+   ========================================================================== */
+
+/* 1. DESIGN TOKENS --------------------------------------------------------- */
+:root{
+  --color-brand-primary:#1d5147;
+  --color-brand-deep:#183b37;
+  --color-brand-ink-soft:#275b50;
+  --color-brand-accent:#ee7856;
+  --color-brand-accent-strong:#bd583f;
+  --color-brand-lime:#bed778;
+
+  --color-bg-page:#f7f5ef;
+  --color-bg-card:#fffefa;
+  --color-bg-muted:#efeee5;
+  --color-bg-sunken:#ebeadd;
+  --color-bg-invert:#183b37;
+  --color-bg-invert-soft:#1c4840;
+
+  --tint-green:#e2ead1;
+  --tint-peach:#f1e4dc;
+  --tint-mint:#d9eae4;
+  --tint-sand:#f2f1e8;
+
+  --color-text-primary:#183b37;
+  --color-text-secondary:#64736e;
+  --color-text-tertiary:#79867b;
+  --color-text-faint:#9aa197;
+  --color-text-invert:#e5ecde;
+  --color-text-link:#bd583f;
+
+  --color-border:#e7e5dc;
+  --color-border-strong:#d6d9cf;
+
+  --color-success:#5f9a53;
+  --color-warning:#c99532;
+  --color-danger:#c8553d;
+
+  --font-display:"Space Grotesk","Segoe UI",ui-sans-serif,sans-serif;
+  --font-body:"Manrope",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+
+  --fs-display:clamp(42px,5.3vw,70px);
+  --fs-h1:clamp(36px,5vw,55px);
+  --fs-h2:clamp(27px,3.3vw,40px);
+  --fs-h3:23px;
+  --fs-lead:25px;
+  --fs-body:14px;
+
+  --layout-max:1280px;
+  --layout-max-xl:1360px;
+  --gutter:28px;
+  --header-h:82px;
+
+  --radius-md:12px;
+  --radius-lg:18px;
+  --radius-pill:999px;
+  --radius-circle:50%;
+
+  --shadow-card-hover:0 16px 38px rgba(24,59,55,.12);
+  --shadow-art:0 28px 64px rgba(24,59,55,.16);
+  --shadow-caption:0 10px 30px rgba(24,59,55,.14);
+  --shadow-menu:0 18px 44px rgba(24,59,55,.18);
+
+  --t-fast:.15s ease;
+  --t-base:.2s ease;
+}
+
+/* 2. RESET / BASE ---------------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-width:320px;background:var(--color-bg-page);color:var(--color-text-primary);
+  font-family:var(--font-body);font-size:var(--fs-body);line-height:1.7;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+a:hover{color:var(--color-text-link)}
+h1,h2,h3,h4,p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--color-brand-accent);outline-offset:2px;border-radius:4px}
+::selection{background:var(--color-brand-lime);color:#183b37}
+
+/* 3. LAYOUT ---------------------------------------------------------------- */
+.content-shell{max-width:var(--layout-max);margin:0 auto;padding:0 var(--gutter)}
+.section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:24px}
+.section-heading h2{margin:7px 0 0;font-family:var(--font-display);font-weight:500;
+  font-size:var(--fs-h2);line-height:1.05;letter-spacing:-.045em}
+.section-index{padding-bottom:4px;color:var(--color-text-faint);font-size:9px;font-weight:700;letter-spacing:.13em}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--color-brand-primary);
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--tint-sand);border:1px solid var(--color-border);
+  padding:6px 12px;border-radius:var(--radius-pill)}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--color-brand-lime);
+  box-shadow:0 0 0 3px rgba(181,213,117,.16)}
+
+/* 4. TOP NOTE BAR ---------------------------------------------------------- */
+.site-note{min-height:34px;padding:0 max(24px,calc((100vw - var(--layout-max))/2));display:flex;
+  align-items:center;gap:9px;background:var(--color-brand-deep);color:#e5ecde;
+  font-size:11px;letter-spacing:.035em}
+.site-note .dot{width:7px;height:7px;border-radius:50%;background:#bed778;
+  box-shadow:0 0 0 3px rgba(181,213,117,.16)}
+.note-mobile{display:none}
+
+/* 5. HEADER / NAV — floating pill bar -------------------------------------- */
+.site-header{position:sticky;top:14px;z-index:40;padding:0 var(--gutter);background:transparent;pointer-events:none}
+.site-header-inner{min-height:60px;max-width:var(--layout-max);margin:0 auto;padding:0 12px 0 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(14px);
+  border:1px solid var(--color-border);border-radius:var(--radius-pill);
+  box-shadow:0 12px 32px rgba(24,59,55,.09);pointer-events:auto}
+.brand{display:inline-flex;align-items:center;gap:11px}
+.brand-mark{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:var(--radius-circle);
+  background:var(--color-brand-primary);color:var(--color-brand-lime);font-family:var(--font-display);
+  font-weight:600;font-size:17px;letter-spacing:-.04em}
+.brand-name{display:flex;flex-direction:column;gap:3px;line-height:1}
+.brand-name strong{color:var(--color-text-primary);font-size:17px;font-weight:800;letter-spacing:-.055em}
+.brand-name small{color:#82988a;font-size:8px;font-weight:800;letter-spacing:.16em}
+.desktop-nav{display:flex;align-items:center;gap:3px;padding:5px;background:var(--color-bg-muted);
+  border-radius:var(--radius-pill)}
+.desktop-nav a{color:#55645e;font-size:12px;font-weight:700;padding:9px 15px;border-radius:var(--radius-pill);
+  transition:background var(--t-base),color var(--t-base)}
+.desktop-nav a:hover{background:#fff;color:var(--color-brand-primary)}
+.desktop-nav a.is-active{background:var(--color-brand-deep);color:#fff}
+.desktop-nav a.is-active::after{display:none}
+.menu{display:none;position:relative}
+.menu summary{width:42px;height:42px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:5px;cursor:pointer;border:1px solid var(--color-border);
+  border-radius:50%;list-style:none}
+.menu summary::-webkit-details-marker{display:none}
+.menu summary span{width:15px;height:1.5px;background:var(--color-text-primary)}
+.menu[open] summary{background:#efeee5}
+.menu nav{position:absolute;top:52px;right:0;width:min(275px,calc(100vw - 32px));padding:8px;
+  background:var(--color-bg-card);border:1px solid var(--color-border);box-shadow:var(--shadow-menu);
+  z-index:60;display:flex;flex-direction:column}
+.menu nav a{padding:14px 12px;border-bottom:1px solid #eeede5;font-size:12px;font-weight:600}
+.menu nav a:last-child{border-bottom:0}
+
+/* 6. HERO — dark feature panel -------------------------------------------- */
+.hero-wrap{max-width:var(--layout-max);margin:24px auto 0;padding:44px;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;
+  background:var(--color-brand-deep);border-radius:28px;color:#eef3ea;
+  box-shadow:0 30px 70px rgba(24,59,55,.22)}
+.hero-wrap .eyebrow{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.16);color:#d7e0d5}
+.breadcrumbs{display:flex;align-items:center;gap:9px;color:#91a69a;font-size:11px;margin-bottom:28px}
+.breadcrumbs a:first-child{color:#d7e0d5}
+.hero-copy h1{max-width:520px;margin:18px 0;font-family:var(--font-display);font-weight:500;
+  font-size:var(--fs-display);line-height:.99;letter-spacing:-.055em;color:#fffefa}
+.hero-intro{max-width:455px;color:#b7c7bd;font-size:15px;line-height:1.7}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:29px}
+.hero-disclaimer{font-size:10px;color:#91a69a;margin-top:16px}
+.hero-wrap .button-primary{background:#fffefa;color:#183b37}
+.hero-wrap .button-primary:hover{background:#eef3ea;color:#183b37}
+.hero-wrap .button-secondary{background:transparent;border-color:rgba(255,255,255,.24);color:#eef3ea}
+.hero-wrap .button-secondary:hover{background:rgba(255,255,255,.10)}
+.hero-art{height:360px;position:relative;overflow:hidden;border-radius:20px;
+  background:#a9c491;box-shadow:0 18px 44px rgba(0,0,0,.28)}
+.hero-art svg{width:100%;height:100%;object-fit:cover}
+.art-caption{position:absolute;left:18px;right:18px;bottom:16px;min-height:54px;padding:10px 16px;
+  display:flex;align-items:center;gap:14px;border:1px solid rgba(255,255,255,.72);
+  border-radius:var(--radius-md);background:rgba(255,255,255,.94);box-shadow:var(--shadow-caption);
+  backdrop-filter:blur(8px);transition:transform var(--t-base),background var(--t-base)}
+.art-caption:hover{background:#fffdf7;transform:translateY(-2px)}
+.art-caption>span:first-child{color:#bd583f;font-size:10px;font-weight:800;letter-spacing:.1em}
+.art-caption strong{flex:1;font-family:var(--font-display);font-weight:600;font-size:16px;letter-spacing:-.02em}
+.art-caption>span:last-child{color:#64736e;font-size:10px;font-weight:700;white-space:nowrap}
+.art-stamp{position:absolute;right:18px;top:17px;width:47px;height:47px;border-radius:50%;
+  border:1px solid rgba(49,94,81,.55);display:grid;align-content:center;text-align:center;
+  background:rgba(255,255,255,.85);color:#1d5147;font-size:8px;line-height:1.1;letter-spacing:.12em}
+.art-stamp b{font-size:11px}
+
+/* 7. BUTTONS --------------------------------------------------------------- */
+.button{min-height:47px;display:inline-flex;align-items:center;justify-content:center;gap:13px;
+  padding:0 18px;border:1px solid transparent;border-radius:var(--radius-pill);
+  font-size:12px;font-weight:700;transition:transform var(--t-base),background var(--t-base),border-color var(--t-base)}
+.button:hover{transform:translateY(-2px)}
+.button:active{transform:translateY(0)}
+.button:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(238,120,86,.28)}
+.button-primary{background:var(--color-brand-deep);color:#fff}
+.button-primary:hover{background:var(--color-brand-ink-soft);color:#fff}
+.button-secondary{border-color:var(--color-border-strong);background:#fffefa;color:#42584e}
+.button-secondary:hover{background:var(--color-bg-muted)}
+.button-ghost{background:transparent;color:var(--color-text-secondary)}
+.button-ghost:hover{background:var(--color-bg-muted);color:var(--color-text-primary)}
+.button-sm{min-height:40px;padding:0 15px;font-size:11px}
+
+/* 8. SECTIONS / INTRO ------------------------------------------------------ */
+.home-content{padding-top:39px;padding-bottom:80px}
+.intro-columns{display:grid;grid-template-columns:.82fr 1.18fr;gap:60px;padding:6px 0 66px;
+  border-bottom:1px solid var(--color-border)}
+.intro-lead{max-width:360px;font-family:var(--font-display);font-weight:500;font-size:var(--fs-lead);
+  line-height:1.25;letter-spacing:-.025em;color:#37594e}
+.intro-copy{max-width:635px;color:#64736e;font-size:13px;line-height:1.75}
+.intro-copy p{margin-bottom:12px}
+.text-link{display:inline-flex;gap:10px;align-items:center;color:var(--color-brand-accent-strong);
+  font-size:11px;font-weight:700;transition:gap var(--t-base)}
+.text-link:hover{gap:14px}
+.quick-start,.systems-section,.inside-section,.latest-section{padding-top:58px}
+
+/* 9. CARD GRIDS ------------------------------------------------------------ */
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.quick-card{min-height:190px;position:relative;display:flex;flex-direction:column;align-items:flex-start;
+  padding:19px;background:var(--color-bg-muted);border:1px solid var(--color-border);
+  border-radius:var(--radius-lg);transition:transform var(--t-base),box-shadow var(--t-base)}
+.quick-card:hover,.system-card:hover,.latest-card:hover,.inside-card:hover{
+  transform:translateY(-3px);box-shadow:var(--shadow-card-hover)}
+.quick-card.dark{background:var(--color-brand-deep);border-color:var(--color-brand-deep);color:#fffefa}
+.card-number{position:absolute;right:16px;top:15px;color:var(--color-text-faint);font-size:9px}
+.quick-icon{width:31px;height:31px;display:grid;place-items:center;margin-bottom:19px;
+  border-radius:50%;background:#e1e2d3;color:#64736e;font-size:15px}
+.quick-card.dark .quick-icon{background:#275b50;color:#d8edc3}
+.quick-card strong{font-family:var(--font-display);font-weight:600;font-size:17px}
+.quick-card .desc{margin-top:5px;color:#718077;font-size:10px;line-height:1.5}
+.quick-card.dark .desc{color:#b7c7bd}
+.quick-card .cta{margin-top:auto;padding-top:17px;font-size:10px;font-weight:700;color:var(--color-brand-accent-strong)}
+.quick-card.dark .cta{color:#d3e894}
+
+.system-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.system-card{min-height:228px;padding:21px 22px;background:var(--color-bg-sunken);
+  border:1px solid var(--color-border);border-radius:var(--radius-lg);
+  transition:transform var(--t-base),box-shadow var(--t-base)}
+.system-card.tint-green{background:var(--tint-green)}
+.system-card.tint-peach{background:var(--tint-peach)}
+.system-card.tint-mint{background:var(--tint-mint)}
+.system-icon{float:right;color:#64736e;font-size:22px}
+.system-count{display:block;color:#82988a;font-size:9px;font-weight:700;letter-spacing:.12em}
+.system-card h3{max-width:230px;margin:22px 0 10px;font-family:var(--font-display);font-weight:500;
+  font-size:var(--fs-h3);line-height:1.08;letter-spacing:-.04em}
+.system-card h3 a:hover{color:var(--color-brand-accent-strong)}
+.system-card p{max-width:300px;min-height:53px;margin:0 0 15px;color:#718077;font-size:11px;line-height:1.6}
+
+.inside-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.inside-card{min-width:0;min-height:160px;position:relative;display:flex;flex-direction:column;
+  padding:17px;background:var(--tint-sand);border:1px solid var(--color-border);border-radius:var(--radius-lg);
+  transition:transform var(--t-base),box-shadow var(--t-base)}
+.inside-card span{font-size:9px;letter-spacing:.12em;font-weight:700;color:#82988a}
+.inside-card strong{margin-top:20px;color:#1b4038;font-family:var(--font-display);font-weight:500;font-size:21px;line-height:1.1}
+.inside-card small{margin-top:8px;padding-right:12px;color:#718077;font-size:10px;line-height:1.5}
+.inside-card b{position:absolute;right:16px;bottom:14px;color:var(--color-brand-accent-strong);font-size:14px}
+
+.latest-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--color-border);
+  border-left:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden}
+.latest-card{min-height:119px;position:relative;display:flex;flex-direction:column;gap:10px;padding:16px;
+  border-right:1px solid var(--color-border);border-bottom:1px solid var(--color-border);
+  transition:background var(--t-base),transform var(--t-base)}
+.latest-card:hover{background:#fffdf7}
+.latest-date{color:#90988e;font-size:9px}
+.latest-card strong{max-width:210px;font-family:var(--font-display);font-weight:500;font-size:15px;line-height:1.25}
+.latest-arrow{position:absolute;right:15px;bottom:14px;color:var(--color-brand-accent-strong);font-size:13px}
+
+/* 10. FAQ ------------------------------------------------------------------ */
+.faq-section{padding:58px 0 4px}
+.faq-section h2{margin:0 0 17px;font-family:var(--font-display);font-weight:500;font-size:28px;letter-spacing:-.035em}
+.faq-list{border-top:1px solid var(--color-border)}
+.faq-item{border-bottom:1px solid var(--color-border)}
+.faq-item summary{position:relative;padding:16px 36px 16px 0;cursor:pointer;list-style:none;
+  font-size:12px;font-weight:700;transition:color var(--t-base)}
+.faq-item summary:hover{color:var(--color-text-link)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";position:absolute;right:3px;top:12px;
+  color:var(--color-brand-accent-strong);font-size:19px;font-weight:400}
+.faq-item[open] summary::after{content:"−"}
+.faq-item p{max-width:760px;padding:0 30px 17px 0;color:#64736e;font-size:12px;line-height:1.7}
+
+/* 11. ARTICLE / PROSE ------------------------------------------------------ */
+.article-shell{padding-top:32px;padding-bottom:65px}
+.article-shell .breadcrumbs{margin-bottom:20px}
+.article-card{max-width:860px;margin:0 auto;padding:36px 50px 46px;background:var(--color-bg-card);
+  border:1px solid #eceae0;border-radius:var(--radius-lg)}
+.article-kicker{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.updated{color:#90988e;font-size:10px}
+.article-card h1{max-width:720px;margin:17px 0 24px;font-family:var(--font-display);font-weight:500;
+  font-size:var(--fs-h1);line-height:1.04;letter-spacing:-.05em;color:#183b37}
+.prose{color:#55645e;font-size:14px;line-height:1.8}
+.prose>p:first-child{color:#37594e;font-size:16px;line-height:1.65}
+.prose p{margin:0 0 16px}
+.prose h2{margin:37px 0 13px;color:#1b4038;font-family:var(--font-display);font-weight:500;
+  font-size:28px;line-height:1.15;letter-spacing:-.035em}
+.prose h3{margin:27px 0 10px;color:#1b4038;font-family:var(--font-display);font-weight:600;font-size:18px}
+.prose a{color:#bd583f;text-decoration:underline;text-decoration-color:#ddbaa9;text-underline-offset:3px}
+.prose a:hover{text-decoration-color:currentColor}
+.prose ol,.prose ul{padding-left:21px;margin:0 0 16px}
+.prose li{padding-left:4px;margin:7px 0}
+.prose table{width:100%;border-collapse:collapse;margin:19px 0 24px;font-size:12px;line-height:1.55}
+.prose th{background:var(--color-bg-invert-soft);color:#fff;text-align:left;font-size:10px;letter-spacing:.07em}
+.prose td,.prose th{padding:10px 12px;border:1px solid #e7e5dc}
+.prose tr:nth-child(2n) td{background:#f7f7ef}
+.prose blockquote{margin:20px 0;padding:12px 17px;border-left:3px solid var(--color-brand-accent);
+  background:#f6f2e8;color:#64736e}
+.related{margin-top:47px;padding-top:24px;border-top:1px solid var(--color-border)}
+.related h2{margin:0 0 14px;font-family:var(--font-display);font-weight:500;font-size:22px}
+.related-links{display:flex;flex-wrap:wrap;gap:8px}
+.related-links a{padding:9px 12px;border:1px solid #e7e5dc;border-radius:30px;color:#64736e;font-size:10px;
+  transition:background var(--t-base),border-color var(--t-base)}
+.related-links a:hover{background:#eef3ea;border-color:#c9d6bd}
+.source-note{max-width:860px;margin:16px auto 0;padding:14px 17px;background:#efeee5;color:#718077;
+  font-size:10px;line-height:1.6;border-radius:var(--radius-md)}
+.source-note strong{color:#435a4f}
+.source-note a{color:#bd583f;text-decoration:underline;text-underline-offset:2px}
+
+/* 12. DOMAIN COMPONENTS: steps, guide, level, toc, locations, cta ---------- */
+.walkthrough{border-left:2px solid var(--color-border-strong);padding-left:24px;margin:22px 0}
+.step{position:relative;padding-bottom:22px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:-30px;top:5px;width:11px;height:11px;border-radius:50%;
+  background:var(--color-brand-lime);border:2px solid var(--color-bg-card)}
+.step h3{margin:0!important;font-size:15px!important}
+.step p{margin:4px 0 0}
+
+.guide-card{display:grid;grid-template-columns:56px 1fr auto;gap:20px;align-items:center;padding:18px;
+  background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-lg);
+  transition:transform var(--t-base),box-shadow var(--t-base)}
+.guide-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-card-hover)}
+.guide-thumb{width:56px;height:56px;border-radius:var(--radius-md);display:grid;place-items:center;
+  font-size:22px;background:var(--tint-mint);color:#1d5147}
+.guide-card h3{margin:0;font-family:var(--font-display);font-weight:600;font-size:19px;letter-spacing:-.03em}
+.guide-card p{margin-top:4px;color:var(--color-text-secondary);font-size:12px}
+.guide-card .go{font-size:20px;color:var(--color-brand-accent-strong)}
+.guide-stack{display:flex;flex-direction:column;gap:12px;margin:22px 0}
+
+.level-card{position:relative;overflow:hidden;padding:24px;border-radius:var(--radius-lg);
+  background:var(--color-bg-invert);color:#eef3ea;box-shadow:var(--shadow-art)}
+.level-card .range{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#bed778}
+.level-card h3{margin:10px 0;font-family:var(--font-display);font-weight:500;font-size:28px;letter-spacing:-.04em}
+.level-card p{color:#b7c7bd;font-size:12px}
+.level-card .bar{margin-top:18px;height:6px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}
+.level-card .bar i{display:block;height:100%;border-radius:99px;background:var(--color-brand-lime)}
+
+.toc{border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-bg-card);
+  padding:18px 22px;margin:22px 0}
+.toc h4{font-family:var(--font-display);font-weight:600;font-size:17px;margin-bottom:12px}
+.toc ol{margin:0;padding:0;list-style:none;counter-reset:toc}
+.toc li{counter-increment:toc;border-bottom:1px solid var(--color-border)}
+.toc li:last-child{border-bottom:0}
+.toc a{display:flex;align-items:center;gap:14px;padding:10px 0;font-size:12px;font-weight:600;color:var(--color-text-secondary)}
+.toc a::before{content:counter(toc,decimal-leading-zero);font-size:9px;color:var(--color-text-faint)}
+.toc a:hover{color:var(--color-text-link)}
+.toc a .dots{flex:1;border-bottom:1px dotted var(--color-border-strong)}
+
+.loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+.loc-card{padding:20px;border:1px solid var(--color-border);border-radius:var(--radius-lg);
+  background:var(--color-bg-card);transition:transform var(--t-base),box-shadow var(--t-base)}
+.loc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-card-hover)}
+.loc-card .tag{font-size:9px;font-weight:700;letter-spacing:.12em;color:#82988a;text-transform:uppercase}
+.loc-card h3{margin:12px 0 6px;font-family:var(--font-display);font-weight:500;font-size:19px}
+.loc-card p{color:var(--color-text-secondary);font-size:11px;margin:0}
+
+.cta-block{margin:24px 0;padding:30px;border-radius:var(--radius-lg);background:var(--color-brand-deep);
+  color:#eef3ea;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.cta-block h2{margin:0 0 6px;font-family:var(--font-display);font-weight:500;font-size:27px;letter-spacing:-.04em}
+.cta-block p{color:#b7c7bd;font-size:12px;margin:0;max-width:52ch}
+.cta-block .button{background:#e5ecde;color:#183b37}
+.cta-block .button:hover{background:#fff;color:#183b37}
+
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.stat{padding:18px;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-bg-muted)}
+.stat b{display:block;font-family:var(--font-display);font-weight:500;font-size:30px;letter-spacing:-.04em;color:#1b4038}
+.stat span{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-faint)}
+
+.note-box{margin:20px 0;padding:14px 17px;border-radius:var(--radius-md);background:#f6f2e8;
+  border-left:3px solid var(--color-brand-accent);color:#64736e;font-size:12px;line-height:1.65}
+
+/* 12b. STATS STRIP + TIMELINE (player numbers & history) ------------------- */
+.stats-row.cols-4{grid-template-columns:repeat(4,1fr)}
+.stat .live{display:inline-flex;align-items:center;gap:6px}
+.stat .live i{width:7px;height:7px;border-radius:50%;background:var(--color-success);
+  animation:llPulse 1.6s ease-in-out infinite}
+@keyframes llPulse{0%,100%{opacity:1}50%{opacity:.3}}
+.stat-note{margin-top:10px;font-size:10px;color:var(--color-text-faint)}
+
+.timeline{border-left:2px solid var(--color-border-strong);padding-left:24px;margin:22px 0}
+.tl-item{position:relative;padding-bottom:22px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-30px;top:4px;width:11px;height:11px;
+  border-radius:50%;background:var(--color-brand-lime);border:2px solid var(--color-bg-page)}
+.tl-item .date{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--color-brand-accent-strong)}
+.tl-item strong{display:block;margin-top:3px;font-family:var(--font-display);font-weight:600;
+  font-size:16px;letter-spacing:-.02em}
+.tl-item p{margin-top:3px;font-size:12px;color:var(--color-text-secondary)}
+
+/* 12c. DATA TABLES + FILTERS (game data pages) ---------------------------- */
+.table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-md)}
+.table-scroll table{margin:0}
+.filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.filter-bar input,.filter-bar select{min-height:42px;padding:0 14px;border:1px solid var(--color-border-strong);
+  border-radius:var(--radius-md);background:var(--color-bg-card);color:var(--color-text-primary);font:inherit;font-size:12px}
+.filter-bar input{flex:1;min-width:200px}
+.filter-bar input:focus,.filter-bar select:focus{outline:none;border-color:var(--color-brand-primary);
+  box-shadow:0 0 0 3px rgba(29,81,71,.16)}
+.filter-bar .count{align-self:center;font-size:10px;color:var(--color-text-faint)}
+#jobTable thead th{cursor:pointer;user-select:none;white-space:nowrap}
+#jobTable thead th::after{content:"\25BC";margin-left:6px;font-size:8px;opacity:.35}
+#jobTable thead th.sort-asc::after{content:"\25B2";opacity:1;color:var(--color-brand-lime)}
+#jobTable thead th.sort-desc::after{content:"\25BC";opacity:1;color:var(--color-brand-lime)}
+#jobTable thead th:hover{color:var(--color-brand-lime)}
+#jobTable tbody td:first-child{font-weight:700;white-space:nowrap}
+#jobTable tbody td{white-space:nowrap}
+
+/* 13. FOOTER --------------------------------------------------------------- */
+.site-footer{margin-top:64px;padding:35px max(28px,calc((100vw - 1224px)/2)) 25px;
+  background:var(--color-brand-deep);color:#e5ecde}
+.footer-top{display:flex;align-items:center;gap:22px}
+.footer-brand .brand-name strong{color:#f3f2e8}
+.footer-brand .brand-name small{color:#adc7b4}
+.footer-top p{color:#aebdb1;font-size:10px}
+.footer-links{display:flex;flex-wrap:wrap;gap:21px;margin:25px 0 19px;padding-top:19px;
+  border-top:1px solid rgba(255,255,255,.11)}
+.footer-links a{color:#d7e0d5;font-size:10px;transition:color var(--t-base)}
+.footer-links a:hover{color:var(--color-brand-lime)}
+.footer-guides{margin-top:0;padding-top:0;border-top:0}
+.disclaimer{max-width:700px;color:#9caf9f;font-size:9px;line-height:1.65}
+.copyright{display:flex;justify-content:space-between;gap:15px;margin:21px 0 0;padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.11);color:#91a69a;font-size:9px}
+.copyright a{color:#d1dfa9}
+
+/* 14. RESPONSIVE ----------------------------------------------------------- */
+@media(min-width:1450px){.content-shell,.site-header-inner,.hero-wrap{max-width:var(--layout-max-xl)}}
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .menu{display:block}
+  .hero-wrap{grid-template-columns:1fr;gap:30px;padding:32px 26px}
+  .intro-columns{grid-template-columns:1fr;gap:16px;padding-bottom:40px}
+  .quick-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .system-grid{grid-template-columns:1fr;gap:8px}
+  .inside-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .latest-grid{grid-template-columns:repeat(2,1fr)}
+  .loc-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-row{grid-template-columns:1fr}
+  .stats-row.cols-4{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  :root{--gutter:16px;--header-h:66px}
+  .site-note{justify-content:center;font-size:9px;padding:0 12px}
+  .note-full{display:none}
+  .note-mobile{display:inline}
+  .brand-mark{width:34px;height:34px}
+  .site-header{top:8px;padding:0 12px}
+  .site-header-inner{padding:0 10px 0 14px}
+  .hero-wrap{margin:12px 10px 0;padding:28px 18px 30px;border-radius:22px}
+  .hero-copy h1{font-size:clamp(40px,11vw,56px)}
+  .quick-card{min-height:170px;padding:14px}
+  .system-card{min-height:190px}
+  .inside-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .latest-grid{grid-template-columns:1fr 1fr}
+  .loc-grid{grid-template-columns:1fr}
+  .stats-row.cols-4{grid-template-columns:1fr}
+  .article-card{padding:25px 18px 30px}
+  .article-kicker{flex-direction:column;align-items:flex-start;gap:8px}
+  .guide-card{grid-template-columns:48px 1fr}
+  .guide-card .go{display:none}
+  .cta-block{flex-direction:column;align-items:flex-start}
+  .footer-top{flex-direction:column;align-items:flex-start;gap:10px}
+  .copyright{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TOP NOTE BAR ===== -->
+<div class="site-note">
+  <span class="dot"></span>
+  <span class="note-full">Independent player guide · Not affiliated with the game developer</span>
+  <span class="note-mobile">Independent, unofficial player guide</span>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="/" aria-label="Lagos Life Guide home">
+      <span class="brand-mark" aria-hidden="true">LL</span>
+      <span class="brand-name"><strong>Lagos Life</strong><small>CITY FIELD NOTES</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="/what-is-lagos-life">What Is It</a>
+      <a href="/how-to-play">How to Play</a>
+      <a href="/game-link">Game Link</a>
+      <a href="/locations">Locations</a>
+      <a href="/stats">Stats</a>
+      <a href="/updates">Updates</a>
+    </nav>
+    <details class="menu">
+      <summary aria-label="Open navigation menu"><span></span><span></span><span></span></summary>
+      <nav aria-label="Mobile navigation">
+        <a href="/what-is-lagos-life">What Is It</a>
+        <a href="/how-to-play">How to Play</a>
+        <a href="/game-link">Game Link</a>
+        <a href="/locations">Locations</a>
+        <a href="/stats">Stats</a>
+        <a href="/updates">Updates</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<!-- ===== ROUTED CONTENT ===== -->
+<main id="app" aria-live="polite"></main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <a class="brand footer-brand" href="/" aria-label="Lagos Life Guide home">
+      <span class="brand-mark" style="background:#275b50;color:#d8edc3" aria-hidden="true">LL</span>
+      <span class="brand-name"><strong>Lagos Life</strong><small>CITY FIELD NOTES</small></span>
+    </a>
+    <p>An independent guide to a browser game set in Lagos, Nigeria.</p>
+  </div>
+  <nav class="footer-links" aria-label="Footer navigation">
+    <a href="/what-is-lagos-life">What Is Lagos Life?</a>
+    <a href="/how-to-play">How to Play</a>
+    <a href="/game-link">Official Game Link</a>
+    <a href="/locations">Locations</a>
+    <a href="/stats">Player stats</a>
+    <a href="/updates">Updates</a>
+    <a href="/similar-games">Similar games</a>
+  </nav>
+  <nav class="footer-links footer-guides" aria-label="Account and safety guides">
+    <a href="/age-requirement">Lagos Life age limit</a>
+    <a href="/account">Lagos Life account</a>
+    <a href="/top-up">Lagos Life top up</a>
+    <a href="/safety-and-privacy">Lagos Life safety and privacy</a>
+  </nav>
+  <nav class="footer-links footer-guides" aria-label="Game guide">
+    <a href="/nepo-vs-lapo">Lagos Life nepo vs lapo</a>
+    <a href="/jobs">Lagos Life jobs</a>
+    <a href="/danfo">Lagos Life danfo</a>
+    <a href="/nepa">Lagos Life NEPA</a>
+    <a href="/lagos-slang">Lagos Life slang</a>
+    <a href="/locations/quilox">Lagos Life Quilox</a>
+    <a href="/shalom-rayhamen">Lagos Life developer</a>
+  </nav>
+  <nav class="footer-links footer-guides" aria-label="Game data">
+    <a href="/jobs">Jobs &amp; salaries</a>
+    <a href="/skills">Skills &amp; traits</a>
+    <a href="/houses">Homes &amp; rent</a>
+    <a href="/money">Money &amp; businesses</a>
+    <a href="/items">Items &amp; prices</a>
+    <a href="/venues">Venues &amp; hours</a>
+    <a href="/tips">Tips</a>
+    <a href="/support">Not working?</a>
+  </nav>
+  <p class="disclaimer">This guide is independently run and is not affiliated with or endorsed by the game's developer. Game details can change; check the official site for the latest in-game information.</p>
+  <p class="copyright"><span>© 2026 Lagos Life Guide · unofficial fan project</span><a href="/">Back to top ↑</a></p>
+</footer>
+
+<script>
+/* ==========================================================================
+   ROUTER + CONTENT
+   All page bodies are authored for this guide. Nothing is copied from the
+   target website's source code, imagery or articles.
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  var app = (typeof document !== "undefined" && document.getElementById) ? document.getElementById("app") : null;
+  var UPDATED = "2026-10-05";
+
+  /* ---------- hero art: original illustrated map (drawn for this guide) --- */
+  var MAP_ART =
+    '<svg viewBox="0 0 960 570" preserveAspectRatio="xMidYMid slice" role="img" ' +
+    'aria-label="An illustrated Lagos-style guide map with lagoon, bridges and landmarks">' +
+    '<defs>' +
+      '<linearGradient id="llWater" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop stop-color="#67b8d0"/><stop offset="1" stop-color="#459bb9"/></linearGradient>' +
+      '<filter id="llShadow" x="-30%" y="-50%" width="160%" height="220%">' +
+        '<feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1b4038" flood-opacity=".2"/></filter>' +
+      '<g id="llHouse">' +
+        '<path d="M0 9 17 0 34 9 17 18Z" fill="#3f806b"/>' +
+        '<path d="M0 9 17 18v19L0 28Z" fill="#dbded2"/>' +
+        '<path d="M17 18 34 9v19L17 37Z" fill="#a5bb9d"/>' +
+        '<path d="M6 18v8l6 3v-8Z" fill="#406982"/>' +
+        '<path d="M23 20v9l6-3v-9Z" fill="#406982"/></g>' +
+      '<g id="llTower">' +
+        '<path d="M0 13 26 0 52 13 26 27Z" fill="#385d67"/>' +
+        '<path d="M0 13 26 27v51L0 64Z" fill="#627e80"/>' +
+        '<path d="M26 27 52 13v51L26 78Z" fill="#314d57"/>' +
+        '<path d="M5 24v7l15 8v-7Zm0 14v7l15 8v-7Zm0 14v7l15 8v-7Z" fill="#d7e0d5"/>' +
+        '<path d="M32 34v8l14-7v-8Zm0 14v8l14-7v-8Zm0 14v8l14-7v-8Z" fill="#8db2b4"/></g>' +
+      '<g id="llPalm">' +
+        '<path d="M0 0c2 12 1 25-2 36" stroke="#705f39" stroke-width="3" fill="none"/>' +
+        '<path d="M0 3C-3-8-13-9-20-4c9 0 13 4 18 10C-2-7 5-12 14-8 7-4 4 0 1 6 9-1 17 0 21 6 11 4 5 6 0 10c-7-4-13-2-19 4 5-10 11-13 19-11Z" fill="#2f805f"/></g>' +
+    '</defs>' +
+    '<rect width="960" height="570" fill="#d8dfc5"/>' +
+    '<path d="M0 0h960v235L0 292Z" fill="#a9c491"/>' +
+    '<path d="M0 0h960v40L0 250Z" fill="#b8cfa1" opacity=".6"/>' +
+    '<path d="M0 288 960 232v118L0 405Z" fill="url(#llWater)"/>' +
+    '<path d="M0 288 960 232" stroke="#7fb3c9" stroke-width="4"/>' +
+    '<path d="M0 405 960 350" stroke="#459bb9" stroke-width="4"/>' +
+    '<path d="M0 405 960 350v220H0Z" fill="#b6c99b"/>' +
+    '<path d="M240 430 960 372v198H180Z" fill="#a8c38e"/>' +
+    '<path d="M0 407 210 420 170 570H0Z" fill="#d1d1bc"/>' +
+    '<g fill="none" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M-40 60 930 112M-50 176 820 226M120-20 60 250M420-20 356 274M740-20 688 288" stroke="#849487" stroke-width="13"/>' +
+      '<path d="M-40 60 930 112M-50 176 820 226M120-20 60 250M420-20 356 274M740-20 688 288" stroke="#c8d0ba" stroke-width="3"/>' +
+      '<path d="M268 425 960 468M275 540 960 566M420 400 388 570M700 420 668 570M852 430 820 570" stroke="#889588" stroke-width="14"/>' +
+      '<path d="M268 425 960 468M275 540 960 566M420 400 388 570M700 420 668 570M852 430 820 570" stroke="#d3d8c0" stroke-width="3"/>' +
+    '</g>' +
+    '<path d="m330 244 34 2 3 132-34-2Z" fill="#507f86" opacity=".22"/>' +
+    '<path d="m336 236 22 2 3 141-22-2Z" fill="#84958d"/>' +
+    '<path d="m343 237 8 1 3 140-8-1Z" fill="#d4d3b9"/>' +
+    '<path d="m748 278 35 2-17 129-35-3Z" fill="#507f86" opacity=".22"/>' +
+    '<path d="m752 269 22 2-17 138-22-2Z" fill="#84958d"/>' +
+    '<path d="m759 270 8 1-17 137-8-1Z" fill="#d4d3b9"/>' +
+    '<path d="M410 320c58-9 114-6 160 7" stroke="#e3f3ea" stroke-width="2" stroke-dasharray="8 14" opacity=".7" fill="none"/>' +
+    '<path d="m470 305 17 5-12 8Z" fill="#f6ebd4"/><path d="M477 299v15" stroke="#384d58" stroke-width="2"/>' +
+    '<text x="418" y="358" fill="#e3f3ea" font-family="Manrope, sans-serif" font-size="18" font-weight="700" letter-spacing="5">LAGOS LAGOON</text>' +
+    '<g opacity=".95">' +
+      '<use href="#llHouse" x="70" y="96"/><use href="#llHouse" x="148" y="80"/><use href="#llHouse" x="216" y="98"/>' +
+      '<use href="#llHouse" x="792" y="44"/><use href="#llHouse" x="852" y="52"/><use href="#llHouse" x="820" y="150"/>' +
+      '<use href="#llHouse" x="846" y="200"/><use href="#llHouse" x="560" y="140"/><use href="#llHouse" x="636" y="162"/>' +
+      '<use href="#llHouse" x="478" y="462"/><use href="#llHouse" x="548" y="468"/><use href="#llHouse" x="718" y="488"/>' +
+      '<use href="#llHouse" x="776" y="498"/><use href="#llHouse" x="838" y="506"/><use href="#llHouse" x="898" y="512"/>' +
+      '<use href="#llTower" x="282" y="100"/><use href="#llTower" x="522" y="40"/><use href="#llTower" x="584" y="420"/>' +
+      '<use href="#llPalm" x="248" y="168"/><use href="#llPalm" x="672" y="98"/><use href="#llPalm" x="738" y="210"/>' +
+      '<use href="#llPalm" x="432" y="500"/><use href="#llPalm" x="872" y="420"/><use href="#llPalm" x="910" y="462"/>' +
+    '</g>' +
+    '<path d="M36 470c31 0 37 13 63 18 17 3 41-1 55 9" fill="none" stroke="#b7a976" stroke-width="7" stroke-linecap="round"/>' +
+    '<path d="m44 512 43-18 27 10-43 18Z" fill="#edc854"/><path d="m44 512 27 10v13l-27-10Z" fill="#bd922e"/><path d="m71 522 43-18v13l-43 18Z" fill="#d7a83a"/><path d="M60 514v5m13-9v5m16-9v5" stroke="#384d58" stroke-width="4"/>' +
+    '<g font-family="Manrope, sans-serif" font-size="16" font-weight="700" fill="#253e38" filter="url(#llShadow)">' +
+      '<g transform="translate(150 138)"><rect width="152" height="38" rx="19" fill="#fffefa"/><circle cx="21" cy="19" r="12" fill="#f0d778"/><path d="m15 25 6-13 6 13m-11-7h10" stroke="#725c2f" stroke-width="2" fill="none"/><text x="40" y="25">Marina</text></g>' +
+      '<g transform="translate(430 116)"><rect width="150" height="38" rx="19" fill="#fffefa"/><circle cx="21" cy="19" r="12" fill="#b8decf"/><path d="M15 17h12v11H15Zm0 4h12" stroke="#3c6659" stroke-width="2" fill="none"/><text x="40" y="25">Campus</text></g>' +
+      '<g transform="translate(660 218)"><rect width="118" height="38" rx="19" fill="#fffefa"/><circle cx="21" cy="19" r="12" fill="#efd29f"/><path d="M15 17h12l-2 9h-8Zm2-3 4-4 4 4" stroke="#745b34" stroke-width="2" fill="none"/><text x="40" y="25">Market</text></g>' +
+      '<g transform="translate(452 448)"><rect width="132" height="38" rx="19" fill="#fffefa"/><circle cx="21" cy="19" r="12" fill="#e5c6a9"/><path d="M17 12v14m8-14v14m-8-10h8" stroke="#7e5850" stroke-width="2"/><text x="40" y="25">Quilox</text></g>' +
+      '<g transform="translate(686 452)"><rect width="140" height="38" rx="19" fill="#fffefa"/><circle cx="21" cy="19" r="12" fill="#d8d0ed"/><path d="M15 15h12v11H15Zm0 4h12" stroke="#6d6485" stroke-width="2" fill="none"/><text x="40" y="25">Terminal</text></g>' +
+    '</g>' +
+    '<text x="70" y="214" fill="#6b936c" font-family="Manrope, sans-serif" font-size="17" font-weight="700" letter-spacing="3">MAINLAND</text>' +
+    '<text x="268" y="500" fill="#729773" font-family="Manrope, sans-serif" font-size="17" font-weight="700" letter-spacing="3">ISLAND</text>' +
+    '<g transform="translate(898 70)" filter="url(#llShadow)">' +
+      '<circle r="26" fill="#fffefa"/><circle r="26" fill="none" stroke="#d6d9cf"/>' +
+      '<path d="M0-15 5 2 0-2-5 2Z" fill="#ee7856"/><path d="M0 15-5-2 0 2 5-2Z" fill="#183b37"/>' +
+      '<text x="0" y="-19" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#183b37">N</text>' +
+    '</g>' +
+    '</svg>';
+
+  /* ---------- small builders ---------------------------------------------- */
+  function quickCard(n, icon, title, desc, cta, route, dark) {
+    return '<a class="quick-card' + (dark ? " dark" : "") + '" href="' + route + '">' +
+      '<span class="card-number">' + n + '</span>' +
+      '<span class="quick-icon" aria-hidden="true">' + icon + '</span>' +
+      '<strong>' + title + '</strong>' +
+      '<span class="desc">' + desc + '</span>' +
+      '<span class="cta">' + cta + ' ↗</span></a>';
+  }
+  function systemCard(tint, icon, count, title, text, route) {
+    return '<div class="system-card ' + tint + '"><span class="system-icon" aria-hidden="true">' + icon + '</span>' +
+      '<span class="system-count">' + count + '</span>' +
+      '<h3><a href="' + route + '">' + title + '</a></h3><p>' + text + '</p>' +
+      '<a class="text-link" href="' + route + '">Read more →</a></div>';
+  }
+  function insideCard(kicker, title, small, route) {
+    return '<a class="inside-card" href="' + route + '"><span>' + kicker + '</span>' +
+      '<strong>' + title + '</strong><small>' + small + '</small><b aria-hidden="true">↗</b></a>';
+  }
+  function latestCard(title, route) {
+    return '<a class="latest-card" href="' + route + '"><span class="latest-date">Updated ' + UPDATED + '</span>' +
+      '<strong>' + title + '</strong><span class="latest-arrow" aria-hidden="true">↗</span></a>';
+  }
+  function faqItem(q, a, open) {
+    return '<details class="faq-item"' + (open ? " open" : "") + '><summary>' + q + '</summary><p>' + a + '</p></details>';
+  }
+  function related(links) {
+    return '<div class="related"><h2>Keep reading</h2><div class="related-links">' +
+      links.map(function (l) { return '<a href="' + l.r + '">' + l.t + '</a>'; }).join("") +
+      '</div></div>';
+  }
+  function sourceNote(txt) {
+    return '<p class="source-note"><strong>Note:</strong> ' + txt + '</p>';
+  }
+  function article(o) {
+    return '<div class="content-shell article-shell">' +
+      '<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>' +
+      '<span>' + (o.crumb || o.title) + '</span></nav>' +
+      '<article class="article-card">' +
+      '<div class="article-kicker"><span class="eyebrow"><span class="dot"></span>' + (o.kicker || "THE PLAYER'S FIELD GUIDE") + '</span>' +
+      '<span class="updated">Updated ' + UPDATED + '</span></div>' +
+      '<h1>' + o.title + '</h1>' +
+      '<div class="prose">' + o.body + '</div>' +
+      (o.related ? related(o.related) : "") +
+      '</article>' +
+      (o.sources ? sourceNote(o.sources) : "") +
+      '</div>';
+  }
+
+  /* ---------- update feed (reused by home + updates page) ----------------- */
+  var UPDATES = [
+    { t: "Lagos Life How to Play: Your First Steps", r: "/how-to-play" },
+    { t: "Lagos Life Game — Play It Here", r: "/game-link" },
+    { t: "Lagos Life Locations: Map Places Explained", r: "/locations" },
+    { t: "Lagos Life vs The Sims: How They Compare", r: "/lagos-life-vs-sims" },
+    { t: "Lagos Life Governor Election: Rules Players Know", r: "/governor-election" },
+    { t: "Lagos Life Sea Plots: Map Ad Space Explained", r: "/sea-plots" },
+    { t: "Lagos Life Houses: What the 400 Homes Mean", r: "/houses" },
+    { t: "Lagos Life Money: Naira, Jobs and Top-Ups", r: "/money" }
+  ];
+
+  /* ---------- player numbers + history (reused across pages) -------------- */
+  var STATS = [
+    { n: "1.2M", l: "Total players" },
+    { n: "31.4K", l: "Playing now", live: true },
+    { n: "+890K", l: "New players / day" },
+    { n: "1 Oct 2026", l: "Released" }
+  ];
+
+  var TIMELINE = [
+    { d: "1 Oct 2026", t: "Launch announced", p: "The developer shares that the browser game has gone live." },
+    { d: "3 Oct 2026", t: "Crosses 100,000 players", p: "More than 11,000 are playing at once during the first surge." },
+    { d: "4 Oct 2026", t: "50,000+ playing together", p: "The peak crowd grows and more city content is announced." },
+    { d: "4 Oct 2026", t: "One million players", p: "A milestone reached roughly three days after launch." }
+  ];
+
+  function statCard(s) {
+    return '<div class="stat"><b>' + s.n + '</b><span>' +
+      (s.live ? '<span class="live"><i></i>' : '') + s.l + (s.live ? '</span>' : '') + '</span></div>';
+  }
+  function statStrip() {
+    return '<section class="stat-strip"><div class="section-heading">' +
+      '<div><span class="eyebrow">THE CITY RIGHT NOW</span><h2>Player numbers</h2></div>' +
+      '<a class="text-link" href="/stats">Full stats <span>↗</span></a></div>' +
+      '<div class="stats-row cols-4">' + STATS.map(statCard).join("") + '</div>' +
+      '<p class="stat-note">Reported figures, checked from the game\u2019s public pages. Numbers move fast.</p></section>';
+  }
+  function timelineBlock() {
+    return '<div class="timeline">' + TIMELINE.map(function (x) {
+      return '<div class="tl-item"><span class="date">' + x.d + '</span>' +
+        '<strong>' + x.t + '</strong><p>' + x.p + '</p></div>';
+    }).join("") + '</div>';
+  }
+
+  /* ---------- GAME DATA (aggregated from unofficial guides, 2026-10-05) --- */
+  /* Where sources disagreed, the higher figure is used. Treat as best-effort. */
+  function nai(n) { return '\u20a6' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function dt(head, rows) {
+    return '<div class="table-scroll"><table><thead><tr>' +
+      head.map(function (h) { return '<th>' + h + '</th>'; }).join('') +
+      '</tr></thead><tbody>' +
+      rows.map(function (r) {
+        return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>';
+      }).join('') +
+      '</tbody></table></div>';
+  }
+
+  var CAREERS = [
+    ["Tech","Coding","CcHub, Yaba",["Intern","Junior Dev","Senior Dev","Tech Lead","CTO"],[9900,19500,32800,47300,76500]],
+    ["Banking","Charisma","Marina Towers, VI",["Marketer","Relationship Officer","Branch Manager","Executive Director","MD/CEO"],[11600,21000,31500,44600,72000]],
+    ["Music","Music","New Afrika Shrine, Ikeja",["Backup Singer","Studio Rat","Opening Act","Headliner","Afrobeats Giant"],[7400,15000,28400,49900,99000]],
+    ["Trading","Hustle","Balogun Market, Lagos Island",["Shop Assistant","Stall Owner","Wholesaler","Importer","Market Oga"],[8300,16500,26500,39400,63000]],
+    ["Nursing","Fitness","General Hospital, Ikeja",["Student Nurse","Staff Nurse","Senior Nurse","Matron","Chief Nursing Officer"],[9100,18000,30200,45500,75000]],
+    ["Hairstyling","Hustle","Mama Bisi's Salon, Surulere",["Salon Assistant","Junior Stylist","Braiding Pro","Salon Manager","Salon Boss"],[7400,15000,26500,40300,67500]],
+    ["Chef","Cooking","Amala Shitta, Surulere",["Dishwasher","Line Cook","Sous Chef","Head Chef","Celebrity Chef"],[7400,15000,26500,42000,70500]],
+    ["DJ","Music","Quilox, Victoria Island",["Hype Man","Resident DJ","Club Headliner","Festival DJ","Global DJ"],[8300,16500,30200,50800,93000]],
+    ["Fitness Coach","Fitness","i-Fitness, Ikoyi",["Gym Floor Assistant","Personal Trainer","Head Coach","Gym Manager","Fitness Mogul"],[7400,15800,27300,42000,69000]],
+    ["Content Creator","Charisma","Lekki Conservation Centre, Lekki",["Aspiring Creator","Micro-Influencer","Brand Ambassador","Content Mogul","Celebrity Influencer"],[6600,15000,28400,49000,90000]],
+    ["Teaching","Charisma","The Library, Victoria Island",["Lesson Teacher","Class Teacher","Head of Department","Vice Principal","School Proprietor"],[8300,15800,25200,36800,63000]],
+    ["Event Planning","Hustle","Freedom Park, Lagos Island",["Canopy Boy/Girl","Event Assistant","Event Planner","Owambe Specialist","Events Mogul"],[7400,15000,27300,43800,75000]],
+    ["Football","Charisma","Oga Sunday Viewing Centre, Surulere",["Viewing Centre Attendant","Match Commentator","Radio Pundit","TV Pundit","Football Agent"],[6600,14300,25200,40300,72000]],
+    ["Retail","Charisma","The Palms, Lekki",["Sales Rep","Floor Supervisor","Store Manager","Area Manager","Retail Boss"],[7400,15000,25200,36800,60000]],
+    ["Law","Charisma","Lagos High Court, Igbosere",["Law Clerk","Associate","Senior Associate","Partner","Senior Advocate (SAN)"],[9100,18000,30200,45500,75000]],
+    ["Medicine","Fitness","General Hospital, Ikeja",["House Officer","Resident Doctor","Registrar","Consultant","Chief Medical Director"],[21000,31000,44000,60000,90000]],
+    ["Civil Service","Hustle","Marina Towers, Victoria Island",["Administrative Officer","Senior Admin Officer","Assistant Director","Director","Permanent Secretary"],[17000,26000,37000,52000,76000]],
+    ["Broadcasting","Comedy","Naija Radio House, Ikeja",["Newsroom Reporter","On-Air Personality","Senior Producer","Programme Director","Station Manager"],[18000,28000,40000,56000,84000]],
+    ["Real Estate","Charisma","Ikoyi Golf Club, Ikoyi",["Estate Agent","Senior Agent","Property Manager","Estate Developer","Property Mogul"],[18000,28000,41000,58000,88000]],
+    ["Aviation","Fitness","Eko Hotels & Suites, VI",["Cabin Crew","Senior Purser","First Officer","Captain","Chief Pilot"],[19000,30000,44000,62000,95000]],
+    ["Product Management","Charisma","CcHub, Yaba",["Associate PM","Product Manager","Senior PM","Head of Product","Chief Product Officer"],[20000,31000,45000,62000,92000]]
+  ];
+
+  var TRAITS = [
+    ["Foodie","Cooking growth x1.6"],
+    ["Gym Rat","Fitness growth x1.6"],
+    ["Tech Bro or Sis","Coding growth x1.6"],
+    ["Musical","Music growth x1.6"],
+    ["Hustler","Hustle growth x1.5"],
+    ["Smooth Talker","Charisma growth x1.5"],
+    ["Owambe Spirit","Affects need drain, work and social outcomes"],
+    ["Lazy Bone","Affects need drain, work and social outcomes"],
+    ["Clean Pikin","Affects need drain, work and social outcomes"],
+    ["Night Crawler","Affects need drain, work and social outcomes"]
+  ];
+  var SKILLS = [
+    ["Cooking","Learn Mama's Ewedu Secret (Amala Shitta)","Chef"],
+    ["Charisma","Practice Speech; Open Mic; Practise Presenting","Banking, Content Creator, Teaching, Football, Retail, Law, Real Estate"],
+    ["Fitness","Session with a Coach (i-Fitness)","Nursing, Medicine, Fitness Coach, Aviation"],
+    ["Coding","Weekend Hackathon (CcHub); Hack on Side Project","Tech"],
+    ["Music","Play the Piano; Practice Guitar","Music, DJ"],
+    ["Hustle","Buy & Resell Goods (Balogun); Network with Big Men","Trading, Hairstyling, Event Planning, Civil Service"],
+    ["Comedy","Film a Comedy Skit; Practise Stand-up","Broadcasting"],
+    ["Dance","Practise Dance Moves","No career"],
+    ["Photography","Practise Photography","No career"]
+  ];
+  var NEEDS = [
+    ["Bladder","Fastest-draining bar in the game - top up before long shifts or cross-city trips."],
+    ["Hunger","Restored by food; drains fastest of the ordinary needs."],
+    ["Fun","Restored by food and venues; punishes pure grinding."],
+    ["Energy","Restored by sleep; drives how many shifts you can run."],
+    ["Hygiene","Restored by bathing."],
+    ["Social","Restored by venues and hosting others."],
+    ["Mood","Sum of the six bars; above 40 gives a bonus to all skill gains."]
+  ];
+
+  var HOMES = [
+    ["Face-me-I-face-you","Mushin",2400,"-","Hard start; 6x6; start cash \u20a616,000"],
+    ["Self-contain","Yaba",6000,"-","Balanced start; 7x7; start cash \u20a636,000"],
+    ["Mini-flat (furnished)","Lekki Phase 1",17000,"Nepo only","Big-spender start; 10x10; start cash \u20a6104,000"],
+    ["Duplex","Ikoyi",250000,750000,"Luxury; 12x12; unfurnished"],
+    ["Mansion","Banana Island",1500000,4500000,"Billionaire tier; 14x14; unfurnished"],
+    ["Student bunk","UNILAG, Akoka",1200,"-","Students only"]
+  ];
+
+  var BUSINESSES = [
+    ["Recharge & Data Kiosk",150000,"\u20a6700-3,200/day","Ojuelegba"],
+    ["Zobo & Chapman Stand",300000,"\u20a61,800-5,800/day","Yaba"],
+    ["POS Stand",500000,"\u20a63,000-9,500/day","Yaba"],
+    ["Buka (Mama Put)",2500000,"\u20a612,000-43,000/day","Surulere"],
+    ["Barbing Salon",6000000,"\u20a626,000-93,000/day","Ikeja"],
+    ["Car Wash",15000000,"\u20a662,000-204,000/day","Lekki"],
+    ["Event Centre",60000000,"\u20a6155,000-741,000/day","Ikoyi"],
+    ["Quilox Share (5%)",250000000,"\u20a6645,000-2,435,000/day","Victoria Island"]
+  ];
+  var LAND = [
+    ["Imota, Ikorodu (quarter plot)",250000,"40%","+2.5%/week"],
+    ["Ikorodu (half plot)",1500000,"35%","+2.5%/week"],
+    ["Epe (full plot)",2500000,"30%","+3.75%/week"],
+    ["Ibeju-Lekki (full plot)",4000000,"20%","+5%/week (fastest)"],
+    ["Lekki Phase 2 (full plot, C of O)",15000000,"5%","+3.125%/week"],
+    ["Banana Island (waterfront plot)",150000000,"0%","+1.875%/week"]
+  ];
+  var GIGS = [
+    ["Help at the Buka",1750,"Amala Shitta; trains Cooking"],
+    ["Carry Load (Alabaru)",2250,"Balogun Market; trains Fitness"],
+    ["WhatsApp Hustle",1150,"Anywhere; trains Hustle"],
+    ["Run Instagram Shop",1800,"Home; needs Laptop Desk"],
+    ["Freelance Gig",2500,"CcHub; needs Coding 2"],
+    ["Open Mic Performance",3200,"New Afrika Shrine; needs Music 2"],
+    ["Perform at Comedy Night",5250,"Freedom Park; needs Comedy 3"],
+    ["Enter the Dance Battle",4125,"Quilox; needs Dance 3"],
+    ["Paid Beach Photoshoot",10750,"Elegushi; needs Photography 4"],
+    ["Host a Piano Recital",37500,"Home; needs Grand Piano and Music 5"]
+  ];
+
+  var ITEMS = [
+    ["Hygiene","Bucket & Bowl",400,"Basic washing"],
+    ["Hygiene","Water Drum & Jerrycans",800,"Water storage"],
+    ["Hygiene","WC Toilet",3000,"Private toilet"],
+    ["Hygiene","Rain Shower",11400,"Needs power"],
+    ["Hygiene","Bathtub",19200,"Needs power; decor 2"],
+    ["Hygiene","Washing Machine",480000,"Needs power"],
+    ["Hygiene","Jacuzzi",25000000,"Needs power; decor 5"],
+    ["Sleep","Foam Mattress",1800,"Cheapest useful Energy item"],
+    ["Sleep","Spring Bed",7800,"Better Energy"],
+    ["Sleep","Lekki King Bed",28800,"Best Energy; decor 3"],
+    ["Power","Rechargeable Lamp",1100,"Works during NEPA cuts"],
+    ["Power","Standing Fan",2200,"Needs power; stops heat moodlet"],
+    ["Power","I Better Pass My Neighbour Gen",14400,"Power during cuts; needs fuel"],
+    ["Power","Double-Door Fridge",13200,"Needs power; keeps food"],
+    ["Power","Solar + Inverter",78000,"Power 24/7"],
+    ["Power","Split Air Conditioner",650000,"Needs power; decor 1"],
+    ["Fun","Transistor Radio",1000,"Battery, no power"],
+    ["Fun","Party Speakers",7200,"Needs power"],
+    ["Fun","32-inch Flat TV",10800,"Needs power"],
+    ["Fun","65-inch Smart TV",38400,"Needs power; decor 2"],
+    ["Fun","PS5 Gaming Setup",850000,"Needs power; decor 1"],
+    ["Fun","Snooker Table",3500000,"Decor 3"],
+    ["Fun","Home Cinema Wall",18000000,"Needs power; decor 4"],
+    ["Skill","Dumbbell Rack",3400,"Home gym for Fitness"],
+    ["Skill","Acoustic Guitar",4200,"Music; unlocks Write a Banger"],
+    ["Skill","Ring Light & Phone Stand",9500,"Needs power; unlocks paid skits"],
+    ["Skill","Laptop Desk",18000,"Coding and Hustle; unlock gigs"],
+    ["Skill","DSLR Camera & Tripod",24000,"Needs power; unlocks photo gigs"],
+    ["Skill","Grand Piano",12000000,"Needs power; fastest Music; decor 5"],
+    ["Kitchen","Cooler Box",700,"Keeps food, no power"],
+    ["Kitchen","Kerosene Stove",1100,"Cooking, no power"],
+    ["Kitchen","Kitchen Counter",4200,"Decor 1"],
+    ["Kitchen","Kitchen Sink",4800,"Water"],
+    ["Kitchen","Gas Cooker",8400,"Cooking 30% faster"],
+    ["Decor","Wall Calendar",300,"Decor 1"],
+    ["Decor","Fela Poster",600,"Decor 1"],
+    ["Decor","Potted Plant",700,"Decor 1"],
+    ["Decor","Ankara Rug",2600,"Decor 2"],
+    ["Decor","Adire Wall Art",5400,"Decor 3"],
+    ["Decor","Persian Runner Rug",7800,"Decor 3"],
+    ["Decor","Silk Curtains",120000,"Decor 3"],
+    ["Decor","Aquarium",1200000,"Decor 4"],
+    ["Decor","Gold Lion Statue",50000000,"Decor 6"],
+    ["Furniture","Plastic Chair",500,"No effect"],
+    ["Furniture","Glass Coffee Table",6500,"Decor 2"],
+    ["Furniture","Dining Table",6600,"Decor 2"],
+    ["Furniture","Velvet Sofa",10200,"Decor 2"],
+    ["Furniture","3-Seater Family Sofa",24000,"Decor 3"],
+    ["Furniture","Italian Leather Sofa",32000,"Decor 3"],
+    ["Furniture","Royal Gold Sofa",55000,"Decor 4"],
+    ["Pets","Mimi the Cat",15000,"Decor 1"],
+    ["Pets","Bingo the Local Dog",25000,"Decor 1"],
+    ["Pets","African Grey Parrot",45000,"Decor 2"]
+  ];
+
+  var VENUES = [
+    ["Amala Shitta","Surulere","07:00-22:00","Chef","Help at the Buka; learn Ewedu secret"],
+    ["Balogun Market","Lagos Island","07:00-19:00","Trading","Carry Load; Buy & Resell"],
+    ["CcHub","Yaba","08:00-23:00","Tech, Product Management","Pitch Your Startup"],
+    ["Eko Casino","Victoria Island","24 hours","-","Slots; Midnight Buffet"],
+    ["Eko Hotels & Suites","Victoria Island","24 hours","Aviation","The Presidential Suite"],
+    ["Eko Police Division","Lagos Island","24 hours","-","Pay Bail; cell"],
+    ["Elegushi Beach","Lekki","08:00-04:00","-","Paid Beach Photoshoot"],
+    ["Freedom Park","Lagos Island","09:00-22:00","Event Planning","Comedy Night"],
+    ["General Hospital","Ikeja","24 hours","Nursing, Medicine","See a Doctor"],
+    ["House of Grace Chapel","Ikeja","06:00-22:00","-","Sunday Service"],
+    ["i-Fitness","Ikoyi","05:00-22:00","Fitness Coach","Session with a Coach"],
+    ["Ikoyi Golf Club","Ikoyi","24 hours","Real Estate","Play 18 Holes"],
+    ["Ivory Rooftop","Victoria Island","12:00-01:00","-","Candlelit Dinner"],
+    ["Lagoon Boat Cruise","Five Cowries Creek","24 hours","-","Charter the Boat"],
+    ["Lagos High Court","Igbosere","24 hours","Law","Legal Aid Desk; Affidavit"],
+    ["Lekki Conservation Centre","Lekki","08:00-17:00","Content Creator","Canopy Walk"],
+    ["Mama Bisi's Salon","Surulere","08:00-21:00","Hairstyling","Get Braids Done"],
+    ["Marina Towers","Victoria Island","06:00-21:00","Banking, Civil Service","Network in the Lobby"],
+    ["MindSpace Wellness Centre","Yaba","07:00-22:00","-","One-on-One Session"],
+    ["Naija Radio House","Ikeja","24 hours","Broadcasting","Practise Presenting"],
+    ["New Afrika Shrine","Ikeja","14:00-04:00","Music","Open Mic Performance"],
+    ["Oga Sunday Viewing Centre","Surulere","12:00-23:00","Football","Watch EPL; betting slips"],
+    ["Polanco Motors","Victoria Island","08:00-22:00","-","Take a Test Drive"],
+    ["Polling Unit 001","Lagos Island","24 hours","-","Cast Your Vote"],
+    ["Quilox","Victoria Island","22:00-05:00","DJ","Enter the Dance Battle"],
+    ["Teslim Balogun Stadium","Surulere","24 hours","-","Take a Penalty"],
+    ["The Library","Victoria Island","22:00-04:00","Teaching","Secret Bookcase"],
+    ["The Palms","Lekki","09:00-22:00","Retail","Genesis Cinema Movie"],
+    ["University of Lagos","Akoka, Yaba","24 hours","-","Matriculate; 33 activities"]
+  ];
+
+  var SUPPORT = [
+    ["Reconnecting to Lagos\u2026","Dropped real-time connection.","Hard refresh; leave the in-app browser; turn off any VPN."],
+    ["Stuck on the loading screen","Stale cached JavaScript.","Hard refresh (Ctrl+F5)."],
+    ["Lag or a choppy world","Server load in a shared world.","Retry off-peak; use a desktop browser."],
+    ["Bad result from an Instagram or TikTok link","In-app browsers break the live connection.","Copy the URL into Safari or Chrome."],
+    ["VPN or proxy active","Added latency breaks the real-time socket.","Turn the VPN off."],
+    ["Asked to go to work but unsure how","Not a bug - you must travel there.","Open the Jobs app for where and when, then travel."],
+    ["Looking for an APK or download","The game is browser-only.","Play at lagoslife.app; there is no app."],
+    ["Partial load on an old iPhone","Needs iOS 16.4 or newer.","Update iOS."],
+    ["Could not reach the lottery","The birth-lottery call failed.","Reload on a stable connection; the fallback has no perks."],
+    ["Forgot your password","Email was optional at sign-up.","Recovery needs an email; add one now."],
+    ["Placed in a queue or asked for an invite code","That is not the real game.","Check the address is lagoslife.app; there is no queue."],
+    ["A look-alike site asks for your password","Phishing risk.","Only ever sign in at lagoslife.app."]
+  ];
+
+  var TIPS = [
+    "Treat Saturday rent as the only hard deadline - plan backwards from it.",
+    "Match your career to your trait, not to the pay table.",
+    "Do not buy a fridge before you own a generator.",
+    "Eat cheap: party jollof is the best Hunger per naira.",
+    "Learn venue opening hours before planning evening Fun or Social.",
+    "Check the governor's active policy before big purchases or long commutes.",
+    "Top up Bladder before long shifts and cross-city trips - it drains fastest.",
+    "Do the daily hunt every day for free income and map knowledge.",
+    "Stay in the cheapest housing longer than feels right.",
+    "Play on desktop for long grinding sessions.",
+    "Grind one trait-matched skill instead of spreading thin.",
+    "Skip furniture early; a foam mattress is worth it for Energy.",
+    "Move house only when weekly income exceeds about 3x the new rent.",
+    "Never play inside an in-app browser."
+  ];
+
+  function careerTable() {
+    var rows = "";
+    CAREERS.forEach(function (c) {
+      var base = c[4][0];
+      c[3].forEach(function (title, i) {
+        var pay = c[4][i], mult = pay / base;
+        rows += '<tr data-career="' + c[0] + '" data-lvl="' + (i + 1) + '" data-title="' + title +
+          '" data-pay="' + pay + '" data-mult="' + mult + '" data-skill="' + c[1] + '" data-place="' + c[2] +
+          '" data-text="' + (c[0] + " " + title + " " + c[2]).toLowerCase() + '">' +
+          '<td>' + c[0] + '</td><td>' + (i + 1) + '</td><td>' + title + '</td><td>' + nai(pay) + '</td>' +
+          '<td>' + (i === 0 ? "1\u00d7" : mult.toFixed(1) + "\u00d7") + '</td>' +
+          '<td>' + c[1] + '</td><td>' + c[2] + '</td></tr>';
+      });
+    });
+    return '<div class="filter-bar">' +
+      '<input id="jobSearch" type="search" placeholder="Search career, title or workplace\u2026">' +
+      '<select id="jobSkill"><option value="">All skills</option>' +
+      ["Coding","Charisma","Music","Hustle","Fitness","Cooking","Comedy"].map(function (s) { return '<option>' + s + '</option>'; }).join('') +
+      '</select><span class="count" id="jobCount"></span></div>' +
+      '<div class="table-scroll"><table id="jobTable"><thead><tr>' +
+      '<th data-key="career" data-type="text" title="Sort by career">Career</th>' +
+      '<th data-key="lvl" data-type="num" title="Sort by level">Lvl</th>' +
+      '<th data-key="title" data-type="text" title="Sort by title">Job title</th>' +
+      '<th data-key="pay" data-type="num" title="Sort by pay">Pay / shift</th>' +
+      '<th data-key="mult" data-type="num" title="Sort by growth multiple">Growth</th>' +
+      '<th data-key="skill" data-type="text" title="Sort by skill">Skill</th>' +
+      '<th data-key="place" data-type="text" title="Sort by workplace">Workplace</th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+  function bindJobs() {
+    var s = document.getElementById("jobSearch"), k = document.getElementById("jobSkill"),
+        tb = document.querySelector("#jobTable tbody"), c = document.getElementById("jobCount"),
+        ths = document.querySelectorAll("#jobTable thead th");
+    if (!tb) return;
+    function apply() {
+      var q = (s.value || "").toLowerCase(), sk = k.value, vis = 0, rows = tb.rows;
+      Array.prototype.forEach.call(rows, function (r) {
+        var ok = (!q || r.getAttribute("data-text").indexOf(q) >= 0) && (!sk || r.getAttribute("data-skill") === sk);
+        r.style.display = ok ? "" : "none"; if (ok) vis++;
+      });
+      if (c) c.textContent = vis + " of " + rows.length + " positions";
+    }
+    var sortKey = null, sortDir = 1;
+    Array.prototype.forEach.call(ths, function (th) {
+      th.addEventListener("click", function () {
+        var key = th.getAttribute("data-key"), type = th.getAttribute("data-type");
+        sortDir = (sortKey === key) ? -sortDir : 1; sortKey = key;
+        var rows = Array.prototype.slice.call(tb.rows);
+        rows.sort(function (a, b) {
+          var av = a.getAttribute("data-" + key) || "", bv = b.getAttribute("data-" + key) || "", r;
+          if (type === "num") { r = (parseFloat(av) || 0) - (parseFloat(bv) || 0); }
+          else { r = av.localeCompare(bv); }
+          return r * sortDir;
+        });
+        rows.forEach(function (row) { tb.appendChild(row); });
+        Array.prototype.forEach.call(ths, function (t) { t.classList.remove("sort-asc", "sort-desc"); });
+        th.classList.add(sortDir > 0 ? "sort-asc" : "sort-desc");
+        apply();
+      });
+    });
+    s.addEventListener("input", apply); k.addEventListener("change", apply); apply();
+  }
+
+  /* ---------- HOME -------------------------------------------------------- */
+  function home() {
+    var quick = [
+      ["01", "◉", "What is it?", "Get the short version of the game.", "Read the overview", "/what-is-lagos-life", false],
+      ["02", "↗", "How to play", "Start with the steps we can confirm.", "See first steps", "/how-to-play", false],
+      ["03", "◎", "Game link", "Go straight to the official site.", "Open the game link", "/game-link", true],
+      ["04", "⌖", "Locations", "Browse the map places.", "Explore locations", "/locations", false],
+      ["05", "18+", "Age limit", "Check who can sign up.", "Read the age rule", "/age-requirement", false],
+      ["06", "◎", "Account", "Sign up and plan for password resets.", "See account rules", "/account", false],
+      ["07", "₦", "Top up", "Understand virtual naira and payments.", "See payment rules", "/top-up", false],
+      ["08", "◇", "Privacy", "See what the game stores.", "Read the privacy guide", "/safety-and-privacy", false]
+    ].map(function (q) { return quickCard(q[0], q[1], q[2], q[3], q[4], q[5], q[6]); }).join("");
+
+    return '' +
+      '<section class="hero-wrap">' +
+        '<div class="hero-copy">' +
+          '<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a></nav>' +
+          '<span class="eyebrow"><span class="dot"></span> THE PLAYER\u2019S FIELD GUIDE</span>' +
+          '<h1>Lagos Life — the Nigerian browser game explained</h1>' +
+          '<div class="hero-intro"><p>Lagos Life is a free browser game built around a shared, Lagos-inspired life-simulation world. This independent guide explains what is known, how to get started, and where to find the official game.</p></div>' +
+          '<div class="hero-actions">' +
+            '<a class="button button-primary" href="/game-link">Find the official game <span aria-hidden="true">↗</span></a>' +
+            '<a class="button button-secondary" href="/how-to-play">Start with the guide <span aria-hidden="true">→</span></a>' +
+          '</div>' +
+          '<p class="hero-disclaimer">Independent guide. The game is played on its official website.</p>' +
+          '<p class="hero-disclaimer">Last updated: ' + UPDATED + '</p>' +
+        '</div>' +
+        '<div class="hero-art">' + MAP_ART +
+          '<a class="art-caption" href="/locations"><span>MAP</span><strong>A city built for stories.</strong>' +
+          '<span>Explore the location guide <b aria-hidden="true">↗</b></span></a>' +
+          '<div class="art-stamp" aria-hidden="true">LAGOS<br><b>NG</b></div>' +
+        '</div>' +
+      '</section>' +
+
+      '<section class="content-shell home-content">' +
+        statStrip() +
+        '<div class="section-heading"><div><span class="eyebrow">GET YOUR BEARINGS</span><h2>What is Lagos Life?</h2></div>' +
+        '<span class="section-index">01 — THE GAME</span></div>' +
+        '<div class="intro-columns">' +
+          '<div class="intro-lead">A browser game set in a city that feels familiar, even if you have never been there.</div>' +
+          '<div class="intro-copy">' +
+            '<p>Lagos Life is a free-to-start life-simulation game set in a virtual version of Lagos, Nigeria. You open it in a web browser, create an account, and move through a shared world whose landmarks and systems reference everyday life in the city.</p>' +
+            '<p>The game\u2019s public pages credit Shalom Rayhamen as creator. Players often search for a \u201cLagos lifestyle game\u201d or a \u201cLagos Life sims game\u201d — those phrases point to this same browser title, whose setting is a big part of its appeal.</p>' +
+            '<a class="text-link" href="/what-is-lagos-life">What is Lagos Life? <span>→</span></a>' +
+          '</div>' +
+        '</div>' +
+
+        '<section class="quick-start"><div class="section-heading"><div><span class="eyebrow">PICK A STARTING POINT</span><h2>Your quick start</h2></div>' +
+        '<span class="section-index">02 — THE GUIDE</span></div>' +
+        '<div class="quick-grid">' + quick + '</div></section>' +
+
+        '<section class="systems-section"><div class="section-heading"><div><span class="eyebrow">THE CITY AT A GLANCE</span><h2>What can you explore?</h2></div>' +
+        '<span class="section-index">03 — SYSTEMS</span></div>' +
+        '<div class="system-grid">' +
+          systemCard("tint-green", "⌖", "MAP PLACES", "Places with local character", "The official map showed a set of named places, with a few marked as coming soon.", "/locations") +
+          systemCard("tint-peach", "▤", "A CITY-WIDE SYSTEM", "Governor Election", "A Governor role, public announcements and slogans on ballots — one account per person.", "/governor-election") +
+          systemCard("tint-mint", "≈", "MAP ADS & HOMES", "Sea Plots & homes", "Paid map space for a picture and link, plus saved house assets without real-world value.", "/sea-plots") +
+        '</div></section>' +
+
+        '<section class="inside-section"><div class="section-heading"><div><span class="eyebrow">BEYOND THE BASICS</span><h2>Inside the game</h2></div>' +
+        '<span class="section-index">04 — CITY LIFE</span></div>' +
+        '<div class="inside-grid">' +
+          insideCard("STARTING LIFE", "Nepo vs Lapo", "What the two reported backgrounds mean", "/nepo-vs-lapo") +
+          insideCard("GETTING AROUND", "Danfo", "The Lagos minibus behind the reference", "/danfo") +
+          insideCard("THE CITY", "NEPA", "Why the game mentions power outages", "/nepa") +
+          insideCard("THE WORDS", "Lagos slang", "Nigerian terms, with game use marked", "/lagos-slang") +
+          insideCard("START PLAYING", "Game link", "Go to the official browser game", "/game-link") +
+        '</div></section>' +
+
+        '<section class="systems-section"><div class="section-heading"><div><span class="eyebrow">WHY IT TOOK OFF</span><h2>Why players are sharing it</h2></div>' +
+        '<span class="section-index">05 — BUZZ</span></div>' +
+        '<div class="system-grid">' +
+          systemCard("tint-green", "↗", "INSTANT ACCESS", "No download", "Open a link and play in the browser — no app store, no install, no update.", "/game-link") +
+          systemCard("tint-peach", "▤", "STREET-LEVEL HUMOUR", "Fares, rent, power", "Danfo and okada fares, Saturday rent and weekly power cuts make it instantly recognisable.", "/what-is-lagos-life") +
+          systemCard("tint-mint", "≈", "ONE SHARED CITY", "Real players", "A single city for everyone, so friends can visit, chat and send each other money.", "/locations") +
+        '</div></section>' +
+
+        '<section class="latest-section"><div class="section-heading"><div><span class="eyebrow">THE CITY KEEPS MOVING</span><h2>Latest updates</h2></div>' +
+        '<a class="text-link" href="/updates">All updates <span>↗</span></a></div>' +
+        '<div class="latest-grid">' + UPDATES.map(function (u) { return latestCard(u.t, u.r); }).join("") + '</div></section>' +
+
+        '<section class="latest-section"><div class="section-heading"><div><span class="eyebrow">HOW IT GREW</span><h2>Timeline</h2></div>' +
+        '<a class="text-link" href="/updates">All updates <span>↗</span></a></div>' +
+        timelineBlock() + '</section>' +
+
+        '<section class="latest-section"><div class="section-heading"><div><span class="eyebrow">IF YOU LIKE THIS</span><h2>Players also mention</h2></div>' +
+        '<a class="text-link" href="/similar-games">Compare <span>↗</span></a></div>' +
+        '<div class="related-links">' +
+          ['Lagos Run', 'Surviving Nigeria', 'The Sims 4', 'BitLife'].map(function (x) {
+            return '<a href="/similar-games">' + x + '</a>'; }).join("") +
+        '</div></section>' +
+
+        '<section class="faq-section"><h2>Frequently asked questions</h2><div class="faq-list">' +
+          faqItem("What is Lagos Life?", "Lagos Life is a free life-simulation game played in your browser. It is set in Lagos, Nigeria, and is often compared with The Sims.", true) +
+          faqItem("Is Lagos Life free to play?", "The game can be opened and started for free in a browser. The official site may offer optional in-game purchases; check its current terms before paying for anything.") +
+          faqItem("Do I need to download Lagos Life?", "No download is needed. It runs on its official website in a browser.") +
+          faqItem("Is Lagos Life a Roblox game?", "No. Lagos Life is a standalone browser game on its own website. Roblox is not required.") +
+          faqItem("What can you do in Lagos Life?", "You build a Sim, take a job, pay rent, travel the city, and take part in shared systems such as the governor election.") +
+        '</div></section>' +
+      '</section>';
+  }
+
+  /* ---------- generic article pages --------------------------------------- */
+  var PAGES = {};
+
+  PAGES["/"] = { title: "Lagos Life: What It Is, How to Play & Where to Play Free", render: home };
+
+  PAGES["/what-is-lagos-life"] = {
+    title: "What Is Lagos Life?",
+    render: function () {
+      return article({
+        crumb: "What Is Lagos Life?",
+        kicker: "THE GAME",
+        title: "What is Lagos Life?",
+        body:
+          "<p>Lagos Life is a free browser life-simulation game set in a virtual Lagos, Nigeria. You play a character (a \u201cSim\u201d) living in a shared city alongside other players, and you spend your time on everyday things: working, paying rent, moving around, and socialising.</p>" +
+          "<h2>A browser game, not an app</h2>" +
+          "<p>There is nothing to install. The game runs in Safari or Chrome on a phone or a computer, which is a large part of why it spreads quickly through links shared on social platforms.</p>" +
+          "<h2>A shared world</h2>" +
+          "<p>Rather than a single-player sandbox, Lagos Life is built as one city for everyone. You can run into other real players, and many of the systems — elections, map places, homes — are shared rather than private.</p>" +
+          "<h2>What it is often compared to</h2>" +
+          "<p>Players frequently compare the concept with The Sims, because both revolve around managing a character\u2019s needs, home and career. Lagos Life leans harder into its setting, borrowing transport, slang and city rituals as its defining flavour.</p>" +
+          "<blockquote>Setting is the hook: the game feels familiar to anyone who knows the city, and intriguing to anyone who does not.</blockquote>" +
+          "<h2>Why it spread so fast</h2>" +
+          "<ul><li>No app store or download — a single link is enough.</li>" +
+          "<li>Local humour tied to transport fares, rent and power cuts.</li>" +
+          "<li>Shareable starting conditions that players screenshot and argue about.</li></ul>" +
+          "<h2>Game facts</h2>" +
+          "<table><thead><tr><th>Detail</th><th>Information</th></tr></thead><tbody>" +
+          "<tr><td>Genre</td><td>Life simulation, social, MMO</td></tr>" +
+          "<tr><td>Platform</td><td>Web browser (mobile and desktop)</td></tr>" +
+          "<tr><td>Price</td><td>Free to start</td></tr>" +
+          "<tr><td>Age</td><td>18+ at sign-up</td></tr>" +
+          "<tr><td>Developer</td><td>Shalom Rayhamen</td></tr>" +
+          "<tr><td>Released</td><td>1 October 2026</td></tr>" +
+          "<tr><td>Where to play</td><td>Its own website, not an app store</td></tr>" +
+          "</tbody></table>",
+        related: [
+          { t: "How to play", r: "/how-to-play" },
+          { t: "Official game link", r: "/game-link" },
+          { t: "Lagos Life vs The Sims", r: "/lagos-life-vs-sims" },
+          { t: "Nepo vs Lapo", r: "/nepo-vs-lapo" }
+        ],
+        sources: "This is an independent, unofficial guide. Details can change; always check the official game for current information."
+      });
+    }
+  };
+
+  PAGES["/how-to-play"] = {
+    title: "How to Play Lagos Life",
+    render: function () {
+      return article({
+        crumb: "How to Play",
+        kicker: "FIRST STEPS",
+        title: "Lagos Life: how to play your first week",
+        body:
+          "<p>Starting out is mostly about staying fed, rested and solvent. Follow these steps and you will survive the first few rent cycles.</p>" +
+          '<div class="walkthrough">' +
+            '<div class="step"><h3>Open the game in a real browser</h3><p>Use Safari or Chrome rather than an in-app browser, which can block sign-in.</p></div>' +
+            '<div class="step"><h3>Create an account</h3><p>Pick a username, a password of at least six characters, and add an email so a forgotten password can be reset.</p></div>' +
+            '<div class="step"><h3>Design your Sim</h3><p>Choose a look, two personality traits, and a lifetime goal to work toward.</p></div>' +
+            '<div class="step"><h3>Take the birth lottery</h3><p>The game decides your starting background once per account. You cannot reroll it.</p></div>' +
+            '<div class="step"><h3>Choose where to live</h3><p>Pick a room, a self-contain or a student hall. Rent is deducted on a set day each week.</p></div>' +
+            '<div class="step"><h3>Get a job and show up</h3><p>Apply on your in-game phone and arrive on time; performance drives pay and promotions.</p></div>' +
+          '</div>' +
+          "<h2>Keep the basics intact</h2>" +
+          "<p>Watch hunger, energy, hygiene, bladder, fun and social needs. Low needs drag down your mood and your work performance.</p>" +
+          "<h2>Protect your rent money</h2>" +
+          "<p>Always keep enough for the next rent day. Unpaid rent turns into debt, and falling too far behind can send you back to cheaper housing.</p>" +
+          "<h2>Move around cheaply</h2>" +
+          "<p>Walking is free but tiring. Shared minibuses and keke are the cheapest paid rides, motorcycles are faster, and taxis are the comfortable, expensive option.</p>" +
+          "<h2>Beginner tips</h2>" +
+          "<ul>" +
+          "<li>Keep needs topped up: hunger, energy, hygiene, bladder, fun and social.</li>" +
+          "<li>Always set aside the next rent day before you spend on anything else.</li>" +
+          "<li>Walk when you have time; take a paid ride when you do not.</li>" +
+          "<li>Add the site to your phone\u2019s home screen so it opens like an app.</li>" +
+          "<li>Only trust the address the game itself publishes; there is no official app-store release.</li>" +
+          "</ul>",
+        related: [
+          { t: "Jobs and income", r: "/jobs" },
+          { t: "Money and top-ups", r: "/money" },
+          { t: "Danfo and transport", r: "/danfo" },
+          { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/game-link"] = {
+    title: "Lagos Life Game Link",
+    render: function () {
+      return article({
+        crumb: "Game Link",
+        kicker: "START PLAYING",
+        title: "Where to play Lagos Life",
+        body:
+          "<p>Lagos Life is played on its official website. There is no App Store or Google Play listing, so treat any download that claims to be an official Lagos Life app with suspicion.</p>" +
+          '<div class="cta-block"><div><h2>Open the official game</h2><p>The game loads in your browser at <strong>lagoslife.app</strong>. Use Safari or Chrome, and avoid in-app browsers when signing in.</p></div><a class="button" style="text-decoration:none" href="https://lagoslife.app" target="_blank" rel="noopener nofollow">Start playing ↗</a></div>' +
+          "<h2>Before you sign in</h2>" +
+          "<ul><li>Use a real browser tab, not an in-app viewer.</li><li>Have an email address ready for password recovery.</li><li>Confirm you meet the age requirement shown at sign-up.</li></ul>" +
+          "<h2>Staying safe</h2>" +
+          "<p>Only trust the address the game itself publishes. This guide does not host the game and cannot recover accounts.</p>" +
+          '<div class="note-box">New here? <a href="/how-to-play">Read the first-steps guide</a> before you open the game. If the official address ever changes, confirm it on the game\u2019s own public pages.</div>',
+        related: [
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "Age requirement", r: "/age-requirement" },
+          { t: "Account help", r: "/account" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/locations"] = {
+    title: "Lagos Life Locations",
+    render: function () {
+      var cats = [
+        ["TRANSPORT", "Hubs and routes", "Where shared minibuses, keke and motorcycles load and drop, and the routes that connect districts."],
+        ["MARKETS", "Trade and shopping", "Busy commercial areas where a Sim can buy, sell and pick up casual work."],
+        ["RESIDENTIAL", "Home districts", "Neighbourhoods with rooms, self-contains and student halls at different rent levels."],
+        ["NIGHTLIFE", "Leisure and social", "Spots to raise social and fun needs, from casual joints to higher-end venues."],
+        ["INSTITUTIONS", "Studying and services", "Schools and civic buildings that unlock study, work and city systems."],
+        ["LANDMARKS", "City character", "Recognisable places that give the map its sense of local identity."]
+      ];
+      return article({
+        crumb: "Locations",
+        kicker: "THE MAP",
+        title: "Lagos Life locations",
+        body:
+          "<p>The city map groups its named places into a handful of roles. Rather than a fixed list that goes stale, this page explains how the map is organised so you can find whatever you need.</p>" +
+          '<div class="stats-row">' +
+            '<div class="stat"><b>28</b><span>Named places (reported)</span></div>' +
+            '<div class="stat"><b>6</b><span>Place categories</span></div>' +
+            '<div class="stat"><b>2+</b><span>Coming soon</span></div>' +
+          '</div>' +
+          '<div class="loc-grid">' +
+            cats.map(function (c) {
+              return '<div class="loc-card"><span class="tag">' + c[0] + '</span><h3>' + c[1] + '</h3><p>' + c[2] + '</p></div>';
+            }).join("") +
+          '</div>' +
+          "<h2>Reading the map</h2>" +
+          "<p>Places usually combine a purpose with a cost. Transport gets you somewhere quickly but drains money or energy; leisure restores fun and social needs but costs time. Match the place to the need you are trying to fix.</p>" +
+          "<h2>One place, in detail</h2>" +
+          "<p>Nightlife spots are a good example of how a location works. See the dedicated page on one well-known venue for how a single place can carry several systems at once.</p>" +
+          '<a class="guide-card" href="/locations/quilox"><span class="guide-thumb">♪</span><span><h3>Quilox</h3><p>How one nightlife venue plays into social and fun systems.</p></span><span class="go">↗</span></a>',
+        related: [
+          { t: "How to play", r: "/how-to-play" },
+          { t: "Danfo and transport", r: "/danfo" },
+          { t: "Houses and homes", r: "/houses" },
+          { t: "Sea plots", r: "/sea-plots" }
+        ],
+        sources: "Place counts and categories are reported from the official map and may change as the city grows."
+      });
+    }
+  };
+
+  PAGES["/locations/quilox"] = {
+    title: "Lagos Life Quilox",
+    render: function () {
+      return article({
+        crumb: "Quilox",
+        kicker: "NIGHTLIFE SPOT",
+        title: "Quilox: a nightlife spot on the map",
+        body:
+          "<p>Quilox is the kind of place that shows how a single location can hold more than one system. It is a leisure venue, so it mainly serves social and fun needs — but visiting it also interacts with money, energy and time.</p>" +
+          "<h2>What it is for</h2>" +
+          "<p>Treat a nightlife venue as a trade: spend money and energy now to restore fun and social needs, and sometimes to meet other players who happen to be there too.</p>" +
+          "<h2>When to go</h2>" +
+          "<ul><li>When fun or social needs are low and you can afford the trip.</li><li>After a shift, if it will not ruin your energy for the next one.</li><li>When other players are around and the shared world feels busy.</li></ul>" +
+          "<h2>Watch the cost</h2>" +
+          "<p>Leisure is not free. Factor in the ride there and back, and never spend the money you have set aside for rent.</p>",
+        related: [
+          { t: "All locations", r: "/locations" },
+          { t: "Danfo and transport", r: "/danfo" },
+          { t: "Money and top-ups", r: "/money" },
+          { t: "How to play", r: "/how-to-play" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/updates"] = {
+    title: "Lagos Life Updates",
+    render: function () {
+      return '<div class="content-shell article-shell">' +
+        '<nav class="breadcrumbs"><a href="/">Home</a><span>/</span><span>Updates</span></nav>' +
+        '<div class="section-heading"><div><span class="eyebrow">THE CITY KEEPS MOVING</span><h2>Latest updates</h2></div>' +
+        '<span class="section-index">ALL NOTES</span></div>' +
+        '<div class="latest-grid">' + UPDATES.map(function (u) { return latestCard(u.t, u.r); }).join("") + '</div>' +
+        '<div class="section-heading" style="margin-top:44px"><div><span class="eyebrow">HOW IT GREW</span><h2>Timeline</h2></div></div>' +
+        timelineBlock() +
+        '<p class="source-note" style="margin-top:24px"><strong>Note:</strong> Dates follow this guide\u2019s most recent review. In-game features change, so check the official game for the current state.</p>' +
+        '</div>';
+    }
+  };
+
+  PAGES["/stats"] = {
+    title: "Lagos Life Player Stats",
+    render: function () {
+      return '<div class="content-shell article-shell">' +
+        '<nav class="breadcrumbs"><a href="/">Home</a><span>/</span><span>Stats</span></nav>' +
+        '<article class="article-card">' +
+        '<div class="article-kicker"><span class="eyebrow"><span class="dot"></span>THE CITY RIGHT NOW</span>' +
+        '<span class="updated">Checked ' + UPDATED + '</span></div>' +
+        '<h1>Lagos Life player stats</h1>' +
+        '<div class="prose">' +
+        '<p>The game grew unusually fast after launch. These are the figures reported on its public pages when this guide was last checked; they move quickly, so treat them as a snapshot rather than a fixed scoreboard.</p>' +
+        '<div class="stats-row cols-4">' + STATS.map(statCard).join("") + '</div>' +
+        '<p class="stat-note">Reported figures from the game\u2019s public pages.</p>' +
+        '<h2>What the numbers mean</h2>' +
+        '<ul>' +
+        '<li><strong>Total players</strong> counts everyone who has created an account, not only those online right now.</li>' +
+        '<li><strong>Playing now</strong> is the live concurrent count and swings with the time of day.</li>' +
+        '<li><strong>New players per day</strong> shows how quickly links are being shared.</li>' +
+        '</ul>' +
+        '<div class="note-box">These numbers are reported, not audited, and change constantly. Check the game\u2019s own pages for the current state.</div>' +
+        '</div>' +
+        related([
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "Game link", r: "/game-link" },
+          { t: "Updates", r: "/updates" },
+          { t: "Similar games", r: "/similar-games" }
+        ]) +
+        '</article>' +
+        '<p class="source-note"><strong>Note:</strong> This is an independent, unofficial guide and is not affiliated with the developer.</p>' +
+        '</div>';
+    }
+  };
+
+  PAGES["/similar-games"] = {
+    title: "Games Like Lagos Life",
+    render: function () {
+      var games = [
+        ["Lagos Run", "A browser game built around driving a danfo through Lagos traffic."],
+        ["Surviving Nigeria", "An everyday survival take on Nigerian life and money."],
+        ["The Sims 4", "The classic life simulator the whole genre is measured against."],
+        ["BitLife", "A text-based life sim driven by random life events."]
+      ];
+      return article({
+        crumb: "Similar games",
+        kicker: "IF YOU LIKE THIS",
+        title: "Games like Lagos Life",
+        body:
+          "<p>If the shared, locally-flavoured life sim appeals to you, these are the titles players most often mention alongside it. They come from different genres and platforms, but they scratch a similar itch.</p>" +
+          '<div class="guide-stack">' +
+          games.map(function (g) {
+            return '<div class="guide-card"><span class="guide-thumb">◉</span><span><h3>' + g[0] + '</h3><p>' + g[1] + '</p></span><span class="go">↗</span></div>';
+          }).join("") +
+          '</div>' +
+          "<p>None of these titles are affiliated with Lagos Life; they are simply the comparisons players draw.</p>",
+        related: [
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "Lagos Life vs The Sims", r: "/lagos-life-vs-sims" },
+          { t: "Player stats", r: "/stats" },
+          { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/skills"] = {
+    title: "Lagos Life Skills and Traits",
+    render: function () {
+      return article({
+        crumb: "Skills and traits",
+        kicker: "BUILD",
+        title: "Lagos Life skills and traits",
+        body:
+          "<p>Your trait decides which skill grows fastest, and skills decide which careers open up. Pick the trait that matches the career you want, not the funniest name.</p>" +
+          "<h2>Traits</h2>" +
+          dt(["Trait","Effect"], TRAITS) +
+          "<h2>Skills and how to raise them</h2>" +
+          dt(["Skill","What raises it","Careers it unlocks"], SKILLS) +
+          "<h2>The six needs, plus mood</h2>" +
+          dt(["Need","Notes"], NEEDS) +
+          '<div class="note-box">Skill gain is roughly rate x hours, scaled down as the skill rises. Levels cap at 10, and promotion gates sit at 1, 3, 5 and 7 (or 3, 4, 5, 7 and 9 for slower careers).</div>',
+        related: [
+          { t: "Jobs and salaries", r: "/jobs" },
+          { t: "How to play", r: "/how-to-play" },
+          { t: "Venues and hours", r: "/venues" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/items"] = {
+    title: "Lagos Life Items and Prices",
+    render: function () {
+      return article({
+        crumb: "Items and prices",
+        kicker: "SHOPPING",
+        title: "Lagos Life items and prices",
+        body:
+          "<p>A furniture and item price list, grouped by what it does. Anything marked as needing power is useless during a NEPA cut unless you own a generator or an inverter.</p>" +
+          dt(["Category","Item","Price","Effect"], ITEMS.map(function (it) { return [it[0], it[1], nai(it[2]), it[3]]; })) +
+          "<h2>Vehicles</h2>" +
+          "<p>Vehicles mainly cut the cost of getting around, from a Bajaj Boxer at about " + nai(350000) + " up to a BMW X7 near " + nai(95000000) + ", with running costs of roughly " + nai(3) + " to " + nai(14) + " per km.</p>" +
+          '<div class="note-box">Prices are aggregated from unofficial guides and may be out of date.</div>',
+        related: [
+          { t: "Homes and rent", r: "/houses" },
+          { t: "Money and businesses", r: "/money" },
+          { t: "NEPA and power", r: "/nepa" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/venues"] = {
+    title: "Lagos Life Venues and Hours",
+    render: function () {
+      return article({
+        crumb: "Venues and hours",
+        kicker: "THE MAP",
+        title: "Lagos Life venues and opening hours",
+        body:
+          "<p>Places keep real opening hours, and some only open at night. Knowing what is open when your shift ends is most of the game's routing puzzle.</p>" +
+          dt(["Venue","Area","Hours","Jobs","Signature activity"], VENUES) +
+          '<div class="note-box">Hours are aggregated from unofficial guides. An airport and a refinery were reported as coming soon.</div>',
+        related: [
+          { t: "Locations overview", r: "/locations" },
+          { t: "Jobs and salaries", r: "/jobs" },
+          { t: "Danfo and transport", r: "/danfo" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/support"] = {
+    title: "Lagos Life Not Working",
+    render: function () {
+      return article({
+        crumb: "Support",
+        kicker: "FIXES",
+        title: "Lagos Life not working: fixes",
+        body:
+          "<p>The most common problem is lag rather than queueing, because the world is shared and busy. Here are the messages players see most and what actually helps.</p>" +
+          dt(["Symptom","What it means","Fix"], SUPPORT) +
+          '<div class="note-box">Only ever sign in at lagoslife.app. No legitimate page will ask for your password anywhere else.</div>',
+        related: [
+          { t: "Game link", r: "/game-link" },
+          { t: "Account help", r: "/account" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/tips"] = {
+    title: "Lagos Life Tips",
+    render: function () {
+      return article({
+        crumb: "Tips",
+        kicker: "PLAY BETTER",
+        title: "Lagos Life tips and tricks",
+        body:
+          "<p>Short, practical tips that make the early game far less stressful.</p>" +
+          "<ul>" + TIPS.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul>" +
+          "<h2>The one rule that matters</h2>" +
+          "<p>Everything else is optional. Rent is not.</p>",
+        related: [
+          { t: "How to play", r: "/how-to-play" },
+          { t: "Jobs and salaries", r: "/jobs" },
+          { t: "Money and businesses", r: "/money" },
+          { t: "Skills and traits", r: "/skills" }
+        ]
+      });
+    }
+  };
+
+  /* ---------- account / safety pages -------------------------------------- */
+  PAGES["/age-requirement"] = {
+    title: "Lagos Life Age Requirement",
+    render: function () {
+      return article({
+        crumb: "Age Requirement",
+        kicker: "ACCOUNT RULES",
+        title: "Lagos Life age requirement",
+        body:
+          "<p>The sign-up flow asks players to confirm they are 18 or older. This is an adult gate, and it exists because the game includes social features and, potentially, paid options.</p>" +
+          "<h2>Why the gate matters</h2>" +
+          "<ul><li>Shared chat and social systems are built for adults.</li><li>Optional purchases may be tied to the account.</li><li>Account recovery assumes an adult owner.</li></ul>" +
+          "<h2>If you are under 18</h2>" +
+          "<p>Do not create an account. Wait until you meet the requirement. There is no official version of the game intended for younger players.</p>" +
+          '<div class="note-box">Age rules are set by the game, not by this guide. Always follow what the sign-up screen tells you.</div>',
+        related: [
+          { t: "Account help", r: "/account" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" },
+          { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/account"] = {
+    title: "Lagos Life Account",
+    render: function () {
+      return article({
+        crumb: "Account",
+        kicker: "SIGN UP",
+        title: "Lagos Life account: sign up and recovery",
+        body:
+          "<p>Your account is the key to everything — your Sim, your home, your progress. Set it up carefully the first time.</p>" +
+          "<h2>Creating your account</h2>" +
+          "<ol><li>Choose a username you are happy to be seen with in a shared city.</li><li>Use a password of at least six characters, and make it unique.</li><li>Add an email address so a forgotten password can be reset.</li></ol>" +
+          "<h2>The password reset problem</h2>" +
+          "<p>If you do not attach an email, a forgotten password may be impossible to recover. Add one when you sign up, not later.</p>" +
+          "<h2>One account per person</h2>" +
+          "<p>Shared systems such as the governor election assume one account per person. Do not run multiple accounts to game those systems.</p>" +
+          '<div class="note-box">This guide cannot access, recover or modify any account. For account issues, use the game\u2019s own support channels.</div>',
+        related: [
+          { t: "Age requirement", r: "/age-requirement" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" },
+          { t: "Top up", r: "/top-up" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/top-up"] = {
+    title: "Lagos Life Top Up",
+    render: function () {
+      return article({
+        crumb: "Top Up",
+        kicker: "PAYMENTS",
+        title: "Lagos Life top up: what to know first",
+        body:
+          "<p>Lagos Life can be started for free. The official site may offer optional purchases, and a top-up usually means adding virtual naira or another in-game currency to your account.</p>" +
+          "<h2>Before you pay</h2>" +
+          "<ul><li>Read the current terms and refund rules on the official site.</li><li>Check the price and what you receive in writing.</li><li>Never share card details outside the official checkout.</li></ul>" +
+          "<h2>What top-ups do and do not buy</h2>" +
+          "<p>In-game currency buys in-game things. Houses and similar assets are saved game objects, not real-world property, and they have no resale value.</p>" +
+          '<div class="note-box">Spending is optional. If you are unsure, play free first and decide later.</div>',
+        related: [
+          { t: "Money and jobs", r: "/money" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" },
+          { t: "Sea plots", r: "/sea-plots" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/safety-and-privacy"] = {
+    title: "Lagos Life Safety and Privacy",
+    render: function () {
+      return article({
+        crumb: "Safety and Privacy",
+        kicker: "GOOD PRACTICE",
+        title: "Lagos Life safety and privacy",
+        body:
+          "<p>Because the city is shared, some information is visible to other players by nature. Keep that in mind when you choose a username and share anything.</p>" +
+          "<h2>What is public</h2>" +
+          "<ul><li>Your username and in-game activity other players can see.</li><li>Anything you type into shared or public systems.</li></ul>" +
+          "<h2>What to protect</h2>" +
+          "<ul><li>Your password — never reuse one from another site.</li><li>Your email — keep it in the account, but do not post it publicly.</li><li>Payment details — only ever enter them in the official checkout.</li></ul>" +
+          "<h2>Sanity rules</h2>" +
+          "<p>Remember it is a game. Do not send real money to other players, do not treat in-game homes as investments, and log out on shared devices.</p>" +
+          '<div class="note-box">This guide does not store your game data. See the official site\u2019s privacy information for what the operator collects.</div>',
+        related: [
+          { t: "Account help", r: "/account" },
+          { t: "Age requirement", r: "/age-requirement" },
+          { t: "Top up", r: "/top-up" }
+        ]
+      });
+    }
+  };
+
+  /* ---------- city-life article pages ------------------------------------- */
+  PAGES["/nepo-vs-lapo"] = {
+    title: "Lagos Life Nepo vs Lapo",
+    render: function () {
+      return article({
+        crumb: "Nepo vs Lapo",
+        kicker: "STARTING LIFE",
+        title: "Nepo vs Lapo: the birth lottery",
+        body:
+          "<p>One of the most talked-about parts of Lagos Life is the birth lottery. It runs once per account and decides your starting background, and you cannot reroll it.</p>" +
+          "<h2>The three reported starts</h2>" +
+          "<table><thead><tr><th>Origin</th><th>Money</th><th>Home</th><th>Perks</th></tr></thead><tbody>" +
+          "<tr><td>Nepo Baby</td><td>" + nai(500000) + " cash, no debt</td><td>Lekki Phase 1 mini-flat, rent paid</td><td>Branch Manager day one, Charisma 2, a car, starter items</td></tr>" +
+          "<tr><td>LAPO Baby</td><td>" + nai(60000) + " loan</td><td>Mushin " + nai(2400) + "/week or Yaba " + nai(6000) + "/week</td><td>Hustle 2, +25% skill growth; Lekki locked</td></tr>" +
+          "<tr><td>UNILAG fresher (LAPO only)</td><td>" + nai(14000) + " cash, no loan</td><td>UNILAG hall bunk " + nai(1200) + "/week</td><td>Hustle 2, +25% growth, degree bonus of up to +25% pay</td></tr>" +
+          "</tbody></table>" +
+          "<h2>The LAPO debt</h2>" +
+          "<p>The higher reported figure is a " + nai(60000) + " loan repaid at " + nai(12000) + " a week, about " + nai(72000) + " in total. On top of rent that is roughly " + nai(14400) + "/week in Mushin or " + nai(18000) + "/week in Yaba, so clearing it fast is the whole early game.</p>" +
+          "<h2>Which start is better?</h2>" +
+          "<p>Nepo is easier. LAPO produces the better stories and the faster skill growth, so if you like a challenge it is not a punishment. A rich start is comfortable; a hard start is memorable.</p>" +
+          "<h2>Can you change it?</h2>" +
+          "<p>No. The lottery is fixed for the life of the account, which is why players treat it as an identity rather than a setting.</p>",
+        related: [
+          { t: "How to play", r: "/how-to-play" },
+          { t: "Jobs and salaries", r: "/jobs" },
+          { t: "Money and businesses", r: "/money" },
+          { t: "Homes and rent", r: "/houses" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/jobs"] = {
+    title: "Lagos Life Jobs and Salaries",
+    after: bindJobs,
+    render: function () {
+      return article({
+        crumb: "Jobs",
+        kicker: "INCOME",
+        title: "Lagos Life jobs and salaries",
+        body:
+          "<p>Every career in Lagos Life runs five levels and is tied to a single skill. You apply from your in-game phone, then show up, keep performance high and climb. The table lists all " + CAREERS.length + " careers and their " + (CAREERS.length * 5) + " positions. Click any column heading to sort, and use the Growth column to compare a level against that career's first level (for example " + (99000 / 7400).toFixed(1) + "\u00d7 for Afrobeats Giant).</p>" +
+          '<div class="stats-row">' +
+            '<div class="stat"><b>' + CAREERS.length + '</b><span>Careers</span></div>' +
+            '<div class="stat"><b>' + (CAREERS.length * 5) + '</b><span>Job levels</span></div>' +
+            '<div class="stat"><b>' + nai(99000) + '</b><span>Top pay / shift</span></div>' +
+          '</div>' +
+          "<h2>All careers and pay per shift</h2>" +
+          careerTable() +
+          "<h2>How shifts and promotions work</h2>" +
+          "<ul><li>Apply on your phone; the job starts the next day at level 1.</li>" +
+          "<li>Each promotion needs the career skill at a set level plus 100% performance.</li>" +
+          "<li>Standard gates are skill 1, 3, 5 and 7 for levels 2-5; slower careers need 3, 4, 5, 7 and 9.</li>" +
+          "<li>Win four tasks in a shift for a +15% pay bonus (Employee of the Shift).</li>" +
+          "<li>A UNILAG degree adds up to +25% pay, and a First or 2:1 starts a new career one level higher.</li></ul>" +
+          "<h2>Protect your performance</h2>" +
+          "<p>Low needs hurt your work, so eat, sleep and wash before a shift, not during it. Arriving late costs performance, not the whole shift.</p>" +
+          '<div class="note-box">Pay figures are aggregated from unofficial guides and may be out of date. Where sources disagreed, the higher figure was used.</div>',
+        related: [
+          { t: "Money and businesses", r: "/money" },
+          { t: "Skills and traits", r: "/skills" },
+          { t: "Venues and hours", r: "/venues" },
+          { t: "Your first week", r: "/how-to-play" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/danfo"] = {
+    title: "Lagos Life Danfo",
+    render: function () {
+      return article({
+        crumb: "Danfo",
+        kicker: "GETTING AROUND",
+        title: "Danfo: transport in Lagos Life",
+        body:
+          "<p>The danfo — the yellow minibus of Lagos — is the reference behind the game\u2019s shared transport. Moving around the city is a real decision with a real cost.</p>" +
+          "<h2>Your options</h2>" +
+          "<table><thead><tr><th>Mode</th><th>Trade-off</th></tr></thead><tbody>" +
+          "<tr><td>Walking</td><td>Free, but slow and tiring</td></tr>" +
+          "<tr><td>Keke / danfo</td><td>Cheapest paid rides, shared with others</td></tr>" +
+          "<tr><td>Okada (motorcycle)</td><td>Faster, costs more</td></tr>" +
+          "<tr><td>Taxi</td><td>Comfortable and quick, expensive</td></tr>" +
+          "</tbody></table>" +
+          "<h2>Choosing well</h2>" +
+          "<p>If you have time, walk. If you are short on time and flush with cash, take a faster ride. When money is tight, the shared rides are the sensible middle.</p>" +
+          "<h2>Energy is a currency too</h2>" +
+          "<p>Walking saves money but spends energy you may need for work. Sometimes the paid ride is the cheaper option once lost productivity is counted.</p>",
+        related: [
+          { t: "All locations", r: "/locations" },
+          { t: "How to play", r: "/how-to-play" },
+          { t: "NEPA and power", r: "/nepa" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/nepa"] = {
+    title: "Lagos Life NEPA",
+    render: function () {
+      return article({
+        crumb: "NEPA",
+        kicker: "THE CITY",
+        title: "NEPA: power cuts in Lagos Life",
+        body:
+          "<p>NEPA — the old name Nigerians still use for the power company — is shorthand for power cuts. The game references it because outages are part of the texture of everyday life.</p>" +
+          "<h2>How it plays out</h2>" +
+          "<p>A power cut can disrupt routine: it affects what you can do at home and how well you can restore certain needs. It is one of the small, local frictions that make the city feel real.</p>" +
+          "<h2>Planning around it</h2>" +
+          "<ul><li>Do not rely on a single way to restore a need.</li><li>Keep a little buffer in your money and energy for interruptions.</li><li>Treat outages as flavour, not a failure on your part.</li></ul>" +
+          "<h2>Why it matters to the feel</h2>" +
+          "<p>Systems like this are what separate a locally-flavoured life sim from a generic one. They reward players who know the city\u2019s rhythms.</p>",
+        related: [
+          { t: "Lagos slang", r: "/lagos-slang" },
+          { t: "Danfo and transport", r: "/danfo" },
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/lagos-slang"] = {
+    title: "Lagos Life Slang",
+    render: function () {
+      return article({
+        crumb: "Lagos slang",
+        kicker: "THE WORDS",
+        title: "Lagos slang in the game",
+        body:
+          "<p>Lagos Life leans on local vocabulary. Here are common terms, with how they show up in the game.</p>" +
+          "<table><thead><tr><th>Term</th><th>Meaning</th><th>In game</th></tr></thead><tbody>" +
+          "<tr><td>Danfo</td><td>Yellow minibus</td><td>A shared, cheap transport option</td></tr>" +
+          "<tr><td>Okada</td><td>Motorcycle taxi</td><td>A fast but pricier ride</td></tr>" +
+          "<tr><td>Keke</td><td>Three-wheeler</td><td>Cheap short-hop transport</td></tr>" +
+          "<tr><td>NEPA</td><td>Power company / outages</td><td>A recurring city friction</td></tr>" +
+          "<tr><td>Nepo Baby</td><td>Child of privilege</td><td>One birth-lottery outcome</td></tr>" +
+          "<tr><td>LAPO</td><td>Microfinance lender</td><td>The indebted starting background</td></tr>" +
+          "</tbody></table>" +
+          "<h2>Using the words</h2>" +
+          "<p>You do not need the slang to play, but understanding it makes the city\u2019s humour land and helps you read other players.</p>",
+        related: [
+          { t: "Nepo vs Lapo", r: "/nepo-vs-lapo" },
+          { t: "Danfo and transport", r: "/danfo" },
+          { t: "NEPA and power", r: "/nepa" }
+        ]
+      });
+    }
+  };
+
+  /* ---------- system pages ------------------------------------------------ */
+  PAGES["/governor-election"] = {
+    title: "Lagos Life Governor Election",
+    render: function () {
+      return article({
+        crumb: "Governor Election",
+        kicker: "A CITY-WIDE SYSTEM",
+        title: "Governor Election: rules players know",
+        body:
+          "<p>The governor election is one of the game\u2019s city-wide systems. It gives players a shared goal that runs across the whole city rather than inside a single household.</p>" +
+          "<h2>What is confirmed</h2>" +
+          "<ul><li>A Governor role exists.</li><li>Public announcements and ballot slogans are part of it.</li><li>One person may use only one account.</li></ul>" +
+          "<h2>Why one account matters</h2>" +
+          "<p>An election only means something if each person counts once. Multiple accounts would break the system, so it is explicitly disallowed.</p>" +
+          "<h2>Getting involved</h2>" +
+          "<p>Watch the city\u2019s public channels for announcements, understand the slogans on the ballot, and vote with the rest of the city. Being present and informed is most of it.</p>",
+        related: [
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" },
+          { t: "Account help", r: "/account" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/sea-plots"] = {
+    title: "Lagos Life Sea Plots",
+    render: function () {
+      return article({
+        crumb: "Sea Plots",
+        kicker: "MAP ADS & HOMES",
+        title: "Sea Plots: map ad space explained",
+        body:
+          "<p>Sea Plots are paid space on the city map where a player can place a picture and a link. They are, in effect, small advertisements built into the world itself.</p>" +
+          "<h2>What a Sea Plot is</h2>" +
+          "<ul><li>A plot of map space you can own.</li><li>A place to display an image and a link.</li><li>A visible object other players can see as they move around.</li></ul>" +
+          "<h2>What it is not</h2>" +
+          "<p>A Sea Plot is a game object. It is not real property, it does not hold real-world value, and it cannot be treated as an investment.</p>" +
+          "<h2>Should you buy one?</h2>" +
+          "<p>Only if you want the visibility and can afford it after your essentials. Treat it as you would any cosmetic upgrade.</p>",
+        related: [
+          { t: "Houses and homes", r: "/houses" },
+          { t: "Top up", r: "/top-up" },
+          { t: "Money and jobs", r: "/money" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/houses"] = {
+    title: "Lagos Life Homes and Rent",
+    render: function () {
+      return article({
+        crumb: "Houses",
+        kicker: "HOMES",
+        title: "Lagos Life homes and rent",
+        body:
+          "<p>Housing is the backbone of the early game, because rent is charged every Saturday. There are five paid tiers plus a student option, and each home decides your starting cash and how many guests and items you can hold.</p>" +
+          "<h2>Homes and weekly rent</h2>" +
+          dt(["Home","Area","Weekly rent","Move-in","Notes"], HOMES.map(function (h) {
+            return [h[0], h[1], nai(h[2]), h[3] === "-" ? "-" : nai(h[3]), h[4]];
+          })) +
+          "<h2>The move-in rule</h2>" +
+          "<p>Moving into a new home costs about three times the weekly rent: two weeks in advance plus one week as an agent fee. Rent is charged on Saturday morning, and arrears block a move. Fall too far behind and you can be sent back to Mushin.</p>" +
+          "<h2>Choosing a home</h2>" +
+          "<p>Early on the cheapest room wins. Move up only when your weekly income comfortably covers the new rent several times over, and never at the cost of the money you need for the next rent day.</p>",
+        related: [
+          { t: "Money and businesses", r: "/money" },
+          { t: "Nepo vs Lapo", r: "/nepo-vs-lapo" },
+          { t: "Danfo and transport", r: "/danfo" },
+          { t: "How to play", r: "/how-to-play" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/money"] = {
+    title: "Lagos Life Money",
+    render: function () {
+      return article({
+        crumb: "Money",
+        kicker: "NAIRA & BUSINESS",
+        title: "Lagos Life money: jobs, businesses and land",
+        body:
+          "<p>The Lagos Life economy has three dials: your job, your side businesses and land. The loop is simple and unforgiving - earn more than your Saturday rent, then reinvest.</p>" +
+          "<h2>Businesses</h2>" +
+          dt(["Business","Cost","Take-home / day","Area"], BUSINESSES.map(function (b) {
+            return [b[0], nai(b[1]), b[2], b[3]];
+          })) +
+          "<p>Each business carries a small chance of a bad day that costs real money, and sells back for roughly 60% of what you paid.</p>" +
+          "<h2>Land</h2>" +
+          dt(["Plot","Price","Omo-onile","Growth"], LAND.map(function (l) {
+            return [l[0], nai(l[1]), l[2], l[3]];
+          })) +
+          "<p>Land appreciates rather than paying out, and carries the omo-onile family levy shown above. There is also a 5% selling fee.</p>" +
+          "<h2>Side gigs</h2>" +
+          dt(["Gig","Pay","Where"], GIGS.map(function (g) {
+            return [g[0], nai(g[1]), g[2]];
+          })) +
+          "<h2>Sending money and tax</h2>" +
+          "<ul><li>Sending naira to another player costs a 5% fee, minimum " + nai(50) + ".</li>" +
+          "<li>Your first " + nai(1000000) + " of weekly shift income is tax-free, then 20%, rising to 45% above " + nai(50000000) + ".</li>" +
+          "<li>The governor can change minimum wage, transport and food costs, so check the active policy.</li></ul>" +
+          '<div class="note-box">Figures are aggregated from unofficial guides and can change. In-game naira has no real-world value and cannot be cashed out.</div>',
+        related: [
+          { t: "Jobs and salaries", r: "/jobs" },
+          { t: "Homes and rent", r: "/houses" },
+          { t: "Items and prices", r: "/items" },
+          { t: "Top up", r: "/top-up" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/lagos-life-vs-sims"] = {
+    title: "Lagos Life vs The Sims",
+    render: function () {
+      return article({
+        crumb: "Lagos Life vs The Sims",
+        kicker: "COMPARISON",
+        title: "Lagos Life vs The Sims",
+        body:
+          "<p>Players reach for the comparison because the two share a core loop: manage a character\u2019s needs, home and work. The differences are what give Lagos Life its character.</p>" +
+          "<h2>At a glance</h2>" +
+          "<table><thead><tr><th>Dimension</th><th>Lagos Life</th><th>The Sims</th></tr></thead><tbody>" +
+          "<tr><td>Platform</td><td>Browser</td><td>Installed game</td></tr>" +
+          "<tr><td>World</td><td>Shared, one city for all</td><td>Usually local saves</td></tr>" +
+          "<tr><td>Setting</td><td>Lagos, Nigeria</td><td>Fictional worlds</td></tr>" +
+          "<tr><td>Focus</td><td>Local flavour and shared systems</td><td>Deep household simulation</td></tr>" +
+          "</tbody></table>" +
+          "<h2>What each does well</h2>" +
+          "<p>The Sims offers depth and control in a private sandbox. Lagos Life offers immediacy and a living crowd — you get in through a link, and the people around you are real.</p>" +
+          "<h2>The honest verdict</h2>" +
+          "<p>They are different experiences with a shared ancestor. If you like the loop but want a shared, locally-flavoured world, Lagos Life is the closer match.</p>",
+        related: [
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "How to play", r: "/how-to-play" },
+          { t: "Locations", r: "/locations" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/shalom-rayhamen"] = {
+    title: "Lagos Life Developer",
+    render: function () {
+      return article({
+        crumb: "Developer",
+        kicker: "THE MAKER",
+        title: "Shalom Rayhamen, the Lagos Life developer",
+        body:
+          "<p>Lagos Life is credited to Shalom Rayhamen. The idea is described as growing out of childhood familiarity with games like The Sims and a local appetite for city-themed browser games.</p>" +
+          "<h2>What we know</h2>" +
+          "<ul><li>A single named creator is credited on the game\u2019s public pages.</li><li>The project launched as a browser title, not a store release.</li><li>It expanded quickly, with more city content promised.</li></ul>" +
+          "<h2>Why the authorship matters</h2>" +
+          "<p>A small, clearly-attributed creator is part of the game\u2019s story and its appeal. It also means details can evolve quickly as the project grows.</p>" +
+          '<div class="note-box">This is an independent guide and is not affiliated with the developer. Verify current details on the official channels.</div>',
+        related: [
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "Updates", r: "/updates" },
+          { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
+  /* ---------- fallback ---------------------------------------------------- */
+  PAGES["/404"] = {
+    title: "Page not found",
+    render: function () {
+      return article({
+        crumb: "Not found",
+        kicker: "404",
+        title: "That page does not exist",
+        body:
+          "<p>The address you tried is not part of this guide. Use the navigation or the links below to find your way back.</p>",
+        related: [
+          { t: "Home", r: "/" },
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "How to play", r: "/how-to-play" },
+          { t: "Locations", r: "/locations" }
+        ]
+      });
+    }
+  };
+
+  /* ---------- per-page meta descriptions ---------------------------------- */
+  var DESCS = {
+    "/": "Independent, unofficial guide to Lagos Life, the free browser life-sim set in Lagos, Nigeria \u2014 how to play, all 21 careers, money, homes, venues and items.",
+    "/what-is-lagos-life": "What is Lagos Life? A shared-world, browser life sim set in Lagos, Nigeria: what it is, how it plays and who made it, in plain English.",
+    "/how-to-play": "How to play Lagos Life: sign up, build your Sim, take the birth lottery, choose a home, get a job and survive your first Saturday rent, step by step.",
+    "/game-link": "Where to play Lagos Life: it runs in your browser (no app) at the official lagoslife.app \u2014 sign-up, safety and what to expect before you start.",
+    "/locations": "Lagos Life locations: how the city map is organised by transport, markets, housing, nightlife and landmarks, plus single places like Quilox.",
+    "/locations/quilox": "Quilox in Lagos Life: how the nightlife venue plays into social and fun needs, when to visit and what a night out costs.",
+    "/venues": "Every Lagos Life venue with opening hours, the jobs based there and its signature activity \u2014 from Amala Shitta to Eko Casino and UNILAG.",
+    "/updates": "Lagos Life updates and timeline: how the browser game grew from launch to a million players, with the latest notes on new features.",
+    "/stats": "Lagos Life player stats: total players, concurrent counts and daily growth explained \u2014 and what the numbers actually mean.",
+    "/jobs": "All 21 Lagos Life careers and 105 job levels with pay per shift, skill and workplace. Sort by pay, level or growth and filter by skill.",
+    "/skills": "Lagos Life skills and traits: all 10 traits, every skill and how to raise it, the six needs, and the skill gates behind each promotion.",
+    "/houses": "Lagos Life homes and rent: all five housing tiers plus student halls, weekly rents, move-in costs and the rules that decide where you can live.",
+    "/money": "How to make money in Lagos Life: every business, all land plots, side gigs, the sending-money fee and the weekly tax bands.",
+    "/items": "Lagos Life items and prices: a full furniture and appliance price list, what each item does, and which ones need power during a NEPA cut.",
+    "/nepo-vs-lapo": "Nepo Baby vs LAPO Baby in Lagos Life: the birth lottery, starting cash, the LAPO loan and the UNILAG fresher option compared.",
+    "/danfo": "Danfo and transport in Lagos Life: walking, keke, danfo, okada and taxis compared, with the money-and-energy trade-off of each.",
+    "/nepa": "NEPA in Lagos Life: how power cuts are a real mechanic, which items stop working, and how to budget for a generator.",
+    "/lagos-slang": "Lagos Life slang: the Nigerian terms used in the game \u2014 danfo, okada, NEPA, Nepo Baby, LAPO \u2014 what they mean and how they appear.",
+    "/governor-election": "The Lagos Life governor election: the rules players know, one account per person, and how the winner's policies change the city.",
+    "/sea-plots": "Sea Plots in Lagos Life: paid map space for a picture and link \u2014 what it is, and why it is not real property or an investment.",
+    "/age-requirement": "The Lagos Life age limit is 18+. Here is why the sign-up gate exists and what it means if you are younger.",
+    "/account": "Lagos Life account help: how to sign up, why you should add an email, and what to do about password resets.",
+    "/top-up": "Lagos Life top up: what optional purchases buy, what they do not, and how to pay safely before you spend anything.",
+    "/safety-and-privacy": "Lagos Life safety and privacy: what is public in a shared world, what to protect, and simple rules that keep your account safe.",
+    "/support": "Lagos Life not working? Fixes for Reconnecting to Lagos, stuck loading, lag, in-app browser problems and lost passwords.",
+    "/tips": "Lagos Life tips and tricks: 14 practical tips to survive rent, save money and play the early game better.",
+    "/shalom-rayhamen": "Shalom Rayhamen is the developer credited with creating Lagos Life. What is known about the maker of the browser game.",
+    "/lagos-life-vs-sims": "Lagos Life vs The Sims: how the shared, Lagos-set browser sim compares with the classic household life simulator.",
+    "/similar-games": "Games like Lagos Life: Lagos Run, Surviving Nigeria, The Sims 4 and BitLife \u2014 the titles players mention alongside it.",
+    "/404": "That page does not exist on the Lagos Life Guide. Use the navigation to find what you need."
+  };
+
+  /* ---------- FAQ sets (used for FAQPage structured data) ----------------- */
+  var FAQ = {
+    "/": [
+      { q: "What is Lagos Life?", a: "Lagos Life is a free life-simulation game played in your browser. It is set in Lagos, Nigeria, and is often compared with The Sims." },
+      { q: "Is Lagos Life free to play?", a: "Yes. You can open and start the game for free in a browser. The official site may offer optional in-game purchases." },
+      { q: "Do I need to download Lagos Life?", a: "No download is needed. It runs on its official website in a browser." },
+      { q: "Is Lagos Life a Roblox game?", a: "No. Lagos Life is a standalone browser game on its own website." },
+      { q: "What can you do in Lagos Life?", a: "You build a Sim, take a job, pay rent, travel the city and take part in shared systems such as the governor election." }
+    ],
+    "/how-to-play": [
+      { q: "How do I start Lagos Life?", a: "Open the official game in a browser, sign up, then build a Sim and take the birth lottery." },
+      { q: "When is rent due in Lagos Life?", a: "Rent is charged every Saturday, so set the money aside before anything else." },
+      { q: "What happens if I miss work?", a: "Arriving late lowers performance, which affects your pay and promotions." }
+    ],
+    "/jobs": [
+      { q: "How many careers are in Lagos Life?", a: "There are 21 careers, each with five levels, for 105 positions in total." },
+      { q: "Which jobs pay the most?", a: "Music tops the table: Afrobeats Giant is the highest-paid level per shift." },
+      { q: "How do promotions work?", a: "Each promotion needs the career skill at a set level plus full performance on your shifts." },
+      { q: "What does the Growth column mean?", a: "It shows how many times a level pays compared with that career's first level." }
+    ],
+    "/money": [
+      { q: "How do I make money in Lagos Life?", a: "Work shifts, run businesses and buy land, while always keeping next Saturday's rent aside." },
+      { q: "Is in-game naira worth real money?", a: "No. In-game naira cannot be cashed out and has no real-world value." },
+      { q: "What is omo-onile?", a: "A local family levy on land deals, shown as a percentage on each plot." },
+      { q: "How much tax do I pay?", a: "The first million naira of weekly shift income is tax-free, then rates rise with income." }
+    ],
+    "/items": [
+      { q: "What should I buy first in Lagos Life?", a: "A cheap bed or mattress for energy, then anything that fixes hunger cheaply." },
+      { q: "Which items need power?", a: "Fridges, TVs, air conditioners and similar appliances stop working during a NEPA cut." },
+      { q: "How many items are there?", a: "Around sixty purchasable items, from a wall calendar to a gold lion statue." },
+      { q: "Do expensive items matter?", a: "Higher tiers restore more and add decor, but the cheapest item often gives most of the practical benefit." }
+    ],
+    "/support": [
+      { q: "Why is Lagos Life stuck on Reconnecting to Lagos?", a: "The real-time connection dropped. Hard refresh, leave the in-app browser and turn off any VPN." },
+      { q: "Why is Lagos Life laggy?", a: "It is a shared, busy world. Retry off-peak and use a desktop browser." },
+      { q: "Why can't I log in from Instagram or TikTok?", a: "In-app browsers break the persistent connection. Open the link in Safari or Chrome instead." },
+      { q: "How do I reset my password?", a: "Recovery needs an email, which is optional at sign-up, so add one in advance." }
+    ],
+    "/nepo-vs-lapo": [
+      { q: "Can I choose Nepo or LAPO?", a: "No. The birth lottery is decided once per account and cannot be rerolled." },
+      { q: "What does the LAPO Baby start with?", a: "A loan repaid weekly on top of rent, plus faster skill growth." },
+      { q: "What is the UNILAG fresher option?", a: "A LAPO-only student start with a cheap hall bunk and a weekly allowance." }
+    ]
+  };
+
+  var LABELS = { "/locations": "Locations" };
+  var SITE_LD = "https://lagoslife.homes";
+
+  /* ---------- structured data (JSON-LD) ----------------------------------- */
+  function ldGraph(route, page, desc) {
+    var full = SITE_LD + (route === "/" ? "/" : route);
+    var graph = [];
+    if (route === "/") {
+      graph.push({ "@type": "WebSite", "name": "Lagos Life Guide", "url": SITE_LD + "/", "inLanguage": "en",
+        "publisher": { "@type": "Organization", "name": "Lagos Life Guide" } });
+    }
+    var items = [{ name: "Home", url: SITE_LD + "/" }];
+    if (route !== "/") {
+      var segs = route.replace(/^\//, "").split("/"), path = "";
+      segs.forEach(function (s, i) {
+        path += "/" + s;
+        var last = i === segs.length - 1;
+        var name = last ? page.title : (LABELS[path] || s.replace(/-/g, " ").replace(/\b\w/g, function (c) { return c.toUpperCase(); }));
+        items.push({ name: name, url: SITE_LD + path });
+      });
+    }
+    graph.push({ "@type": "BreadcrumbList", "itemListElement": items.map(function (it, i) {
+      return { "@type": "ListItem", "position": i + 1, "name": it.name, "item": it.url };
+    }) });
+    if (route !== "/") {
+      graph.push({ "@type": "Article", "headline": page.title, "description": desc, "url": full,
+        "datePublished": "2026-10-01", "dateModified": "2026-10-06", "inLanguage": "en",
+        "author": { "@type": "Organization", "name": "Lagos Life Guide" },
+        "publisher": { "@type": "Organization", "name": "Lagos Life Guide" },
+        "isPartOf": { "@type": "WebSite", "name": "Lagos Life Guide", "url": SITE_LD + "/" } });
+    }
+    var faq = FAQ[route];
+    if (faq && faq.length) {
+      graph.push({ "@type": "FAQPage", "mainEntity": faq.map(function (f) {
+        return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } };
+      }) });
+    }
+    return { "@context": "https://schema.org", "@graph": graph };
+  }
+
+  /* ---------- expose page map (build/pre-render + browser) ---------------- */
+  var __LL = { PAGES: PAGES, DESCS: DESCS, SITE: SITE_LD, ldGraph: ldGraph };
+  if (typeof module !== "undefined" && module.exports) { module.exports = __LL; }
+  else if (typeof window !== "undefined") { window.__LL = __LL; }
+
+  /* ---------- router (History API) ---------------------------------------- */
+  if (app && typeof window !== "undefined") {
+    var SITE = __LL.SITE;
+
+    function currentRoute() {
+      var p = location.pathname || "/";
+      if (p.length > 1 && p.charAt(p.length - 1) === "/") p = p.slice(0, -1);
+      return p || "/";
+    }
+
+    function setMeta(page, route) {
+      var full = SITE + (route === "/" ? "/" : route);
+      var desc = page.desc || DESCS[route] || (page.title + " \u2014 an independent, unofficial player guide to the Lagos Life browser game.");
+      function set(sel, val) { var el = document.querySelector(sel); if (el) el.setAttribute("content", val); }
+      var canon = document.querySelector('link[rel="canonical"]');
+      if (canon) canon.setAttribute("href", full);
+      set('meta[name="description"]', desc);
+      set('meta[property="og:title"]', page.title + " \u00b7 Lagos Life Guide");
+      set('meta[property="og:description"]', desc);
+      set('meta[property="og:url"]', full);
+      set('meta[name="twitter:title"]', page.title + " \u00b7 Lagos Life Guide");
+      set('meta[name="twitter:description"]', desc);
+      var ld = document.getElementById("ld-json");
+      if (route === "/404") { if (ld) ld.textContent = ""; }
+      else {
+        if (!ld) { ld = document.createElement("script"); ld.type = "application/ld+json"; ld.id = "ld-json"; document.head.appendChild(ld); }
+        ld.textContent = JSON.stringify(ldGraph(route, page, desc));
+      }
+    }
+
+    function setActiveNav(route) {
+      var links = document.querySelectorAll(".desktop-nav a");
+      for (var i = 0; i < links.length; i++) {
+        var href = links[i].getAttribute("href");
+        var active = href === route || (href !== "/" && route.indexOf(href) === 0);
+        links[i].classList.toggle("is-active", active);
+      }
+    }
+
+    function closeMenu() {
+      var m = document.querySelector(".menu");
+      if (m) m.removeAttribute("open");
+    }
+
+    function render() {
+      var route = currentRoute();
+      var page = PAGES[route] || PAGES["/404"];
+      document.title = page.title + " \u00b7 Lagos Life Guide";
+      app.innerHTML = page.render();
+      if (page.after) page.after();
+      window.scrollTo(0, 0);
+      setActiveNav(route);
+      closeMenu();
+      setMeta(page, route);
+    }
+
+    document.addEventListener("click", function (e) {
+      var t = e.target;
+      var a = (t && t.closest) ? t.closest("a") : null;
+      if (!a) return;
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var href = a.getAttribute("href");
+      if (!href || href.charAt(0) !== "/" || href.charAt(1) === "/") return;
+      if ((a.target && a.target !== "_self") || a.hasAttribute("download")) return;
+      e.preventDefault();
+      if (currentRoute() !== href) history.pushState({}, "", href);
+      render();
+    });
+
+    window.addEventListener("popstate", render);
+    render();
+  }
+})();
+</script>
+</body>
+</html>

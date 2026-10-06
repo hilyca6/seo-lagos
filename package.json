@@ -1,0 +1,9 @@
+{
+  "name": "lagoslife-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Independent, unofficial player guide to the Lagos Life browser game (static site, pre-rendered).",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
