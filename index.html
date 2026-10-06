@@ -726,6 +726,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       '<h1>' + o.title + '</h1>' +
       adSlot() +
       '<div class="prose">' + o.body + '</div>' +
+      adSlotNative() +
       (o.related ? related(o.related) : "") +
       '</article>' +
       (o.sources ? sourceNote(o.sources) : "") +
@@ -1163,6 +1164,7 @@ button{font:inherit;color:inherit;cursor:pointer}
             return '<a href="/similar-games">' + x + '</a>'; }).join("") +
         '</div></section>' +
 
+        adSlotNative() +
         '<section class="faq-section"><h2>Frequently asked questions</h2><div class="faq-list">' +
           faqItem("What is Lagos Life?", "Lagos Life is a free life-simulation game played in your browser. It is set in Lagos, Nigeria, and is often compared with The Sims.", true) +
           faqItem("Is Lagos Life free to play?", "The game can be opened and started for free in a browser. The official site may offer optional in-game purchases; check its current terms before paying for anything.") +
