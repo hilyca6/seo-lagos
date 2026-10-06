@@ -708,13 +708,13 @@ button{font:inherit;color:inherit;cursor:pointer}
     return '<aside class="ad-slot" aria-label="Advertisement">' +
       '<span class="ad-slot-label">Advertisement</span>' +
       '<div class="ad-slot-frame"><iframe title="Advertisement" scrolling="no" loading="lazy" ' +
-      'src="/ads/banner-mobile.html" width="320" height="50" style="width:320px;height:50px"></iframe></div></aside>';
+      'src="/ads/banner-mobile" width="320" height="50" style="width:320px;height:50px"></iframe></div></aside>';
   }
   function adSlotNative() {
     return '<aside class="ad-slot" aria-label="Advertisement">' +
       '<span class="ad-slot-label">Advertisement</span>' +
       '<div class="ad-slot-frame"><iframe title="Advertisement" scrolling="no" loading="lazy" data-native="1" ' +
-      'src="/ads/native.html" style="width:100%;max-width:728px;height:280px"></iframe></div></aside>';
+      'src="/ads/native" style="width:100%;max-width:728px;height:280px"></iframe></div></aside>';
   }
   function article(o) {
     return '<div class="content-shell article-shell">' +
@@ -2143,7 +2143,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
     function initAds() {
       var wide = window.matchMedia("(min-width: 768px)").matches;
-      var src = wide ? "/ads/banner-desktop.html" : "/ads/banner-mobile.html";
+      var src = wide ? "/ads/banner-desktop" : "/ads/banner-mobile";
       var w = wide ? 728 : 320, h = wide ? 90 : 50;
       var frames = document.querySelectorAll(".ad-slot-frame iframe:not([data-native])");
       Array.prototype.forEach.call(frames, function (f) {
