@@ -425,6 +425,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 #jobTable tbody td:first-child{font-weight:700;white-space:nowrap}
 #jobTable tbody td{white-space:nowrap}
 
+/* 12d. AD SLOTS ------------------------------------------------------------ */
+.ad-slot{margin:24px 0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.ad-slot-label{color:var(--color-text-faint);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.ad-slot-frame{display:flex;justify-content:center;width:100%;min-height:50px;overflow:hidden}
+.ad-slot-frame iframe{display:block;flex:none;max-width:100%;border:0;background:transparent}
+
 /* 13. FOOTER --------------------------------------------------------------- */
 .site-footer{margin-top:64px;padding:35px max(28px,calc((100vw - 1224px)/2)) 25px;
   background:var(--color-brand-deep);color:#e5ecde}
@@ -698,6 +704,18 @@ button{font:inherit;color:inherit;cursor:pointer}
   function sourceNote(txt) {
     return '<p class="source-note"><strong>Note:</strong> ' + txt + '</p>';
   }
+  function adSlot() {
+    return '<aside class="ad-slot" aria-label="Advertisement">' +
+      '<span class="ad-slot-label">Advertisement</span>' +
+      '<div class="ad-slot-frame"><iframe title="Advertisement" scrolling="no" loading="lazy" ' +
+      'src="/ads/banner-mobile.html" width="320" height="50" style="width:320px;height:50px"></iframe></div></aside>';
+  }
+  function adSlotNative() {
+    return '<aside class="ad-slot" aria-label="Advertisement">' +
+      '<span class="ad-slot-label">Advertisement</span>' +
+      '<div class="ad-slot-frame"><iframe title="Advertisement" scrolling="no" loading="lazy" data-native="1" ' +
+      'src="/ads/native.html" style="width:100%;max-width:728px;height:280px"></iframe></div></aside>';
+  }
   function article(o) {
     return '<div class="content-shell article-shell">' +
       '<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>' +
@@ -706,6 +724,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       '<div class="article-kicker"><span class="eyebrow"><span class="dot"></span>' + (o.kicker || "THE PLAYER'S FIELD GUIDE") + '</span>' +
       '<span class="updated">Updated ' + UPDATED + '</span></div>' +
       '<h1>' + o.title + '</h1>' +
+      adSlot() +
       '<div class="prose">' + o.body + '</div>' +
       (o.related ? related(o.related) : "") +
       '</article>' +
@@ -1098,6 +1117,7 @@ button{font:inherit;color:inherit;cursor:pointer}
           '</div>' +
         '</div>' +
 
+        adSlot() +
         '<section class="quick-start"><div class="section-heading"><div><span class="eyebrow">PICK A STARTING POINT</span><h2>Your quick start</h2></div>' +
         '<span class="section-index">02 — THE GUIDE</span></div>' +
         '<div class="quick-grid">' + quick + '</div></section>' +
@@ -2121,6 +2141,18 @@ button{font:inherit;color:inherit;cursor:pointer}
       if (m) m.removeAttribute("open");
     }
 
+    function initAds() {
+      var wide = window.matchMedia("(min-width: 768px)").matches;
+      var src = wide ? "/ads/banner-desktop.html" : "/ads/banner-mobile.html";
+      var w = wide ? 728 : 320, h = wide ? 90 : 50;
+      var frames = document.querySelectorAll(".ad-slot-frame iframe:not([data-native])");
+      Array.prototype.forEach.call(frames, function (f) {
+        if (f.getAttribute("src") !== src) f.setAttribute("src", src);
+        f.setAttribute("width", w); f.setAttribute("height", h);
+        f.style.width = w + "px"; f.style.height = h + "px";
+      });
+    }
+
     function render() {
       var route = currentRoute();
       var page = PAGES[route] || PAGES["/404"];
@@ -2131,6 +2163,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       setActiveNav(route);
       closeMenu();
       setMeta(page, route);
+      initAds();
     }
 
     document.addEventListener("click", function (e) {
@@ -2147,6 +2180,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     });
 
     window.addEventListener("popstate", render);
+    try { window.matchMedia("(min-width: 768px)").addEventListener("change", initAds); } catch (e) {}
     render();
   }
 })();
