@@ -754,9 +754,16 @@ button{font:inherit;color:inherit;cursor:pointer}
       'src="/ads/native" style="width:100%;max-width:728px;height:280px"></iframe></div></aside>';
   }
   function article(o) {
+    var crumbs = '<a href="/">Home</a>';
+    if (o.crumbs) {
+      o.crumbs.forEach(function (c) {
+        crumbs += '<span>/</span>' + (c.r ? '<a href="' + c.r + '">' + c.t + '</a>' : '<span>' + c.t + '</span>');
+      });
+    } else {
+      crumbs += '<span>/</span><span>' + (o.crumb || o.title) + '</span>';
+    }
     return '<div class="content-shell article-shell">' +
-      '<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>' +
-      '<span>' + (o.crumb || o.title) + '</span></nav>' +
+      '<nav class="breadcrumbs" aria-label="Breadcrumb">' + crumbs + '</nav>' +
       '<article class="article-card">' +
       '<div class="article-kicker"><span class="eyebrow"><span class="dot"></span>' + (o.kicker || "THE PLAYER'S FIELD GUIDE") + '</span>' +
       '<span class="updated">Updated ' + UPDATED + '</span></div>' +
@@ -1727,7 +1734,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     title: "Quilox, Lagos Life: Nightlife Guide",
     render: function () {
       return article({
-        crumb: "Quilox",
+        crumbs: [{ t: "Locations", r: "/locations" }, { t: "Quilox" }],
         kicker: "NIGHTLIFE SPOT",
         faq: FAQ["/locations/quilox"],
         title: "Quilox: a nightlife spot on the map",
@@ -1899,6 +1906,7 @@ button{font:inherit;color:inherit;cursor:pointer}
         related: [
           { t: "Homes and rent", r: "/houses" },
           { t: "Money and businesses", r: "/money" },
+          { t: "Activities & prices", r: "/activities" },
           { t: "NEPA and power", r: "/nepa" }
         ]
       });
@@ -2142,6 +2150,7 @@ button{font:inherit;color:inherit;cursor:pointer}
         related: [
           { t: "Money and businesses", r: "/money" },
           { t: "Skills and traits", r: "/skills" },
+          { t: "Activities & prices", r: "/activities" },
           { t: "Venues and hours", r: "/venues" },
           { t: "Your first week", r: "/how-to-play" }
         ]
@@ -2373,6 +2382,7 @@ button{font:inherit;color:inherit;cursor:pointer}
           { t: "Jobs and salaries", r: "/jobs" },
           { t: "Homes and rent", r: "/houses" },
           { t: "Items and prices", r: "/items" },
+          { t: "Activities & prices", r: "/activities" },
           { t: "Top up", r: "/top-up" }
         ]
       });
@@ -3191,6 +3201,15 @@ button{font:inherit;color:inherit;cursor:pointer}
           return [a[1], time, a[3] === 0 ? "Free" : nai(a[3]), a[4]];
         }));
     }
+    var nearby = VENUES.filter(function (x) { return x[1] === area && x[0] !== name; });
+    if (nearby.length) {
+      body += "<h2>More in " + area + "</h2><div class='related-links'>" +
+        nearby.map(function (x) {
+          var hasPage = x[0] === "Quilox" || VENUE_PAGE_NAMES.indexOf(x[0]) >= 0;
+          var href = hasPage ? "/locations/" + slugify(x[0]) : "/venues";
+          return "<a href='" + href + "'>" + x[0] + "</a>";
+        }).join("") + "</div>";
+    }
     body += "<h2>Tips</h2><ul><li>Check the opening hours before you travel, so you do not arrive somewhere closed.</li><li>Keep Saturday rent money aside before you spend here.</li></ul>";
     return body;
   }
@@ -3211,7 +3230,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       title: name + ", Lagos Life: Hours & Things to Do",
       render: function () {
         return article({
-          crumb: name,
+          crumbs: [{ t: "Locations", r: "/locations" }, { t: name }],
           kicker: "VENUE",
           faq: faq,
           title: name + " in Lagos Life",
