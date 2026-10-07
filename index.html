@@ -431,6 +431,19 @@ button{font:inherit;color:inherit;cursor:pointer}
 .ad-slot-frame{display:flex;justify-content:center;width:100%;min-height:50px;overflow:hidden}
 .ad-slot-frame iframe{display:block;flex:none;max-width:100%;border:0;background:transparent}
 
+/* 12e. COOKIE CONSENT BAR -------------------------------------------------- */
+.cookie-bar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:flex;flex-wrap:wrap;
+  gap:12px;align-items:center;justify-content:space-between;
+  padding:14px max(16px,calc((100vw - 1224px)/2));
+  background:#183b37;color:#e5ecde;font-size:12px;line-height:1.5;
+  box-shadow:0 -8px 24px rgba(24,59,55,.2)}
+.cookie-bar p{margin:0;max-width:78ch}
+.cookie-bar a{color:#bed778;text-decoration:underline;text-underline-offset:2px}
+.cookie-bar button{flex:none;min-height:38px;padding:0 18px;border:0;border-radius:999px;
+  background:#bed778;color:#183b37;font-weight:700;font-size:12px;cursor:pointer;
+  transition:background .2s}
+.cookie-bar button:hover{background:#d3e894}
+
 /* 13. FOOTER --------------------------------------------------------------- */
 .site-footer{margin-top:64px;padding:35px max(28px,calc((100vw - 1224px)/2)) 25px;
   background:var(--color-brand-deep);color:#e5ecde}
@@ -534,6 +547,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 <!-- ===== ROUTED CONTENT ===== -->
 <main id="app" aria-live="polite"></main>
 
+<!-- ===== COOKIE CONSENT ===== -->
+<div class="cookie-bar" id="cookieBar" hidden>
+  <p>We use cookies and similar technologies for advertising and analytics. See our <a href="/privacy">Privacy Policy</a>.</p>
+  <button type="button" id="cookieAccept">Got it</button>
+</div>
+
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-top">
@@ -576,6 +595,12 @@ button{font:inherit;color:inherit;cursor:pointer}
     <a href="/venues">Venues &amp; hours</a>
     <a href="/tips">Tips</a>
     <a href="/support">Not working?</a>
+  </nav>
+  <nav class="footer-links footer-guides" aria-label="Site">
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Use</a>
   </nav>
   <p class="disclaimer">This guide is independently run and is not affiliated with or endorsed by the game's developer. Game details can change; check the official site for the latest in-game information.</p>
   <p class="copyright"><span>© 2026 Lagos Life Guide · unofficial fan project</span><a href="/">Back to top ↑</a></p>
@@ -724,9 +749,9 @@ button{font:inherit;color:inherit;cursor:pointer}
       '<div class="article-kicker"><span class="eyebrow"><span class="dot"></span>' + (o.kicker || "THE PLAYER'S FIELD GUIDE") + '</span>' +
       '<span class="updated">Updated ' + UPDATED + '</span></div>' +
       '<h1>' + o.title + '</h1>' +
-      adSlot() +
+      (o.noAds ? "" : adSlot()) +
       '<div class="prose">' + o.body + '</div>' +
-      adSlotNative() +
+      (o.noAds ? "" : adSlotNative()) +
       (o.related ? related(o.related) : "") +
       '</article>' +
       (o.sources ? sourceNote(o.sources) : "") +
@@ -1955,6 +1980,139 @@ button{font:inherit;color:inherit;cursor:pointer}
     }
   };
 
+  PAGES["/privacy"] = {
+    title: "Privacy Policy",
+    render: function () {
+      return article({
+        crumb: "Privacy Policy",
+        kicker: "SITE POLICY",
+        noAds: true,
+        title: "Privacy Policy",
+        body:
+          "<p>This Privacy Policy explains how the Lagos Life Guide (the site at lagoslife.homes) handles information. This is an independent, unofficial guide and is not operated by the game's developer.</p>" +
+          "<h2>Who we are</h2>" +
+          "<p>Lagos Life Guide is a fan-made website that publishes information about the Lagos Life browser game. We do not run the game and do not provide game accounts or support.</p>" +
+          "<h2>Information we collect</h2>" +
+          "<p>We do not ask you to create an account and we do not knowingly collect personal information such as your name or email. The information gathered on this site comes from third-party services, mainly advertising and analytics.</p>" +
+          "<h2>Cookies and similar technologies</h2>" +
+          "<p>Cookies are small files stored by your browser. They are used here to measure traffic and to serve advertising. You can control or delete cookies in your browser settings, and you can decline personalised advertising using the options below.</p>" +
+          "<h2>Advertising</h2>" +
+          "<p>We display advertising through third-party ad networks, currently Adsterra, and we may also use Google AdSense. These networks and their partners may use cookies or device identifiers to show ads, including personalised ads based on your previous visits to this and other websites. We do not control the data these third parties collect; please review their own privacy policies.</p>" +
+          "<ul>" +
+          "<li>To learn about Google's advertising cookies and to opt out of personalised ads, visit <a href='https://adssettings.google.com' target='_blank' rel='noopener nofollow'>Google Ads Settings</a>.</li>" +
+          "<li>You can also opt out of many third-party vendors' personalised ads at <a href='https://www.aboutads.info' target='_blank' rel='noopener nofollow'>aboutads.info</a> or <a href='https://www.youronlinechoices.eu' target='_blank' rel='noopener nofollow'>youronlinechoices.eu</a>.</li>" +
+          "</ul>" +
+          "<h2>Analytics</h2>" +
+          "<p>We use Cloudflare Web Analytics to understand how many people visit and which pages are popular. This service is designed to be privacy-first and does not use cookies to track you across websites.</p>" +
+          "<h2>Third-party links</h2>" +
+          "<p>Our pages link to external websites, including the official game. We are not responsible for the content or privacy practices of those sites.</p>" +
+          "<h2>Children</h2>" +
+          "<p>This site is intended for adults, in line with the game's 18+ requirement, and is not directed at children.</p>" +
+          "<h2>Your choices</h2>" +
+          "<p>You can accept the cookie notice shown on your first visit, block cookies in your browser, and use the advertising opt-outs linked above.</p>" +
+          "<h2>Changes</h2>" +
+          "<p>We may update this policy as the site or the advertising partners change. The latest version always appears on this page.</p>" +
+          "<h2>Contact</h2>" +
+          "<p>Questions about this policy? Use our <a href='/contact'>contact page</a>.</p>",
+        related: [
+          { t: "About this site", r: "/about" },
+          { t: "Terms of use", r: "/terms" },
+          { t: "Contact", r: "/contact" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/about"] = {
+    title: "About Lagos Life Guide",
+    render: function () {
+      return article({
+        crumb: "About",
+        kicker: "ABOUT",
+        noAds: true,
+        title: "About Lagos Life Guide",
+        body:
+          "<p>Lagos Life Guide is an independent, unofficial website about Lagos Life, the free browser life-simulation game set in Lagos, Nigeria.</p>" +
+          "<h2>What this site is</h2>" +
+          "<p>It is a player-written guide: how to play, careers and salaries, money, homes, venues, items and the wider world of the game. The aim is to help new players get started and understand the systems quickly.</p>" +
+          "<h2>Not affiliated</h2>" +
+          "<p>We are not the game's developer or operator, and we are not affiliated with, endorsed by or sponsored by them. 'Lagos Life' and related names belong to their owners and are used here only to describe the subject of this guide.</p>" +
+          "<h2>How our content is made</h2>" +
+          "<p>We research publicly available information, including the game's own public pages and community guides, and write our own explanations. Games in active development change quickly, so figures may be approximate or out of date. Where sources disagree, we say so.</p>" +
+          "<h2>Corrections</h2>" +
+          "<p>Spotted something wrong or out of date? Tell us via the <a href='/contact'>contact page</a> and we will fix it.</p>",
+        related: [
+          { t: "Contact", r: "/contact" },
+          { t: "Privacy Policy", r: "/privacy" },
+          { t: "Terms of use", r: "/terms" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/contact"] = {
+    title: "Contact",
+    render: function () {
+      return article({
+        crumb: "Contact",
+        kicker: "GET IN TOUCH",
+        noAds: true,
+        title: "Contact Lagos Life Guide",
+        body:
+          "<p>We welcome corrections, questions and takedown requests.</p>" +
+          "<h2>Email</h2>" +
+          "<p>Write to us at <a href='mailto:contact@lagoslife.homes'>contact@lagoslife.homes</a>. Please allow a few days for a reply.</p>" +
+          "<h2>What we can and cannot help with</h2>" +
+          "<ul>" +
+          "<li>We can fix errors in this guide, update out-of-date information and handle copyright concerns.</li>" +
+          "<li>We cannot help with game accounts, logins, purchases or technical problems inside the game. Those are handled by the game's developer.</li>" +
+          "</ul>" +
+          "<h2>Copyright</h2>" +
+          "<p>If you own content referenced here and want a change, email us and we will respond promptly.</p>",
+        related: [
+          { t: "About this site", r: "/about" },
+          { t: "Privacy Policy", r: "/privacy" },
+          { t: "Terms of use", r: "/terms" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/terms"] = {
+    title: "Terms of Use",
+    render: function () {
+      return article({
+        crumb: "Terms",
+        kicker: "SITE POLICY",
+        noAds: true,
+        title: "Terms of Use",
+        body:
+          "<p>By using lagoslife.homes you agree to these terms. If you do not agree, please do not use the site.</p>" +
+          "<h2>Unofficial guide</h2>" +
+          "<p>This is an independent fan guide. It is not affiliated with or endorsed by the developer of Lagos Life. All game names and trademarks belong to their owners.</p>" +
+          "<h2>Accuracy</h2>" +
+          "<p>Content is provided for general information only and 'as is'. The game changes often, so details may be inaccurate or out of date. We make no warranty of accuracy or completeness and are not liable for decisions made based on this content.</p>" +
+          "<h2>Advertising</h2>" +
+          "<p>This site is supported by advertising. We are not responsible for the content of third-party ads or advertisers.</p>" +
+          "<h2>External links</h2>" +
+          "<p>Links to other websites are provided for convenience; we do not control and are not responsible for them.</p>" +
+          "<h2>Intellectual property</h2>" +
+          "<p>Our original text and design are our own. Please do not copy the site wholesale. Game-related names, images and data belong to their respective owners and are used descriptively.</p>" +
+          "<h2>Limitation of liability</h2>" +
+          "<p>To the extent permitted by law, we are not liable for any loss or damage arising from use of this site.</p>" +
+          "<h2>Changes</h2>" +
+          "<p>We may update these terms at any time. Continued use means you accept the current version.</p>" +
+          "<h2>Contact</h2>" +
+          "<p>Questions? See our <a href='/contact'>contact page</a>.</p>",
+        related: [
+          { t: "Privacy Policy", r: "/privacy" },
+          { t: "About this site", r: "/about" },
+          { t: "Contact", r: "/contact" }
+        ]
+      });
+    }
+  };
+
   /* ---------- fallback ---------------------------------------------------- */
   PAGES["/404"] = {
     title: "Page not found",
@@ -2006,6 +2164,10 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/shalom-rayhamen": "Shalom Rayhamen is the developer credited with creating Lagos Life. What is known about the maker of the browser game.",
     "/lagos-life-vs-sims": "Lagos Life vs The Sims: how the shared, Lagos-set browser sim compares with the classic household life simulator.",
     "/similar-games": "Games like Lagos Life: Lagos Run, Surviving Nigeria, The Sims 4 and BitLife \u2014 the titles players mention alongside it.",
+    "/privacy": "How Lagos Life Guide handles data, cookies and advertising, including the third-party ad networks and analytics we use.",
+    "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
+    "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
+    "/terms": "Terms of use for Lagos Life Guide, an independent, unofficial fan site about the Lagos Life browser game.",
     "/404": "That page does not exist on the Lagos Life Guide. Use the navigation to find what you need."
   };
 
@@ -2183,6 +2345,19 @@ button{font:inherit;color:inherit;cursor:pointer}
 
     window.addEventListener("popstate", render);
     try { window.matchMedia("(min-width: 768px)").addEventListener("change", initAds); } catch (e) {}
+
+    var cookieBar = document.getElementById("cookieBar");
+    if (cookieBar) {
+      var agreed = false;
+      try { agreed = localStorage.getItem("ll-cookie-ok") === "1"; } catch (e) {}
+      if (!agreed) cookieBar.hidden = false;
+      var cookieBtn = document.getElementById("cookieAccept");
+      if (cookieBtn) cookieBtn.addEventListener("click", function () {
+        try { localStorage.setItem("ll-cookie-ok", "1"); } catch (e) {}
+        cookieBar.hidden = true;
+      });
+    }
+
     render();
   }
 })();
