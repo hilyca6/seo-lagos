@@ -594,6 +594,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     <a href="/money">Money &amp; businesses</a>
     <a href="/items">Items &amp; prices</a>
     <a href="/venues">Venues &amp; hours</a>
+    <a href="/activities">Activities &amp; prices</a>
     <a href="/daily-hunt">Daily hunt</a>
     <a href="/tips">Tips</a>
     <a href="/support">Not working?</a>
@@ -1008,6 +1009,275 @@ button{font:inherit;color:inherit;cursor:pointer}
     ["University of Lagos","Akoka, Yaba","24 hours","-","Matriculate; 33 activities"]
   ];
 
+  /* ACTIVITIES: [venue, activity, minutes, cost(naira, 0=free), details] */
+  var ACTIVITIES = [
+    ["Amala Shitta","Amala & Ewedu",40,300,"Food"],
+    ["Amala Shitta","Jollof, Dodo & Chicken",40,550,"Food"],
+    ["Amala Shitta","Pepper Soup & Cold Drink",30,400,"Food"],
+    ["Amala Shitta","Efo Riro, Ponmo & Semo",40,650,"Food"],
+    ["Amala Shitta","Ofada Rice & Shawa Fish",35,600,"Food"],
+    ["Amala Shitta","Cup of Chilled Zobo",8,100,"Food"],
+    ["Amala Shitta","Gist with Mama",20,0,"Fun"],
+    ["Amala Shitta","Learn Mama's Ewedu Secret",60,200,"Trains Cooking"],
+    ["Amala Shitta","Help at the Buka",90,0,"Paid gig"],
+    ["Amala Shitta","Wash Hands",5,0,"Need"],
+    ["Balogun Market","Buy Foodstuff",30,0,"Food"],
+    ["Balogun Market","Haggle for Ankara",30,500,"Trains Hustle"],
+    ["Balogun Market","Buy Aso-ebi for Owambe",30,900,"Shopping"],
+    ["Balogun Market","Window Shop",60,0,"Fun"],
+    ["Balogun Market","Buy & Resell Goods",120,800,"Trains Hustle; Paid gig"],
+    ["Balogun Market","Carry Load (Alabaru)",120,0,"Trains Fitness; Paid gig"],
+    ["Balogun Market","Gala & LaCasera",8,150,"Food"],
+    ["Balogun Market","Pickpocket a Trader",10,0,"Crime"],
+    ["Balogun Market","Sell Fake Designer Bags",45,0,"Crime; Needs Charisma 3"],
+    ["CcHub","Hack on Side Project",120,0,"Trains Coding"],
+    ["CcHub","Free Wi-Fi & Chill",60,0,"Fun"],
+    ["CcHub","Freelance Gig",120,0,"Trains Coding; Paid gig; Needs Coding 2"],
+    ["CcHub","Attend Tech Meetup",120,0,"Trains Coding"],
+    ["CcHub","Pitch Your Startup",60,0,"Trains Charisma; Needs Coding 5 & Charisma 3"],
+    ["CcHub","Weekend Hackathon",240,0,"Trains Coding; Needs Coding 3"],
+    ["CcHub","Coffee & Puff-puff",15,250,"Food"],
+    ["CcHub","Gist with Founders",45,0,"Trains Charisma"],
+    ["CcHub","Hack an ATM",60,0,"Crime; Needs Coding 6"],
+    ["Eko Casino","Soak Up the Slot Machine Lights",15,0,"Fun"],
+    ["Eko Casino","Tip the Dealer",10,2000,"Fun"],
+    ["Eko Casino","Watch the High-Roller Table",30,0,"Fun"],
+    ["Eko Casino","Cocktail at the Casino Bar",20,12000,"Fun"],
+    ["Eko Casino","The Midnight Buffet",40,25000,"Food"],
+    ["Eko Casino","Selfie Under the Chandelier",15,0,"Trains Photography"],
+    ["Eko Hotels & Suites","Swim in the Hotel Pool",45,15000,"Trains Fitness"],
+    ["Eko Hotels & Suites","Poolside Small Chops",25,18000,"Food"],
+    ["Eko Hotels & Suites","The Eko Hotels Buffet",90,45000,"Food"],
+    ["Eko Hotels & Suites","Live Band in the Lounge",60,8000,"Fun"],
+    ["Eko Hotels & Suites","Shisha & Gist",45,25000,"Fun"],
+    ["Eko Hotels & Suites","Brunch in the Lounge",90,60000,"Food"],
+    ["Eko Hotels & Suites","Spa Day & Massage",60,120000,"Fun"],
+    ["Eko Hotels & Suites","Lobby Photo Shoot",20,0,"Trains Photography"],
+    ["Eko Hotels & Suites","Sleep in a Deluxe Room",480,250000,"Energy"],
+    ["Eko Hotels & Suites","The Presidential Suite",480,15000000,"Energy"],
+    ["Eko Police Division","Wait It Out in the Cell",60,0,"Fun"],
+    ["Eko Police Division","Use the Cell Toilet",10,0,"Need"],
+    ["Eko Police Division","Eat the Cell Food",20,0,"Food"],
+    ["Eko Police Division","Sleep on the Mat",60,0,"Energy"],
+    ["Eko Police Division","Play Cards with Cellmates",30,0,"Fun"],
+    ["Eko Police Division","Do Push-ups",20,0,"Trains Fitness"],
+    ["Eko Police Division","Clean the Cell (Good Behaviour)",20,0,"Fun"],
+    ["Eko Police Division","Pay Bail",2,0,"Legal"],
+    ["Eko Police Division","Report a Crime",30,0,"Legal"],
+    ["Eko Police Division","Gist with the Desk Officer",20,0,"Trains Charisma"],
+    ["Elegushi Beach","Swim in the Atlantic",60,0,"Trains Fitness"],
+    ["Elegushi Beach","Jet Ski Ride",20,1200,"Fun"],
+    ["Elegushi Beach","Ride a Horse",30,500,"Fun"],
+    ["Elegushi Beach","Suya & Chapman on the Sand",60,700,"Food"],
+    ["Elegushi Beach","Fresh Coconut",10,200,"Food"],
+    ["Elegushi Beach","Beach Football",60,0,"Trains Fitness"],
+    ["Elegushi Beach","Rent a Cabana",60,600,"Fun"],
+    ["Elegushi Beach","Beach Photoshoot",20,0,"Trains Photography"],
+    ["Elegushi Beach","Paid Beach Photoshoot",90,0,"Trains Photography; Paid gig; Needs Photography 4"],
+    ["Elegushi Beach","Rave on the Beach",120,1500,"Trains Fitness"],
+    ["Elegushi Beach","Request a Song",15,300,"Fun"],
+    ["Freedom Park","Watch a Stage Play",90,400,"Fun"],
+    ["Freedom Park","Watch a Comedy Show",60,500,"Trains Comedy"],
+    ["Freedom Park","Spoken Word Open Mic",45,0,"Trains Charisma"],
+    ["Freedom Park","Perform at Comedy Night",60,0,"Trains Comedy; Paid gig; Needs Comedy 3"],
+    ["Freedom Park","Browse the Exhibition",45,0,"Fun"],
+    ["Freedom Park","Buy a Small Painting",20,1500,"Shopping"],
+    ["Freedom Park","Chill Under the Trees",60,0,"Fun"],
+    ["Freedom Park","Play Ayo Olopon",30,0,"Trains Hustle"],
+    ["Freedom Park","Chapman under the Trees",15,300,"Food"],
+    ["Freedom Park","Spray Graffiti on the Wall",20,0,"Crime"],
+    ["General Hospital","See a Doctor · Get an Injection",30,8000,"Health"],
+    ["General Hospital","Get a Check-up",30,2500,"Health"],
+    ["General Hospital","Buy Vitamins at the Pharmacy",10,1200,"Health"],
+    ["General Hospital","Visit a Patient",30,0,"Social"],
+    ["General Hospital","Volunteer on the Ward",60,0,"Trains Fitness"],
+    ["House of Grace Chapel","Attend Service",90,0,"Social"],
+    ["House of Grace Chapel","Sunday Service",120,0,"Social"],
+    ["House of Grace Chapel","Sing in the Choir",60,0,"Trains Music"],
+    ["House of Grace Chapel","Give a Testimony",20,0,"Trains Charisma"],
+    ["House of Grace Chapel","Give an Offering",5,1000,"Social"],
+    ["House of Grace Chapel","Pray for Breakthrough",30,0,"Social"],
+    ["House of Grace Chapel","Gist with the Pastor",20,0,"Social"],
+    ["i-Fitness","Lift Weights",60,400,"Trains Fitness"],
+    ["i-Fitness","Run on the Treadmill",45,300,"Trains Fitness"],
+    ["i-Fitness","Yoga Class",60,500,"Trains Fitness"],
+    ["i-Fitness","Session with a Coach",60,1000,"Trains Fitness"],
+    ["i-Fitness","Gym Shower",15,0,"Hygiene"],
+    ["i-Fitness","Protein Shake",10,300,"Food"],
+    ["Ikoyi Golf Club","Play 18 Holes",120,2000000,"Trains Fitness"],
+    ["Ikoyi Golf Club","Lesson with the Club Pro",60,500000,"Trains Fitness"],
+    ["Ikoyi Golf Club","Single Malt at the Clubhouse",20,250000,"Fun"],
+    ["Ikoyi Golf Club","Buy the Members a Round",20,100000000,"Fun"],
+    ["Ikoyi Golf Club","Quiet Gist with Old Money",45,0,"Trains Charisma"],
+    ["Ikoyi Golf Club","Talk Billion-Naira Deals",60,0,"Trains Hustle"],
+    ["Ikoyi Golf Club","Vintage Champagne on the Terrace",30,5000000,"Fun"],
+    ["Ikoyi Golf Club","Order the N1bn Diamond Bottle",30,1000000000,"Fun"],
+    ["Ivory Rooftop","Candlelit Dinner for Two",90,12000,"Food"],
+    ["Ivory Rooftop","Chef's 7-Course Tasting Menu",120,25000,"Trains Cooking"],
+    ["Ivory Rooftop","Chocolate Lava Cake",20,3500,"Food"],
+    ["Ivory Rooftop","Champagne Toast",20,6000,"Fun"],
+    ["Ivory Rooftop","Request a Love Song on Sax",15,2000,"Fun"],
+    ["Ivory Rooftop","Watch the Lagos Skyline",30,0,"Fun"],
+    ["Ivory Rooftop","Skyline Photos",20,0,"Trains Photography"],
+    ["Lagoon Boat Cruise","Sunset Cruise",90,150000,"Fun"],
+    ["Lagoon Boat Cruise","Sunbathe on Deck",45,0,"Fun"],
+    ["Lagoon Boat Cruise","Cocktail on Deck",20,15000,"Fun"],
+    ["Lagoon Boat Cruise","Party on the Deck",90,50000,"Trains Dance"],
+    ["Lagoon Boat Cruise","Skyline Photos from the Water",20,0,"Trains Photography"],
+    ["Lagoon Boat Cruise","Fish off the Back",60,0,"Fun"],
+    ["Lagoon Boat Cruise","Steer with the Captain",20,0,"Fun"],
+    ["Lagoon Boat Cruise","Charter the Whole Boat",120,25000000,"Fun"],
+    ["Lagos Central Mosque","Pray (Salah)",20,0,"Social"],
+    ["Lagos Central Mosque","Jumu'ah Prayer",60,0,"Social"],
+    ["Lagos Central Mosque","Perform Ablution (Wudu)",10,0,"Hygiene"],
+    ["Lagos Central Mosque","Read the Quran",30,0,"Social"],
+    ["Lagos Central Mosque","Listen to the Imam's Lecture",40,0,"Trains Charisma"],
+    ["Lagos Central Mosque","Give Sadaqah (Charity)",5,1000,"Social"],
+    ["Lagos Central Mosque","Gist with the Imam",20,0,"Social"],
+    ["Lagos High Court","Watch a Trial from the Gallery",45,0,"Trains Charisma"],
+    ["Lagos High Court","Squeeze in for a Celebrity Case",60,0,"Fun"],
+    ["Lagos High Court","Gist with the Wigs",20,0,"Trains Charisma"],
+    ["Lagos High Court","Practise a Closing Argument",40,0,"Trains Charisma"],
+    ["Lagos High Court","Swear an Affidavit",15,2000,"Legal"],
+    ["Lagos High Court","Help at the Legal Aid Desk",60,0,"Trains Charisma; Paid gig; Needs Charisma 3"],
+    ["Lagos High Court","Gala & Pure Water at the Gate",10,300,"Food"],
+    ["Lekki Conservation Centre","Canopy Walk",45,500,"Fun"],
+    ["Lekki Conservation Centre","Spot Monkeys & Birds",60,0,"Fun"],
+    ["Lekki Conservation Centre","Spot a Crocodile",30,0,"Fun"],
+    ["Lekki Conservation Centre","Picnic under the Trees",60,400,"Food"],
+    ["Lekki Conservation Centre","Rest in the Tree House",45,0,"Energy"],
+    ["Lekki Conservation Centre","Nature Photos",30,0,"Trains Photography"],
+    ["Mama Bisi's Salon","Get Braids Done",90,6000,"Grooming"],
+    ["Mama Bisi's Salon","Fresh Low Cut",30,1500,"Grooming"],
+    ["Mama Bisi's Salon","Wash & Pick Out Afro",45,3000,"Grooming"],
+    ["Mama Bisi's Salon","Start Your Locs",120,8000,"Grooming"],
+    ["Mama Bisi's Salon","Fix Your Nails",40,2500,"Grooming"],
+    ["Mama Bisi's Salon","Salon Gist",30,0,"Social"],
+    ["Marina Towers","Network in the Lobby",30,0,"Trains Charisma"],
+    ["Marina Towers","Canteen Lunch",30,400,"Food"],
+    ["MindSpace Wellness Centre","Join Group Therapy",60,5000,"Fun"],
+    ["MindSpace Wellness Centre","One-on-One Session",50,20000,"Fun"],
+    ["MindSpace Wellness Centre","Journal & Tea",20,500,"Fun"],
+    ["MindSpace Wellness Centre","Breathing Class",30,1500,"Fun"],
+    ["Naija Radio House","Sit Back & Listen",30,0,"Fun"],
+    ["Naija Radio House","Dance in the Studio",30,0,"Trains Dance"],
+    ["Naija Radio House","Call In a Song Request",10,0,"Fun"],
+    ["Naija Radio House","Join the Gist Show",30,0,"Trains Comedy"],
+    ["Naija Radio House","Practise Presenting",45,0,"Trains Charisma"],
+    ["Naija Radio House","Work with the Radio On",60,0,"Trains Hustle"],
+    ["Naija Radio House","Worship Along",30,0,"Social"],
+    ["Naija Radio House","Take the Studio Tour",20,0,"Fun"],
+    ["New Afrika Shrine","Dance to the Live Band",90,300,"Trains Fitness"],
+    ["New Afrika Shrine","Open Mic Performance",45,0,"Trains Music; Paid gig; Needs Music 2"],
+    ["New Afrika Shrine","Request a Fela Classic",30,200,"Fun"],
+    ["New Afrika Shrine","Buy Drinks for the Table",60,950,"Fun"],
+    ["New Afrika Shrine","Pepper Soup & Cold Star",25,450,"Food"],
+    ["New Afrika Shrine","Read the Fela Wall",30,0,"Trains Music"],
+    ["Oga Sunday Viewing Centre","Watch EPL Match",90,100,"Fun"],
+    ["Oga Sunday Viewing Centre","Argue Football",30,0,"Trains Charisma"],
+    ["Oga Sunday Viewing Centre","Bet N300 with a Padi",90,300,"Paid gig"],
+    ["Oga Sunday Viewing Centre","Play a Betting Slip",30,500,"Paid gig"],
+    ["Oga Sunday Viewing Centre","Buy a Lotto Ticket",1,200,"Paid gig"],
+    ["Oga Sunday Viewing Centre","Malt & Suya",15,250,"Food"],
+    ["Oga Sunday Viewing Centre","Fight the Agbero",15,0,"Crime"],
+    ["Polanco Motors","Browse the Showroom",30,0,"Fun"],
+    ["Polanco Motors","Take a Test Drive",30,0,"Fun"],
+    ["Polanco Motors","Talk to a Sales Rep",20,0,"Trains Charisma"],
+    ["Polanco Motors","Selfie with a Supercar",15,0,"Trains Photography"],
+    ["Polling Unit 001","Cast Your Vote",1,0,"Civic"],
+    ["Polling Unit 001","Get Accredited",5,0,"Civic"],
+    ["Polling Unit 001","Show Off Your Inked Thumb",10,0,"Trains Photography"],
+    ["Polling Unit 001","Watch the Live Count",30,0,"Civic"],
+    ["Polling Unit 001","Argue About the Results",20,0,"Trains Charisma"],
+    ["Polling Unit 001","Gist in the Queue",20,0,"Social"],
+    ["Quilox","Dance Till Dawn",120,800,"Trains Dance"],
+    ["Quilox","Enter the Dance Battle",45,500,"Trains Dance; Needs Dance 3"],
+    ["Quilox","Spray Money",20,500,"Fun"],
+    ["Quilox","Pay the Hype Man",10,5000,"Fun"],
+    ["Quilox","Pay the DJ for a Shout-out",10,3000,"Fun"],
+    ["Quilox","Bottle Service (VIP)",60,9600,"Fun"],
+    ["Quilox","Order the Gold Bottle (Dorime!)",30,50000,"Fun"],
+    ["Quilox","Book a VIP Table",90,250000,"Fun"],
+    ["Quilox","Ace of Spades Parade (10 bottles)",40,1000000,"Fun"],
+    ["Quilox","Buy the Whole Club a Round",20,2500000,"Fun"],
+    ["Quilox","Take Over Quilox for the Night",120,10000000,"Fun"],
+    ["Quilox","Top-Shelf Round for the Whole Club",20,100000000,"Trains Charisma"],
+    ["Quilox","Book the Big Man VIP Table",90,500000000,"Trains Charisma"],
+    ["Quilox","Shut Down the Club",180,1000000000,"Trains Charisma"],
+    ["Quilox","Signature Cocktail",20,900,"Fun"],
+    ["Quilox","Network with Big Men",60,0,"Trains Hustle"],
+    ["Quilox","Request a Song",15,300,"Fun"],
+    ["Quilox","Selfies for the Gram",20,0,"Trains Photography"],
+    ["Quilox","Sneak into the VIP Section",15,0,"Crime"],
+    ["Teslim Balogun Stadium","Regular Ticket · Popular Stand",105,2000,"Fun"],
+    ["Teslim Balogun Stadium","VIP Ticket · Covered Stand",105,20000,"Fun"],
+    ["Teslim Balogun Stadium","Executive Box",105,250000,"Fun"],
+    ["Teslim Balogun Stadium","Lead the Chant",20,0,"Trains Charisma"],
+    ["Teslim Balogun Stadium","Concert Ticket · Regular",120,10000,"Fun"],
+    ["Teslim Balogun Stadium","Concert Ticket · VIP",120,75000,"Fun"],
+    ["Teslim Balogun Stadium","Front Row",120,500000,"Fun"],
+    ["Teslim Balogun Stadium","Stadium Tour",45,3000,"Fun"],
+    ["Teslim Balogun Stadium","Buy a Jersey & Scarf",15,8000,"Shopping"],
+    ["Teslim Balogun Stadium","Suya & Malt at the Gate",15,1500,"Food"],
+    ["Teslim Balogun Stadium","Gala & Pure Water",5,300,"Food"],
+    ["Teslim Balogun Stadium","Five-a-side on the Pitch",45,0,"Trains Fitness"],
+    ["Teslim Balogun Stadium","Take a Penalty",10,0,"Fun"],
+    ["The Library","Find the Secret Bookcase",20,800,"Fun"],
+    ["The Library","Read by Candlelight",45,0,"Trains Charisma"],
+    ["The Library","Cocktails with the Crew",60,1900,"Fun"],
+    ["The Library","Dance to the DJ",90,0,"Trains Dance"],
+    ["The Library","Pay the DJ for a Shout-out",10,3000,"Fun"],
+    ["The Library","Order the Gold Bottle (Dorime!)",30,50000,"Fun"],
+    ["The Library","Top-Shelf Round for the Whole Club",20,100000000,"Trains Charisma"],
+    ["The Library","Book the Big Man VIP Table",90,500000000,"Trains Charisma"],
+    ["The Library","Shut Down the Club",180,1000000000,"Trains Charisma"],
+    ["The Library","Chill in the Lounge",45,0,"Fun"],
+    ["The Library","Selfies for the Gram",20,0,"Trains Photography"],
+    ["The Palms","Grocery Shopping",30,0,"Food"],
+    ["The Palms","Genesis Cinema Movie",120,800,"Fun"],
+    ["The Palms","Chicken Republic Meal",30,700,"Food"],
+    ["The Palms","Chicken Shawarma",20,2500,"Food"],
+    ["The Palms","Cold Stone Ice Cream",15,500,"Food"],
+    ["The Palms","Buy a New Outfit",30,800,"Shopping"],
+    ["The Palms","Window Shop the Mall",60,0,"Fun"],
+    ["The Palms","Shoplift at the Supermarket",15,0,"Crime"],
+    ["University of Lagos","Attend a Lecture",60,0,"Trains Charisma"],
+    ["University of Lagos","Evening Tutorial Class",45,500,"Study"],
+    ["University of Lagos","Write the Semester Exam",90,0,"Study"],
+    ["University of Lagos","Apply & Matriculate",30,35000,"Study"],
+    ["University of Lagos","Pay School Fees",15,20000,"Study"],
+    ["University of Lagos","Check Results on the Portal",5,0,"Study"],
+    ["University of Lagos","Shoot Matric & Convocation Photos",60,0,"Trains Photography; Paid gig; Needs Photography 2"],
+    ["University of Lagos","Read in the Main Library",60,0,"Trains Charisma"],
+    ["University of Lagos","Night Reading (TDB)",120,0,"Study"],
+    ["University of Lagos","Photocopy Past Questions",15,300,"Study"],
+    ["University of Lagos","Type Coursemates' Assignments",60,0,"Trains Hustle; Paid gig"],
+    ["University of Lagos","Tutor 100L Students",60,0,"Trains Charisma; Paid gig"],
+    ["University of Lagos","Five-a-side at the Sports Centre",60,0,"Trains Fitness"],
+    ["University of Lagos","Jog Round the Track",45,0,"Trains Fitness"],
+    ["University of Lagos","Inter-Hall Games",90,0,"Trains Fitness"],
+    ["University of Lagos","Yarn with Coursemates",30,0,"Social"],
+    ["University of Lagos","Group Study under the Tree",60,0,"Trains Charisma"],
+    ["University of Lagos","SUG Campaign Rally",45,0,"Trains Charisma"],
+    ["University of Lagos","Play Whot",30,0,"Fun"],
+    ["University of Lagos","Rice, Beans & Dodo",30,350,"Food"],
+    ["University of Lagos","Jollof Spaghetti & Egg",25,300,"Food"],
+    ["University of Lagos","Bread & Akara",15,200,"Food"],
+    ["University of Lagos","Pure Water & Gala",8,150,"Food"],
+    ["University of Lagos","Help Mama B Serve",90,0,"Paid gig"],
+    ["University of Lagos","Nap on Your Bunk",90,0,"Energy"],
+    ["University of Lagos","Late-Night Hall Gist",40,0,"Social"],
+    ["University of Lagos","Bucket Bath in the Hall",20,0,"Hygiene"],
+    ["University of Lagos","Barb & Braid in the Hall",60,0,"Trains Hustle; Paid gig"],
+    ["University of Lagos","Sell Recharge Cards & Data",60,0,"Trains Hustle; Paid gig"],
+    ["University of Lagos","Fry Puff-puff to Sell",60,0,"Trains Cooking; Paid gig"],
+    ["University of Lagos","Watch the Lagoon at Sunset",45,0,"Fun"],
+    ["University of Lagos","Lagoon Front Date",60,1000,"Social"],
+    ["University of Lagos","Lagoon Front Photoshoot",30,0,"Trains Photography"]
+  ];
+  var AREA = {};
+  VENUES.forEach(function (v) { AREA[v[0]] = v[1]; });
+
   var SUPPORT = [
     ["Reconnecting to Lagos\u2026","Dropped real-time connection.","Hard refresh; leave the in-app browser; turn off any VPN."],
     ["Stuck on the loading screen","Stale cached JavaScript.","Hard refresh (Ctrl+F5)."],
@@ -1040,6 +1310,62 @@ button{font:inherit;color:inherit;cursor:pointer}
     "Never play inside an in-app browser."
   ];
 
+  function activityTable() {
+    var rows = "";
+    ACTIVITIES.forEach(function (a) {
+      var mins = a[2];
+      var time = mins >= 60 ? (Math.floor(mins / 60) + "h" + (mins % 60 ? " " + (mins % 60) + "m" : "")) : mins + "m";
+      var cost = a[3] === 0 ? "Free" : nai(a[3]);
+      rows += '<tr data-venue="' + a[0] + '" data-activity="' + a[1] + '" data-min="' + mins + '" data-cost="' + a[3] + '" data-details="' + a[4] +
+        '" data-text="' + (a[0] + " " + a[1] + " " + a[4]).toLowerCase() + '">' +
+        '<td>' + a[0] + '</td><td>' + a[1] + '</td><td>' + time + '</td><td>' + cost + '</td><td>' + a[4] + '</td></tr>';
+    });
+    var venues = Object.keys(AREA).sort();
+    return '<div class="filter-bar">' +
+      '<input id="actSearch" type="search" placeholder="Search activity, venue or skill\u2026">' +
+      '<select id="actVenue"><option value="">All venues</option>' +
+      venues.map(function (v) { return "<option>" + v + "</option>"; }).join('') +
+      '</select><span class="count" id="actCount"></span></div>' +
+      '<div class="table-scroll"><table id="actTable"><thead><tr>' +
+      '<th data-key="venue" data-type="text">Venue</th>' +
+      '<th data-key="activity" data-type="text">Activity</th>' +
+      '<th data-key="min" data-type="num">Time</th>' +
+      '<th data-key="cost" data-type="num">Cost</th>' +
+      '<th data-key="details" data-type="text">Details</th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+  function bindActivities() {
+    var s = document.getElementById("actSearch"), k = document.getElementById("actVenue"),
+        tb = document.querySelector("#actTable tbody"), c = document.getElementById("actCount"),
+        ths = document.querySelectorAll("#actTable thead th");
+    if (!tb) return;
+    function apply() {
+      var q = (s.value || "").toLowerCase(), v = k.value, vis = 0, rows = tb.rows;
+      Array.prototype.forEach.call(rows, function (r) {
+        var ok = (!q || r.getAttribute("data-text").indexOf(q) >= 0) && (!v || r.getAttribute("data-venue") === v);
+        r.style.display = ok ? "" : "none"; if (ok) vis++;
+      });
+      if (c) c.textContent = vis + " of " + rows.length + " activities";
+    }
+    var sortKey = null, sortDir = 1;
+    Array.prototype.forEach.call(ths, function (th) {
+      th.addEventListener("click", function () {
+        var key = th.getAttribute("data-key"), type = th.getAttribute("data-type");
+        sortDir = (sortKey === key) ? -sortDir : 1; sortKey = key;
+        var rows = Array.prototype.slice.call(tb.rows);
+        rows.sort(function (a, b) {
+          var av = a.getAttribute("data-" + key) || "", bv = b.getAttribute("data-" + key) || "", r;
+          if (type === "num") { r = (parseFloat(av) || 0) - (parseFloat(bv) || 0); } else { r = av.localeCompare(bv); }
+          return r * sortDir;
+        });
+        rows.forEach(function (row) { tb.appendChild(row); });
+        Array.prototype.forEach.call(ths, function (t) { t.classList.remove("sort-asc", "sort-desc"); });
+        th.classList.add(sortDir > 0 ? "sort-asc" : "sort-desc");
+        apply();
+      });
+    });
+    s.addEventListener("input", apply); k.addEventListener("change", apply); apply();
+  }
   function careerTable() {
     var rows = "";
     CAREERS.forEach(function (c) {
@@ -2116,6 +2442,35 @@ button{font:inherit;color:inherit;cursor:pointer}
     }
   };
 
+  PAGES["/activities"] = {
+    title: "Lagos Life Activities & Prices",
+    after: bindActivities,
+    render: function () {
+      return article({
+        crumb: "Activities",
+        kicker: "THINGS TO DO",
+        faq: FAQ["/activities"],
+        title: "Lagos Life activities and prices",
+        body:
+          "<p>Every place on the map has things you can do, and each activity costs time and often money. This table lists the " + ACTIVITIES.length + " activities we have logged, with how long each takes, what it costs and what it trains or pays.</p>" +
+          '<div class="stats-row">' +
+            '<div class="stat"><b>' + ACTIVITIES.length + '</b><span>Activities</span></div>' +
+            '<div class="stat"><b>' + Object.keys(AREA).length + '</b><span>Venues</span></div>' +
+            '<div class="stat"><b>Free</b><span>Many cost nothing</span></div>' +
+          '</div>' +
+          "<h2>All activities</h2>" +
+          activityTable() +
+          '<div class="note-box">Costs are base prices and can change with city policies; free activities still cost time. Figures were aggregated from the game\u2019s public data and community guides.</div>',
+        related: [
+          { t: "Venues and hours", r: "/venues" },
+          { t: "Items and prices", r: "/items" },
+          { t: "Jobs and salaries", r: "/jobs" },
+          { t: "Daily hunt", r: "/daily-hunt" }
+        ]
+      });
+    }
+  };
+
   PAGES["/privacy"] = {
     title: "Privacy Policy",
     render: function () {
@@ -2301,6 +2656,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/lagos-life-vs-sims": "Lagos Life vs The Sims: how the shared, Lagos-set browser sim compares with the classic household life simulator.",
     "/similar-games": "Games like Lagos Life: Lagos Run, Surviving Nigeria, The Sims 4 and BitLife \u2014 the titles players mention alongside it.",
     "/daily-hunt": "The Lagos Life daily hunt: how the daily clue works, how to solve it fast, and where the answer usually points on the map.",
+    "/activities": "All Lagos Life activities with time, cost and what they train \u2014 filter by venue and search the full list of things to do.",
     "/privacy": "How Lagos Life Guide handles data, cookies and advertising, including the third-party ad networks and analytics we use.",
     "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
     "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
@@ -2465,6 +2821,11 @@ button{font:inherit;color:inherit;cursor:pointer}
       { q: "What is the Lagos Life daily hunt?", a: "A daily puzzle where a clue points to one location on the Lagos map, and players work out where it is." },
       { q: "How often is the Lagos Life hunt?", a: "Once a day." },
       { q: "What do you get for the daily hunt?", a: "A reward shown in game; treat the exact prize as changing." }
+    ],
+    "/activities": [
+      { q: "How many activities are in Lagos Life?", a: "Around 275 across the map, from free chats to a billion-naira club takeover." },
+      { q: "Which Lagos Life activities are free?", a: "Many: gisting, dancing at the Shrine, reading in the library, jogging, and most gigs that pay you." },
+      { q: "What is the most expensive Lagos Life activity?", a: "Shutting down a club for about \u20a61 billion, or the \u20a61 billion diamond bottle at Ikoyi Golf Club." }
     ]
   };
 
