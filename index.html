@@ -594,6 +594,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     <a href="/money">Money &amp; businesses</a>
     <a href="/items">Items &amp; prices</a>
     <a href="/venues">Venues &amp; hours</a>
+    <a href="/daily-hunt">Daily hunt</a>
     <a href="/tips">Tips</a>
     <a href="/support">Not working?</a>
   </nav>
@@ -617,7 +618,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   "use strict";
 
   var app = (typeof document !== "undefined" && document.getElementById) ? document.getElementById("app") : null;
-  var UPDATED = "2026-10-05";
+  var UPDATED = "2026-10-07";
 
   /* ---------- hero art: original illustrated map (drawn for this guide) --- */
   var MAP_ART =
@@ -786,9 +787,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 
   var TIMELINE = [
     { d: "1 Oct 2026", t: "Launch announced", p: "The developer shares that the browser game has gone live." },
-    { d: "3 Oct 2026", t: "Crosses 100,000 players", p: "More than 11,000 are playing at once during the first surge." },
+    { d: "3 Oct 2026", t: "Crosses 100,000 players", p: "Reached within about 72 hours, with over 11,000 playing at once." },
     { d: "4 Oct 2026", t: "50,000+ playing together", p: "The peak crowd grows and more city content is announced." },
-    { d: "4 Oct 2026", t: "One million players", p: "A milestone reached roughly three days after launch." }
+    { d: "4 Oct 2026", t: "One million players", p: "Over 109,000 were online at the milestone, roughly three days after launch." }
   ];
 
   function statCard(s) {
@@ -1232,6 +1233,10 @@ button{font:inherit;color:inherit;cursor:pointer}
           "<ul><li>No app store or download — a single link is enough.</li>" +
           "<li>Local humour tied to transport fares, rent and power cuts.</li>" +
           "<li>Shareable starting conditions that players screenshot and argue about.</li></ul>" +
+          "<h2>One game, several names</h2>" +
+          "<p>People search for this game as \u201cLagos Life\u201d, \u201cLagos Life game\u201d, \u201cLagos Life Sims\u201d and \u201cLagos Life sim\u201d \u2014 they all point to the same browser title. There is no separate Sims version.</p>" +
+          "<h2>Not the film</h2>" +
+          "<p>\u201cLagos Life\u201d is also the name of a Nollywood film, and an unrelated Lagos travel account on Instagram uses the same words. This guide covers only the browser game.</p>" +
           "<h2>Game facts</h2>" +
           "<table><thead><tr><th>Detail</th><th>Information</th></tr></thead><tbody>" +
           "<tr><td>Genre</td><td>Life simulation, social, MMO</td></tr>" +
@@ -1340,9 +1345,9 @@ button{font:inherit;color:inherit;cursor:pointer}
         body:
           "<p>The city map groups its named places into a handful of roles. Rather than a fixed list that goes stale, this page explains how the map is organised so you can find whatever you need.</p>" +
           '<div class="stats-row">' +
-            '<div class="stat"><b>28</b><span>Named places (reported)</span></div>' +
+            '<div class="stat"><b>30+</b><span>Named places (reports vary)</span></div>' +
+            '<div class="stat"><b>275+</b><span>Activities (reported)</span></div>' +
             '<div class="stat"><b>6</b><span>Place categories</span></div>' +
-            '<div class="stat"><b>2+</b><span>Coming soon</span></div>' +
           '</div>' +
           '<div class="loc-grid">' +
             cats.map(function (c) {
@@ -1451,6 +1456,14 @@ button{font:inherit;color:inherit;cursor:pointer}
         '<li><strong>Total players</strong> counts everyone who has created an account, not only those online right now.</li>' +
         '<li><strong>Playing now</strong> is the live concurrent count and swings with the time of day.</li>' +
         '<li><strong>New players per day</strong> shows how quickly links are being shared.</li>' +
+        '</ul>' +
+        '<h2>Reported ranges</h2>' +
+        '<p>Different public sources report different figures, so here is the spread we have seen:</p>' +
+        '<ul>' +
+        '<li><strong>Total players:</strong> about 1.1 to 1.2 million.</li>' +
+        '<li><strong>All-time visits:</strong> around 8.4 million.</li>' +
+        '<li><strong>Online at once:</strong> reported from about 11,000 at launch up to 62,000 and beyond, with over 109,000 at the one-million-player milestone.</li>' +
+        '<li><strong>Early growth:</strong> roughly 100,000 players within about 72 hours.</li>' +
         '</ul>' +
         '<div class="note-box">These numbers are reported, not audited, and change constantly. Check the game\u2019s own pages for the current state.</div>' +
         '</div>' +
@@ -2058,11 +2071,46 @@ button{font:inherit;color:inherit;cursor:pointer}
           "<ul><li>A single named creator is credited on the game\u2019s public pages.</li><li>The project launched as a browser title, not a store release.</li><li>It expanded quickly, with more city content promised.</li></ul>" +
           "<h2>Why the authorship matters</h2>" +
           "<p>A small, clearly-attributed creator is part of the game\u2019s story and its appeal. It also means details can evolve quickly as the project grows.</p>" +
+          "<h2>Official channels</h2>" +
+          "<p>The game runs its own accounts and a support address, which the official site lists as follows:</p>" +
+          dt(["Channel", "Details"], [
+            ["Game", "<a href='https://lagoslife.app' target='_blank' rel='noopener nofollow'>lagoslife.app</a>"],
+            ["Support email", "support@lagoslife.app"],
+            ["X (game)", "<a href='https://x.com/LagosLifeApp' target='_blank' rel='noopener nofollow'>@LagosLifeApp</a>"],
+            ["Instagram", "<a href='https://www.instagram.com/lagoslifeapp/' target='_blank' rel='noopener nofollow'>@lagoslifeapp</a>"],
+            ["TikTok", "<a href='https://www.tiktok.com/@official.lagos.lif' target='_blank' rel='noopener nofollow'>@official.lagos.lif</a>"],
+            ["Developer on X", "<a href='https://x.com/Shalom_HeyEliy' target='_blank' rel='noopener nofollow'>@Shalom_HeyEliy</a>"]
+          ]) +
           '<div class="note-box">This is an independent guide and is not affiliated with the developer. Verify current details on the official channels.</div>',
         related: [
           { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
           { t: "Updates", r: "/updates" },
           { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/daily-hunt"] = {
+    title: "Lagos Life Daily Hunt",
+    render: function () {
+      return article({
+        crumb: "Daily hunt",
+        kicker: "SHARED PUZZLE",
+        faq: FAQ["/daily-hunt"],
+        title: "Lagos Life daily hunt",
+        body:
+          "<p>The daily hunt is one of the game\u2019s shared puzzles: every day a clue points to a single location on the Lagos map, and players race to work out where it is. It was drawing thousands of solvers at once when we last checked.</p>" +
+          "<h2>How it works</h2>" +
+          "<ul><li>The game posts a clue that describes a place, a landmark or an activity.</li><li>You find the matching location on the map and go there.</li><li>Solving it pays out and teaches you the map.</li></ul>" +
+          "<h2>How to solve it faster</h2>" +
+          "<ul><li>Read the clue for an area name (Mushin, Yaba, Lekki, Victoria Island) or a landmark.</li><li>Think about which venue matches the activity: markets, transport hubs, nightlife, institutions.</li><li>Note opening hours so you do not travel somewhere that is closed.</li><li>Use the venues list to narrow it down.</li></ul>" +
+          '<div class="note-box">The exact clue and reward change daily, and the game is in active development, so treat any specific figure as a snapshot.</div>',
+        related: [
+          { t: "Venues and hours", r: "/venues" },
+          { t: "Locations", r: "/locations" },
+          { t: "Tips", r: "/tips" },
+          { t: "Governor election", r: "/governor-election" }
         ]
       });
     }
@@ -2252,6 +2300,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/shalom-rayhamen": "Shalom Rayhamen is the developer credited with creating Lagos Life. What is known about the maker of the browser game.",
     "/lagos-life-vs-sims": "Lagos Life vs The Sims: how the shared, Lagos-set browser sim compares with the classic household life simulator.",
     "/similar-games": "Games like Lagos Life: Lagos Run, Surviving Nigeria, The Sims 4 and BitLife \u2014 the titles players mention alongside it.",
+    "/daily-hunt": "The Lagos Life daily hunt: how the daily clue works, how to solve it fast, and where the answer usually points on the map.",
     "/privacy": "How Lagos Life Guide handles data, cookies and advertising, including the third-party ad networks and analytics we use.",
     "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
     "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
@@ -2343,7 +2392,9 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/what-is-lagos-life": [
       { q: "What is Lagos Life?", a: "A free browser life-simulation game set in a shared, Lagos-inspired city where you work, pay rent and meet other players." },
       { q: "Is Lagos Life free to play?", a: "Yes, it is free to start in a browser; the official site may offer optional in-game purchases." },
-      { q: "Who made Lagos Life?", a: "It is credited to developer Shalom Rayhamen and run by Eliy, according to the game's public pages." }
+      { q: "Who made Lagos Life?", a: "It is credited to developer Shalom Rayhamen and run by Eliy, according to the game's public pages." },
+      { q: "Is Lagos Life the same as Lagos Life Sims?", a: "Yes. Lagos Life, Lagos Life game, Lagos Life Sims and Lagos Life sim are all names for the same browser game." },
+      { q: "Is Lagos Life the Nollywood film?", a: "No. A Nigerian film and an Instagram travel account also use the name; this guide is about the browser game only." }
     ],
     "/game-link": [
       { q: "What is the Lagos Life game link?", a: "The game loads at lagoslife.app; its first address lagoslife.eliysites.com also works." },
@@ -2409,6 +2460,11 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/similar-games": [
       { q: "What games are like Lagos Life?", a: "Lagos Run, Surviving Nigeria, The Sims 4 and BitLife are the common comparisons." },
       { q: "Is Lagos Life like BitLife?", a: "Both are life sims, but Lagos Life is a live shared world in a browser." }
+    ],
+    "/daily-hunt": [
+      { q: "What is the Lagos Life daily hunt?", a: "A daily puzzle where a clue points to one location on the Lagos map, and players work out where it is." },
+      { q: "How often is the Lagos Life hunt?", a: "Once a day." },
+      { q: "What do you get for the daily hunt?", a: "A reward shown in game; treat the exact prize as changing." }
     ]
   };
 
