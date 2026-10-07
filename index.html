@@ -734,7 +734,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       list.map(function (f) { return faqItem(f.q, f.a, false); }).join("") + '</div></section>';
   }
   function related(links) {
-    return '<div class="related"><h2>Keep reading</h2><div class="related-links">' +
+    return '<div class="related"><h2>Related guides</h2><div class="related-links">' +
       links.map(function (l) { return '<a href="' + l.r + '">' + l.t + '</a>'; }).join("") +
       '</div></div>';
   }
@@ -3186,6 +3186,38 @@ button{font:inherit;color:inherit;cursor:pointer}
     ]
   };
 
+  /* ---------- ItemList data (for list pages) ------------------------------ */
+  var ITEMS_LD = {
+    "/guides": [
+      { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+      { t: "How to play", r: "/how-to-play" },
+      { t: "Game link", r: "/game-link" },
+      { t: "Jobs & salaries", r: "/jobs" },
+      { t: "Skills & traits", r: "/skills" },
+      { t: "Money & businesses", r: "/money" },
+      { t: "Homes & rent", r: "/houses" },
+      { t: "Items & prices", r: "/items" },
+      { t: "Activities & prices", r: "/activities" },
+      { t: "Venues & hours", r: "/venues" },
+      { t: "Locations", r: "/locations" },
+      { t: "Governor election", r: "/governor-election" },
+      { t: "Sea plots", r: "/sea-plots" },
+      { t: "Danfo & transport", r: "/danfo" },
+      { t: "NEPA & power", r: "/nepa" },
+      { t: "Lagos slang", r: "/lagos-slang" },
+      { t: "Daily hunt", r: "/daily-hunt" },
+      { t: "Compare games", r: "/compare" },
+      { t: "Fixes", r: "/support" }
+    ],
+    "/compare": [
+      { t: "Lagos Life vs The Sims", r: "/lagos-life-vs-sims" },
+      { t: "Lagos Life vs BitLife", r: "/lagos-life-vs-bitlife" },
+      { t: "Lagos Life vs Roblox", r: "/lagos-life-vs-roblox" },
+      { t: "Lagos Life vs Surviving Nigeria", r: "/lagos-life-vs-surviving-nigeria" },
+      { t: "Lagos Run", r: "/lagos-run" }
+    ]
+  };
+
   /* ---------- generated venue detail pages -------------------------------- */
   function slugify(s) { return String(s).toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
   function venueBody(name, v, acts) {
@@ -3252,10 +3284,11 @@ button{font:inherit;color:inherit;cursor:pointer}
   /* ---------- structured data (JSON-LD) ----------------------------------- */
   function ldGraph(route, page, desc) {
     var full = SITE_LD + (route === "/" ? "/" : route);
-    var graph = [];
+    var ORG = { "@type": "Organization", "name": "Lagos Life Guide", "url": SITE_LD + "/", "email": "contact@lagoslife.homes",
+      "logo": { "@type": "ImageObject", "url": SITE_LD + "/favicon.svg" } };
+    var graph = [ORG];
     if (route === "/") {
-      graph.push({ "@type": "WebSite", "name": "Lagos Life Guide", "url": SITE_LD + "/", "inLanguage": "en",
-        "publisher": { "@type": "Organization", "name": "Lagos Life Guide" } });
+      graph.push({ "@type": "WebSite", "name": "Lagos Life Guide", "url": SITE_LD + "/", "inLanguage": "en", "publisher": ORG });
     }
     var items = [{ name: "Home", url: SITE_LD + "/" }];
     if (route !== "/") {
@@ -3272,15 +3305,20 @@ button{font:inherit;color:inherit;cursor:pointer}
     }) });
     if (route !== "/") {
       graph.push({ "@type": "Article", "headline": page.title, "description": desc, "url": full,
-        "datePublished": "2026-10-01", "dateModified": "2026-10-06", "inLanguage": "en",
-        "author": { "@type": "Organization", "name": "Lagos Life Guide" },
-        "publisher": { "@type": "Organization", "name": "Lagos Life Guide" },
+        "datePublished": "2026-10-01", "dateModified": "2026-10-07", "inLanguage": "en",
+        "author": ORG, "publisher": ORG,
         "isPartOf": { "@type": "WebSite", "name": "Lagos Life Guide", "url": SITE_LD + "/" } });
     }
     var faq = FAQ[route];
     if (faq && faq.length) {
       graph.push({ "@type": "FAQPage", "mainEntity": faq.map(function (f) {
         return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } };
+      }) });
+    }
+    var its = (ITEMS_LD[route] || page.items);
+    if (its && its.length) {
+      graph.push({ "@type": "ItemList", "itemListElement": its.map(function (it, i) {
+        return { "@type": "ListItem", "position": i + 1, "name": it.t, "url": SITE_LD + it.r };
       }) });
     }
     return { "@context": "https://schema.org", "@graph": graph };
