@@ -337,6 +337,45 @@ button{font:inherit;color:inherit}
 .cookie-bar a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}
 .cookie-bar button{flex:none;min-height:38px;padding:0 18px;border:0;border-radius:var(--r-md);background:var(--primary);color:var(--primary-fg);font-weight:600;font-size:13px;cursor:pointer;transition:background .15s}
 .cookie-bar button:hover{background:var(--primary-hover)}
+.cookie-bar[hidden]{display:none}
+
+/* 15b. DASHBOARD MODULES (new homepage) ----------------------------------- */
+.facts{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:8px 20px}
+.facts h3{font-family:var(--font-body);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-fg);margin:16px 0 8px}
+.facts dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;margin:0 0 16px;font-size:13px}
+.facts dt{color:var(--faint)}
+.facts dd{margin:0;text-align:right;color:var(--fg)}
+.qactions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.qa{display:flex;align-items:center;gap:12px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);transition:transform .15s,border-color .15s,box-shadow .15s}
+.qa:hover{transform:translateY(-2px);border-color:var(--border-strong);box-shadow:var(--shadow)}
+.qa .ic{width:34px;height:34px;flex:none;border-radius:var(--r-md);background:var(--muted);display:grid;place-items:center;color:var(--primary);font-size:16px}
+.qa b{display:block;font-family:var(--font-display);font-size:14px}
+.qa span{font-size:12px;color:var(--muted-fg)}
+.split{display:grid;grid-template-columns:1.35fr 1fr;gap:14px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.panel .ph{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.panel .ph b{font-family:var(--font-display);font-size:15px}
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table th,.data-table td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.data-table th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-fg);font-weight:600;background:rgba(255,255,255,.02)}
+.data-table tbody tr:last-child td{border-bottom:0}
+.data-table tbody tr:hover td{background:var(--muted)}
+.data-table td.num{text-align:right;font-family:var(--font-mono);white-space:nowrap}
+.data-table .rank{color:var(--faint);font-family:var(--font-mono);font-size:12px}
+.dbar{display:inline-block;height:6px;border-radius:3px;background:var(--primary);vertical-align:middle;margin-left:10px}
+.dlist a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px}
+.dlist a:last-child{border-bottom:0}
+.dlist a:hover{background:var(--muted)}
+.pill{display:inline-block;padding:3px 9px;border-radius:var(--r-pill);font-size:11px;font-weight:600;border:1px solid var(--border);color:var(--muted-fg)}
+.pill.paid{color:var(--success);border-color:rgba(74,222,128,.3)}
+.pill.free{color:var(--warning);border-color:rgba(251,191,36,.3)}
+.link-list{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--card)}
+.link-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid var(--border);font-size:13px}
+.link-list a:last-child{border-bottom:0}
+.link-list a:hover{background:var(--muted)}
+.link-list .date{color:var(--faint);font-size:11px;font-family:var(--font-mono)}
+@media(max-width:900px){.qactions{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr}}
+@media(max-width:650px){.qactions{grid-template-columns:1fr}}
 
 /* 16. FOOTER --------------------------------------------------------------- */
 .site-footer{margin-top:56px;padding:40px max(24px,calc((100vw - 1224px)/2)) 26px;background:var(--bg);border-top:1px solid var(--border);color:var(--muted-fg)}
@@ -1332,115 +1371,136 @@ button{font:inherit;color:inherit}
 
   /* ---------- HOME -------------------------------------------------------- */
   function home() {
-    var quick = [
-      ["01", "◉", "What is it?", "Get the short version of the game.", "Read the overview", "/what-is-lagos-life", false],
-      ["02", "↗", "How to play", "Start with the steps we can confirm.", "See first steps", "/how-to-play", false],
-      ["03", "◎", "Game link", "Go straight to the official site.", "Open the game link", "/game-link", true],
-      ["04", "⌖", "Locations", "Browse the map places.", "Explore locations", "/locations", false],
-      ["05", "18+", "Age limit", "Check who can sign up.", "Read the age rule", "/age-requirement", false],
-      ["06", "◎", "Account", "Sign up and plan for password resets.", "See account rules", "/account", false],
-      ["07", "₦", "Top up", "Understand virtual naira and payments.", "See payment rules", "/top-up", false],
-      ["08", "◇", "Privacy", "See what the game stores.", "Read the privacy guide", "/safety-and-privacy", false]
-    ].map(function (q) { return quickCard(q[0], q[1], q[2], q[3], q[4], q[5], q[6]); }).join("");
+    var facts = [
+      ["Genre", "Life simulation \u00b7 MMO"],
+      ["Platform", "Web browser"],
+      ["Price", "Free to start"],
+      ["Age", "18+"],
+      ["Developer", "Shalom Rayhamen"],
+      ["Released", "1 Oct 2026"],
+      ["Also called", "Lagos Life Sims"],
+      ["Where to play", "lagoslife.app"]
+    ];
+    var actions = [
+      ["\u2197", "Play now", "Official game link", "/game-link"],
+      ["\u25c9", "First steps", "How to play", "/how-to-play"],
+      ["\u20a6", "Jobs & salaries", "21 careers", "/jobs"],
+      ["\u2316", "Activities", "263 things to do", "/activities"]
+    ];
+    var careers = [
+      ["Music", "Afrobeats Giant", 99000, "13.4"],
+      ["Aviation", "Chief Pilot", 95000, "5.0"],
+      ["DJ", "Global DJ", 93000, "11.2"],
+      ["Product Management", "Chief Product Officer", 92000, "4.6"],
+      ["Content Creator", "Celebrity Influencer", 90000, "13.6"]
+    ];
+    var moves = [
+      ["Help at the Buka", "paid"],
+      ["Carry Load (Alabaru)", "paid"],
+      ["Buy & Resell Goods", "paid"],
+      ["Learn Mama's Ewedu Secret", "Cooking"],
+      ["Read in the Main Library", "free"],
+      ["Dance to the Live Band", "free"]
+    ];
+    var tiles = [
+      ["DATA", "Jobs & salaries", "Careers, pay and promotions", "/jobs"],
+      ["DATA", "Money", "Businesses, land and tax", "/money"],
+      ["TOOLS", "Activities", "263 things to do", "/activities"],
+      ["TOOLS", "Items & prices", "Furniture and appliances", "/items"],
+      ["CITY", "Locations", "Every place on the map", "/locations"],
+      ["CITY", "Homes & rent", "Housing tiers and costs", "/houses"],
+      ["SYSTEM", "Daily hunt", "The daily puzzle", "/daily-hunt"],
+      ["HELP", "Fixes", "Lag, loading, reconnecting", "/support"]
+    ];
+
+    var factsHtml = facts.map(function (f) { return "<dt>" + f[0] + "</dt><dd>" + f[1] + "</dd>"; }).join("");
+    var actionsHtml = actions.map(function (a) {
+      return '<a class="qa" href="' + a[3] + '"><span class="ic">' + a[0] + '</span><span><b>' + a[1] + '</b><span>' + a[2] + '</span></span></a>';
+    }).join("");
+    var careersHtml = careers.map(function (c, i) {
+      var w = Math.round(c[2] / 99000 * 80);
+      return '<tr><td class="rank">0' + (i + 1) + '</td><td>' + c[0] + '</td><td class="num">' + nai(c[2]) + '<span class="dbar" style="width:' + w + 'px"></span></td><td class="num">' + c[3] + '\u00d7</td></tr>';
+    }).join("");
+    var movesHtml = moves.map(function (m) {
+      var cls = m[1] === "paid" ? "paid" : (m[1] === "free" ? "free" : "");
+      return '<a href="/activities"><span>' + m[0] + '</span><span class="pill ' + cls + '">' + m[1] + '</span></a>';
+    }).join("");
+    var tilesHtml = tiles.map(function (t) {
+      return '<a class="loc-card" href="' + t[3] + '"><span class="tag">' + t[0] + '</span><h3>' + t[1] + '</h3><p>' + t[2] + '</p></a>';
+    }).join("");
 
     return '' +
       '<section class="hero-wrap">' +
         '<div class="hero-copy">' +
-          '<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a></nav>' +
-          '<span class="eyebrow"><span class="dot"></span> THE PLAYER\u2019S FIELD GUIDE</span>' +
-          '<h1>Lagos Life — the Nigerian browser game explained</h1>' +
-          '<div class="hero-intro"><p>Lagos Life is a free browser game built around a shared, Lagos-inspired life-simulation world. This independent guide explains what is known, how to get started, and where to find the official game.</p></div>' +
+          '<span class="eyebrow"><span class="dot"></span> Independent \u00b7 unofficial player guide</span>' +
+          '<h1>Lagos Life, in one data-first guide</h1>' +
+          '<div class="hero-intro"><p>Every career, salary, business, item and venue in the Lagos Life browser game \u2014 organised, searchable and free.</p></div>' +
           '<div class="hero-actions">' +
-            '<a class="button button-primary" href="/game-link">Find the official game <span aria-hidden="true">↗</span></a>' +
-            '<a class="button button-secondary" href="/how-to-play">Start with the guide <span aria-hidden="true">→</span></a>' +
+            '<a class="button button-primary" href="/game-link">Play the game <span aria-hidden="true">\u2197</span></a>' +
+            '<a class="button button-secondary" href="/how-to-play">Start with how to play</a>' +
           '</div>' +
-          '<p class="hero-disclaimer">Independent guide. The game is played on its official website.</p>' +
-          '<p class="hero-disclaimer">Last updated: ' + UPDATED + '</p>' +
+          '<p class="hero-disclaimer">Independent, unofficial guide \u00b7 not affiliated with the developer.</p>' +
         '</div>' +
-        '<div class="hero-art">' + MAP_ART +
-          '<a class="art-caption" href="/locations"><span>MAP</span><strong>A city built for stories.</strong>' +
-          '<span>Explore the location guide <b aria-hidden="true">↗</b></span></a>' +
-          '<div class="art-stamp" aria-hidden="true">LAGOS<br><b>NG</b></div>' +
+        '<aside class="facts"><h3>Game at a glance</h3><dl>' + factsHtml + '</dl></aside>' +
+      '</section>' +
+
+      '<section class="content-shell" style="padding-top:28px">' +
+        '<div class="qactions">' + actionsHtml + '</div>' +
+      '</section>' +
+
+      '<section class="content-shell" style="padding-top:32px">' +
+        '<div class="stats-row cols-4">' + STATS.map(statCard).join("") + '</div>' +
+        '<p class="stat-note">Reported figures from the game\u2019s public pages. Numbers move fast.</p>' +
+      '</section>' +
+
+      '<section class="content-shell" style="padding-top:44px">' +
+        '<div class="section-heading"><div><span class="eyebrow">POPULAR RIGHT NOW</span><h2>Careers &amp; early moves</h2></div>' +
+        '<a class="text-link" href="/jobs">See all <span>\u2192</span></a></div>' +
+        '<div class="split">' +
+          '<div class="panel"><div class="ph"><b>Careers by top pay</b><a class="text-link" href="/jobs">All 105 levels <span>\u2192</span></a></div>' +
+            '<table class="data-table"><thead><tr><th>#</th><th>Career</th><th class="num">Pay / shift</th><th class="num">Growth</th></tr></thead><tbody>' + careersHtml + '</tbody></table></div>' +
+          '<div class="panel"><div class="ph"><b>Best early moves</b><a class="text-link" href="/activities">Activities <span>\u2192</span></a></div>' +
+            '<div class="dlist">' + movesHtml + '</div></div>' +
         '</div>' +
       '</section>' +
 
-      '<section class="content-shell home-content">' +
-        statStrip() +
-        '<div class="section-heading"><div><span class="eyebrow">GET YOUR BEARINGS</span><h2>What is Lagos Life?</h2></div>' +
-        '<span class="section-index">01 — THE GAME</span></div>' +
-        '<div class="intro-columns">' +
-          '<div class="intro-lead">A browser game set in a city that feels familiar, even if you have never been there.</div>' +
+      '<section class="content-shell" style="padding-top:44px">' +
+        '<div class="section-heading"><div><span class="eyebrow">DIRECTORY</span><h2>Browse the guide</h2></div>' +
+        '<a class="text-link" href="/guides">All guides <span>\u2192</span></a></div>' +
+        '<div class="loc-grid">' + tilesHtml + '</div>' +
+      '</section>' +
+
+      '<section class="content-shell" style="padding-top:44px">' +
+        '<div class="intro-columns" style="border-bottom:0;padding-bottom:0">' +
+          '<div class="intro-lead">What is Lagos Life?</div>' +
           '<div class="intro-copy">' +
-            '<p>Lagos Life is a free-to-start life-simulation game set in a virtual version of Lagos, Nigeria. You open it in a web browser, create an account, and move through a shared world whose landmarks and systems reference everyday life in the city.</p>' +
-            '<p>The game\u2019s public pages credit Shalom Rayhamen as creator. Players often search for a \u201cLagos lifestyle game\u201d or a \u201cLagos Life sims game\u201d — those phrases point to this same browser title, whose setting is a big part of its appeal.</p>' +
-            '<a class="text-link" href="/what-is-lagos-life">What is Lagos Life? <span>→</span></a>' +
+            '<p>Lagos Life is a free browser life-simulation game set in a shared, Lagos-inspired city. You create a Sim, take a job, pay rent every Saturday, and move through a world with real players. People also search for it as the \u201cLagos Life Sims game\u201d.</p>' +
+            '<p>This guide lays out every career, salary, business, item and venue in one place \u2014 independent and unofficial. Three things drive its spread:</p>' +
+            '<ul><li>Instant access \u2014 one link, no download.</li><li>Local humour \u2014 danfo fares, Saturday rent, NEPA.</li><li>Shared city \u2014 visit friends, chat, vote in the election.</li></ul>' +
+            '<a class="text-link" href="/what-is-lagos-life">Read the full overview <span>\u2192</span></a>' +
           '</div>' +
         '</div>' +
+      '</section>' +
 
-        adSlot() +
-        '<section class="quick-start"><div class="section-heading"><div><span class="eyebrow">PICK A STARTING POINT</span><h2>Your quick start</h2></div>' +
-        '<span class="section-index">02 — THE GUIDE</span></div>' +
-        '<div class="quick-grid">' + quick + '</div></section>' +
+      '<section class="content-shell" style="padding-top:48px">' +
+        '<div class="section-heading"><div><span class="eyebrow">KEEPS MOVING</span><h2>Latest updates</h2></div>' +
+        '<a class="text-link" href="/updates">All <span>\u2192</span></a></div>' +
+        '<div class="link-list">' +
+          UPDATES.map(function (u) { return '<a href="' + u.r + '"><span>' + u.t + '</span><span class="date">' + UPDATED + '</span></a>'; }).join("") +
+        '</div>' +
+      '</section>' +
 
-        '<section class="systems-section"><div class="section-heading"><div><span class="eyebrow">THE CITY AT A GLANCE</span><h2>What can you explore?</h2></div>' +
-        '<span class="section-index">03 — SYSTEMS</span></div>' +
-        '<div class="system-grid">' +
-          systemCard("tint-green", "⌖", "MAP PLACES", "Places with local character", "The official map showed a set of named places, with a few marked as coming soon.", "/locations") +
-          systemCard("tint-peach", "▤", "A CITY-WIDE SYSTEM", "Governor Election", "A Governor role, public announcements and slogans on ballots — one account per person.", "/governor-election") +
-          systemCard("tint-mint", "≈", "MAP ADS & HOMES", "Sea Plots & homes", "Paid map space for a picture and link, plus saved house assets without real-world value.", "/sea-plots") +
-        '</div></section>' +
+      adSlot() +
 
-        '<section class="inside-section"><div class="section-heading"><div><span class="eyebrow">BEYOND THE BASICS</span><h2>Inside the game</h2></div>' +
-        '<span class="section-index">04 — CITY LIFE</span></div>' +
-        '<div class="inside-grid">' +
-          insideCard("STARTING LIFE", "Nepo vs Lapo", "What the two reported backgrounds mean", "/nepo-vs-lapo") +
-          insideCard("GETTING AROUND", "Danfo", "The Lagos minibus behind the reference", "/danfo") +
-          insideCard("THE CITY", "NEPA", "Why the game mentions power outages", "/nepa") +
-          insideCard("THE WORDS", "Lagos slang", "Nigerian terms, with game use marked", "/lagos-slang") +
-          insideCard("START PLAYING", "Game link", "Go to the official browser game", "/game-link") +
-        '</div></section>' +
-
-        '<section class="systems-section"><div class="section-heading"><div><span class="eyebrow">WHY IT TOOK OFF</span><h2>Why players are sharing it</h2></div>' +
-        '<span class="section-index">05 — BUZZ</span></div>' +
-        '<div class="system-grid">' +
-          systemCard("tint-green", "↗", "INSTANT ACCESS", "No download", "Open a link and play in the browser — no app store, no install, no update.", "/game-link") +
-          systemCard("tint-peach", "▤", "STREET-LEVEL HUMOUR", "Fares, rent, power", "Danfo and okada fares, Saturday rent and weekly power cuts make it instantly recognisable.", "/what-is-lagos-life") +
-          systemCard("tint-mint", "≈", "ONE SHARED CITY", "Real players", "A single city for everyone, so friends can visit, chat and send each other money.", "/locations") +
-        '</div></section>' +
-
-        '<section class="latest-section"><div class="section-heading"><div><span class="eyebrow">THE CITY KEEPS MOVING</span><h2>Latest updates</h2></div>' +
-        '<a class="text-link" href="/updates">All updates <span>↗</span></a></div>' +
-        '<div class="latest-grid">' + UPDATES.map(function (u) { return latestCard(u.t, u.r); }).join("") + '</div></section>' +
-
-        '<section class="latest-section"><div class="section-heading"><div><span class="eyebrow">HOW IT GREW</span><h2>Timeline</h2></div>' +
-        '<a class="text-link" href="/updates">All updates <span>↗</span></a></div>' +
-        timelineBlock() + '</section>' +
-
-        '<section class="latest-section"><div class="section-heading"><div><span class="eyebrow">IF YOU LIKE THIS</span><h2>Players also mention</h2></div>' +
-        '<a class="text-link" href="/similar-games">Compare <span>↗</span></a></div>' +
-        '<div class="related-links">' +
-          ['Lagos Run', 'Surviving Nigeria', 'The Sims 4', 'BitLife'].map(function (x) {
-            return '<a href="/similar-games">' + x + '</a>'; }).join("") +
-        '</div></section>' +
-
-        '<section class="inside-section"><div class="section-heading"><div><span class="eyebrow">BROWSE THE GUIDE</span><h2>Explore by topic</h2></div>' +
-        '<a class="text-link" href="/guides">All guides <span>↗</span></a></div>' +
-        '<div class="loc-grid">' +
-          insideCard("DATA", "Jobs & salaries", "Careers, pay and promotions", "/jobs") +
-          insideCard("DATA", "Money", "Businesses, land and tax", "/money") +
-          insideCard("TOOLS", "Activities", "All 263 things to do", "/activities") +
-          insideCard("TOOLS", "Items & prices", "Furniture and appliances", "/items") +
-          insideCard("CITY", "Venues & hours", "Every place on the map", "/venues") +
-          insideCard("COMPARE", "Lagos Life vs others", "The Sims, BitLife, Roblox and more", "/compare") +
-        '</div></section>' +
-        adSlotNative() +
-        '<section class="faq-section"><h2>Frequently asked questions</h2><div class="faq-list">' +
-          faqItem("What is Lagos Life?", "Lagos Life is a free life-simulation game played in your browser. It is set in Lagos, Nigeria, and is often compared with The Sims.", true) +
-          faqItem("Is Lagos Life free to play?", "The game can be opened and started for free in a browser. The official site may offer optional in-game purchases; check its current terms before paying for anything.") +
-          faqItem("Do I need to download Lagos Life?", "No download is needed. It runs on its official website in a browser.") +
-          faqItem("Is Lagos Life a Roblox game?", "No. Lagos Life is a standalone browser game on its own website. Roblox is not required.") +
-          faqItem("What can you do in Lagos Life?", "You build a Sim, take a job, pay rent, travel the city, and take part in shared systems such as the governor election.") +
-        '</div></section>' +
+      '<section class="content-shell faq-section" style="padding-top:48px">' +
+        '<h2>Common questions</h2>' +
+        '<div class="faq-list">' +
+          faqItem("What is Lagos Life?", "A free browser life-simulation game set in a shared, Lagos-inspired city where you work, pay rent and meet other players.", true) +
+          faqItem("Is Lagos Life free to play?", "Yes. It runs free in a browser; the official site may offer optional top-ups.") +
+          faqItem("Do I need to download an app?", "No. It is browser-only; add the site to your home screen for an app-like icon.") +
+          faqItem("When is rent due?", "Rent is charged every Saturday.") +
+          faqItem("Is Lagos Life a Roblox game?", "No. It is a standalone browser game with its own account.") +
+        '</div>' +
       '</section>';
   }
 
@@ -2875,11 +2935,11 @@ button{font:inherit;color:inherit}
   /* ---------- FAQ sets (used for FAQPage structured data) ----------------- */
   var FAQ = {
     "/": [
-      { q: "What is Lagos Life?", a: "Lagos Life is a free life-simulation game played in your browser. It is set in Lagos, Nigeria, and is often compared with The Sims." },
-      { q: "Is Lagos Life free to play?", a: "Yes. You can open and start the game for free in a browser. The official site may offer optional in-game purchases." },
-      { q: "Do I need to download Lagos Life?", a: "No download is needed. It runs on its official website in a browser." },
-      { q: "Is Lagos Life a Roblox game?", a: "No. Lagos Life is a standalone browser game on its own website." },
-      { q: "What can you do in Lagos Life?", a: "You build a Sim, take a job, pay rent, travel the city and take part in shared systems such as the governor election." }
+      { q: "What is Lagos Life?", a: "A free browser life-simulation game set in a shared, Lagos-inspired city where you work, pay rent and meet other players." },
+      { q: "Is Lagos Life free to play?", a: "Yes. It runs free in a browser; the official site may offer optional top-ups." },
+      { q: "Do I need to download an app?", a: "No. It is browser-only; add the site to your home screen for an app-like icon." },
+      { q: "When is rent due?", a: "Rent is charged every Saturday." },
+      { q: "Is Lagos Life a Roblox game?", a: "No. It is a standalone browser game with its own account." }
     ],
     "/how-to-play": [
       { q: "How do I start Lagos Life?", a: "Open the official game in a browser, sign up, then build a Sim and take the birth lottery." },
