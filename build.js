@@ -59,7 +59,7 @@ for (const route of Object.keys(PAGES)) {
   count++;
 }
 
-for (const asset of ["favicon.svg", "favicon.ico", "og-image.png", "robots.txt", "sitemap.xml", "_headers"]) {
+for (const asset of ["favicon.svg", "favicon.ico", "og-image.png", "screenshot.png", "robots.txt", "sitemap.xml", "_headers"]) {
   const src = path.join(root, asset);
   if (fs.existsSync(src)) write(asset, fs.readFileSync(src));
 }

@@ -12,6 +12,7 @@ node_modules/
 !/robots.txt
 /*.png
 !/og-image.png
+!/screenshot.png
 /draft-sitehunter.html
 /draft-home.html
 /draft-home2.html
