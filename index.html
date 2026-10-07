@@ -1467,11 +1467,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/skills"] = {
-    title: "Lagos Life Skills and Traits",
+    title: "Lagos Life Skills & Traits Guide",
     render: function () {
       return article({
         crumb: "Skills and traits",
         kicker: "BUILD",
+        faq: FAQ["/skills"],
         title: "Lagos Life skills and traits",
         body:
           "<p>Your trait decides which skill grows fastest, and skills decide which careers open up. Pick the trait that matches the career you want, not the funniest name.</p>" +
@@ -1746,14 +1747,15 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/danfo"] = {
-    title: "Lagos Life Danfo",
+    title: "Lagos Life Danfo & Transport Guide",
     render: function () {
       return article({
         crumb: "Danfo",
         kicker: "GETTING AROUND",
+        faq: FAQ["/danfo"],
         title: "Danfo: transport in Lagos Life",
         body:
-          "<p>The danfo — the yellow minibus of Lagos — is the reference behind the game\u2019s shared transport. Moving around the city is a real decision with a real cost.</p>" +
+          "<p>The danfo — the yellow minibus of Lagos — is the reference behind the game\u2019s shared transport. Moving around the city is a real decision, because every trip trades money against time and energy.</p>" +
           "<h2>Your options</h2>" +
           "<table><thead><tr><th>Mode</th><th>Trade-off</th></tr></thead><tbody>" +
           "<tr><td>Walking</td><td>Free, but slow and tiring</td></tr>" +
@@ -1761,8 +1763,23 @@ button{font:inherit;color:inherit;cursor:pointer}
           "<tr><td>Okada (motorcycle)</td><td>Faster, costs more</td></tr>" +
           "<tr><td>Taxi</td><td>Comfortable and quick, expensive</td></tr>" +
           "</tbody></table>" +
+          "<h2>Vehicles and cost per km</h2>" +
+          "<p>Owning a vehicle lowers your cost of getting around, but cheaper vehicles usually cost more per kilometre. It is a quality-of-life purchase rather than an income source.</p>" +
+          dt(["Vehicle", "Price", "Cost / km"], [
+            ["Bajaj Boxer (your own okada)", nai(350000), nai(3)],
+            ["Toyota Corolla 2008", nai(900000), nai(6)],
+            ["Honda Accord", nai(1800000), nai(7)],
+            ["Toyota Camry", nai(3000000), nai(7)],
+            ["Lexus RX 350", nai(7500000), nai(9)],
+            ["BMW 330i", nai(9500000), nai(9)],
+            ["Toyota Prado", nai(15000000), nai(10)],
+            ["BMW X5", nai(28000000), nai(11)],
+            ["Mercedes G-Wagon", nai(45000000), nai(12)],
+            ["BMW M5", nai(55000000), nai(13)],
+            ["BMW X7", nai(95000000), nai(14)]
+          ]) +
           "<h2>Choosing well</h2>" +
-          "<p>If you have time, walk. If you are short on time and flush with cash, take a faster ride. When money is tight, the shared rides are the sensible middle.</p>" +
+          "<p>If you have time, walk. If you are short on time and have the cash, take a faster ride. When money is tight, the shared rides are the sensible middle.</p>" +
           "<h2>Energy is a currency too</h2>" +
           "<p>Walking saves money but spends energy you may need for work. Sometimes the paid ride is the cheaper option once lost productivity is counted.</p>",
         related: [
@@ -1775,20 +1792,26 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/nepa"] = {
-    title: "Lagos Life NEPA",
+    title: "Lagos Life NEPA: Power Cuts & Fixes",
     render: function () {
       return article({
         crumb: "NEPA",
         kicker: "THE CITY",
+        faq: FAQ["/nepa"],
         title: "NEPA: power cuts in Lagos Life",
         body:
-          "<p>NEPA — the old name Nigerians still use for the power company — is shorthand for power cuts. The game references it because outages are part of the texture of everyday life.</p>" +
+          "<p>NEPA — the old name Nigerians still use for the power company — is shorthand for power cuts. The game treats outages as a real mechanic, not just decoration.</p>" +
           "<h2>How it plays out</h2>" +
-          "<p>A power cut can disrupt routine: it affects what you can do at home and how well you can restore certain needs. It is one of the small, local frictions that make the city feel real.</p>" +
+          "<p>A power cut disrupts routine: appliances at home stop working and certain needs get harder to restore. It is one of the small, local frictions that make the city feel real.</p>" +
+          "<h2>What stops working in a blackout</h2>" +
+          "<ul><li>Powered home items such as the split air conditioner, double-door fridge, rain shower, bathtub, washing machine and Jacuzzi.</li>" +
+          "<li>Entertainment that needs power: the flat TV, smart TV, PS5 setup, party speakers and home cinema wall.</li></ul>" +
+          "<h2>How to keep the lights on</h2>" +
+          "<ul><li>The cheaper \u201cI Better Pass My Neighbour\u201d generator (about " + nai(14400) + ") runs on fuel.</li>" +
+          "<li>A solar and inverter setup (about " + nai(78000) + ") gives power around the clock, silently.</li>" +
+          "<li>Non-powered items keep working: the cooler box, kerosene stove, transistor radio and a rechargeable lamp.</li></ul>" +
           "<h2>Planning around it</h2>" +
-          "<ul><li>Do not rely on a single way to restore a need.</li><li>Keep a little buffer in your money and energy for interruptions.</li><li>Treat outages as flavour, not a failure on your part.</li></ul>" +
-          "<h2>Why it matters to the feel</h2>" +
-          "<p>Systems like this are what separate a locally-flavoured life sim from a generic one. They reward players who know the city\u2019s rhythms.</p>",
+          "<p>Never rely on a single way to restore a need, and keep a little buffer in money and energy for interruptions. Treat outages as flavour, not a failure on your part.</p>",
         related: [
           { t: "Lagos slang", r: "/lagos-slang" },
           { t: "Danfo and transport", r: "/danfo" },
@@ -1799,21 +1822,26 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/lagos-slang"] = {
-    title: "Lagos Life Slang",
+    title: "Lagos Life Slang: Danfo, NEPA & LAPO",
     render: function () {
       return article({
         crumb: "Lagos slang",
         kicker: "THE WORDS",
+        faq: FAQ["/lagos-slang"],
         title: "Lagos slang in the game",
         body:
-          "<p>Lagos Life leans on local vocabulary. Here are common terms, with how they show up in the game.</p>" +
+          "<p>Lagos Life leans on local vocabulary. Here are the common terms, and how each shows up in the game.</p>" +
           "<table><thead><tr><th>Term</th><th>Meaning</th><th>In game</th></tr></thead><tbody>" +
           "<tr><td>Danfo</td><td>Yellow minibus</td><td>A shared, cheap transport option</td></tr>" +
           "<tr><td>Okada</td><td>Motorcycle taxi</td><td>A fast but pricier ride</td></tr>" +
           "<tr><td>Keke</td><td>Three-wheeler</td><td>Cheap short-hop transport</td></tr>" +
-          "<tr><td>NEPA</td><td>Power company / outages</td><td>A recurring city friction</td></tr>" +
+          "<tr><td>Agbero</td><td>Motor-park tout</td><td>You can fight the Agbero at the viewing centre</td></tr>" +
+          "<tr><td>Alabaru</td><td>Porter who carries loads</td><td>The paid gig at Balogun Market</td></tr>" +
+          "<tr><td>Owambe</td><td>A big Nigerian party</td><td>The Event Planning career and its Owambe Specialist tier</td></tr>" +
+          "<tr><td>Omo-onile</td><td>The land-owning family</td><td>A levy charged on land purchases</td></tr>" +
+          "<tr><td>NEPA</td><td>Power company / outage</td><td>A recurring city friction</td></tr>" +
           "<tr><td>Nepo Baby</td><td>Child of privilege</td><td>One birth-lottery outcome</td></tr>" +
-          "<tr><td>LAPO</td><td>Microfinance lender</td><td>The indebted starting background</td></tr>" +
+          "<tr><td>LAPO Baby</td><td>Started with a microfinance loan</td><td>The indebted starting background</td></tr>" +
           "</tbody></table>" +
           "<h2>Using the words</h2>" +
           "<p>You do not need the slang to play, but understanding it makes the city\u2019s humour land and helps you read other players.</p>",
@@ -1828,20 +1856,25 @@ button{font:inherit;color:inherit;cursor:pointer}
 
   /* ---------- system pages ------------------------------------------------ */
   PAGES["/governor-election"] = {
-    title: "Lagos Life Governor Election",
+    title: "Lagos Life Governor Election Guide",
     render: function () {
       return article({
         crumb: "Governor Election",
         kicker: "A CITY-WIDE SYSTEM",
+        faq: FAQ["/governor-election"],
         title: "Governor Election: rules players know",
         body:
           "<p>The governor election is one of the game\u2019s city-wide systems. It gives players a shared goal that runs across the whole city rather than inside a single household.</p>" +
-          "<h2>What is confirmed</h2>" +
-          "<ul><li>A Governor role exists.</li><li>Public announcements and ballot slogans are part of it.</li><li>One person may use only one account.</li></ul>" +
-          "<h2>Why one account matters</h2>" +
-          "<p>An election only means something if each person counts once. Multiple accounts would break the system, so it is explicitly disallowed.</p>" +
-          "<h2>Getting involved</h2>" +
-          "<p>Watch the city\u2019s public channels for announcements, understand the slogans on the ballot, and vote with the rest of the city. Being present and informed is most of it.</p>",
+          "<h2>How voting works</h2>" +
+          "<ul><li>Head to Polling Unit 001 on the map, get accredited, then cast your vote.</li>" +
+          "<li>Polls close on Sunday at 8 PM, and the winner is whoever takes the most votes.</li></ul>" +
+          "<h2>What the governor does</h2>" +
+          "<p>The winner sets city-wide policies with real effects — for example a minimum-wage raise that lifts shift pay, transport subsidies, food subsidies, or steadier power. These change how everyone plays while they are in force.</p>" +
+          "<h2>The reported numbers</h2>" +
+          "<ul><li>Running for office is reported to cost about " + nai(50000) + ".</li>" +
+          "<li>A winning governor has been reported to receive a " + nai(25000) + " daily allowance for a week.</li></ul>" +
+          "<h2>One account per person</h2>" +
+          "<p>An election only means something if each person counts once, so multiple accounts are explicitly disallowed.</p>",
         related: [
           { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
           { t: "Safety and privacy", r: "/safety-and-privacy" },
@@ -1876,11 +1909,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/houses"] = {
-    title: "Lagos Life Homes and Rent",
+    title: "Lagos Life Homes & Rent: All Tiers",
     render: function () {
       return article({
         crumb: "Houses",
         kicker: "HOMES",
+        faq: FAQ["/houses"],
         title: "Lagos Life homes and rent",
         body:
           "<p>Housing is the backbone of the early game, because rent is charged every Saturday. There are five paid tiers plus a student option, and each home decides your starting cash and how many guests and items you can hold.</p>" +
@@ -2163,10 +2197,10 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/money": "How to make money in Lagos Life: the best businesses, all land plots, side gigs, the sending-money fee and the weekly tax bands.",
     "/items": "Lagos Life items and prices: the full furniture and appliance list, what each item does, and which ones need power during a NEPA cut.",
     "/nepo-vs-lapo": "Lagos Life nepo vs lapo: the birth lottery explained, with starting cash, the LAPO loan and the UNILAG fresher option.",
-    "/danfo": "Danfo and transport in Lagos Life: walking, keke, danfo, okada and taxis compared, with the money-and-energy trade-off of each.",
-    "/nepa": "NEPA in Lagos Life: how power cuts are a real mechanic, which items stop working, and how to budget for a generator.",
-    "/lagos-slang": "Lagos Life slang: the Nigerian terms used in the game \u2014 danfo, okada, NEPA, Nepo Baby, LAPO \u2014 what they mean and how they appear.",
-    "/governor-election": "The Lagos Life governor election: the rules players know, one account per person, and how the winner's policies change the city.",
+    "/danfo": "Lagos Life transport: danfo, keke, okada and taxis compared, plus every vehicle with its price and cost per kilometre.",
+    "/nepa": "NEPA in Lagos Life: how power cuts work, which items stop working, and how a generator or solar setup keeps your home running.",
+    "/lagos-slang": "Lagos Life slang explained: danfo, okada, keke, agbero, owambe, omo-onile, NEPA, Nepo Baby and LAPO, with what each means.",
+    "/governor-election": "The Lagos Life governor election: how to vote at Polling Unit 001, the rules, and the city-wide policies the winner sets.",
     "/sea-plots": "Sea Plots in Lagos Life: paid map space for a picture and link \u2014 what it is, and why it is not real property or an investment.",
     "/age-requirement": "The Lagos Life age limit is 18+. Here is why the sign-up gate exists and what it means if you are younger.",
     "/account": "Lagos Life account help: how to sign up, why you should add an email, and what to do about password resets.",
@@ -2235,6 +2269,35 @@ button{font:inherit;color:inherit;cursor:pointer}
       { q: "Which start is better, Nepo or LAPO?", a: "Nepo is easier; LAPO grows skills faster and makes better stories, and UNILAG is a softer LAPO start." },
       { q: "What does the LAPO Baby start with?", a: "A loan repaid weekly on top of rent, plus faster skill growth." },
       { q: "What is the UNILAG fresher option?", a: "A LAPO-only student start with a cheap hall bunk and a weekly allowance." }
+    ],
+    "/skills": [
+      { q: "What is the best trait in Lagos Life?", a: "There is no single best trait. Each boosts one skill (Foodie = Cooking, Gym Rat = Fitness, Musical = Music, Hustler = Hustle, Smooth Talker = Charisma, Tech Bro or Sis = Coding), so pick the one that matches your career." },
+      { q: "Do skills cap in Lagos Life?", a: "Yes, skills cap at level 10, and promotion gates sit at 1, 3, 5 and 7, or 3, 4, 5, 7 and 9 for slower careers." },
+      { q: "What are the needs in Lagos Life?", a: "Hunger, Energy, Fun, Social, Hygiene and Bladder, plus mood. Bladder drains fastest." }
+    ],
+    "/houses": [
+      { q: "What is the cheapest home in Lagos Life?", a: "A UNILAG student bunk (about \u20a61,200 a week) if you qualify, otherwise a Mushin face-me-I-face-you at around \u20a62,400 a week." },
+      { q: "How much does moving house cost?", a: "About three times the weekly rent: two weeks in advance plus one week agent fee." },
+      { q: "When is rent due in Lagos Life?", a: "Every Saturday." }
+    ],
+    "/danfo": [
+      { q: "How much does transport cost in Lagos Life?", a: "Walking is free; keke and danfo are the cheapest paid rides, okada is faster and pricier, and taxis are the most comfortable and expensive." },
+      { q: "Should I buy a car in Lagos Life?", a: "Only later. A car lowers your cost per kilometre but is a big purchase, not an income source." }
+    ],
+    "/nepa": [
+      { q: "What does NEPA mean in Lagos Life?", a: "It is Nigerian shorthand for power cuts, which the game uses as a real mechanic." },
+      { q: "Which items need power in Lagos Life?", a: "Fridges, TVs, fans, air conditioners, showers, the washing machine and similar appliances stop working during a blackout." },
+      { q: "How do I keep power during a blackout?", a: "Buy a generator or a solar and inverter setup, and keep non-powered items like the cooler box and kerosene stove." }
+    ],
+    "/lagos-slang": [
+      { q: "What does danfo mean in Lagos Life?", a: "A yellow Lagos minibus, used in the game as a shared, cheap transport option." },
+      { q: "What does agbero mean?", a: "A motor-park tout; you can fight the Agbero at the Oga Sunday Viewing Centre." },
+      { q: "What is an owambe?", a: "A big Nigerian party, which the Event Planning career is built around." }
+    ],
+    "/governor-election": [
+      { q: "How do I vote in Lagos Life?", a: "Go to Polling Unit 001, get accredited and cast your vote; polls close Sunday at 8 PM." },
+      { q: "What does the governor do in Lagos Life?", a: "The winner sets city-wide policies such as minimum wage, transport and food subsidies, and steadier power." },
+      { q: "How much does it cost to run for governor?", a: "Reported at about \u20a650,000 to run, with a \u20a625,000 daily allowance for a week if you win." }
     ]
   };
 
