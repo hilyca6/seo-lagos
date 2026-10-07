@@ -10,6 +10,7 @@ node_modules/
 # Local notes and stray files (keep only the shipped assets)
 /*.txt
 !/robots.txt
+!/ads.txt
 /*.png
 !/og-image.png
 !/screenshot.png
