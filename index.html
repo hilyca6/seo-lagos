@@ -596,6 +596,8 @@ button{font:inherit;color:inherit;cursor:pointer}
     <a href="/venues">Venues &amp; hours</a>
     <a href="/activities">Activities &amp; prices</a>
     <a href="/daily-hunt">Daily hunt</a>
+    <a href="/lagos-run">Lagos Run</a>
+    <a href="/download">Download / APK?</a>
     <a href="/tips">Tips</a>
     <a href="/support">Not working?</a>
   </nav>
@@ -2471,6 +2473,64 @@ button{font:inherit;color:inherit;cursor:pointer}
     }
   };
 
+  PAGES["/download"] = {
+    title: "Lagos Life Download & APK (Browser Only)",
+    render: function () {
+      return article({
+        crumb: "Download",
+        kicker: "NO APP NEEDED",
+        faq: FAQ["/download"],
+        title: "Is there a Lagos Life download or APK?",
+        body:
+          "<p>No. Lagos Life is a browser game. There is no official download, no Android APK and no iOS app. You play it at lagoslife.app in Safari or Chrome.</p>" +
+          "<h2>Why people think there is an app</h2>" +
+          "<p>The game installs like an app on your phone once you add it to your home screen, which is why players often search for a \u201cLagos Life app\u201d. It is the same website, just opened full screen.</p>" +
+          "<h2>Add it to your home screen</h2>" +
+          "<ul><li>iPhone (Safari): tap Share, then \u201cAdd to Home Screen\u201d.</li><li>Android (Chrome): tap the menu, then \u201cAdd to Home screen\u201d.</li></ul>" +
+          "<h2>Beware of fake downloads</h2>" +
+          "<p>Any site offering a \u201cLagos Life APK\u201d or an app-store listing is not official. Never install an unofficial file, and never enter your password outside the game\u2019s own address.</p>" +
+          '<div class="note-box">The only official place to play is lagoslife.app (also lagoslife.eliysites.com).</div>',
+        related: [
+          { t: "Game link", r: "/game-link" },
+          { t: "How to play", r: "/how-to-play" },
+          { t: "Account help", r: "/account" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/lagos-run"] = {
+    title: "Lagos Run: the Danfo Driving Game",
+    render: function () {
+      return article({
+        crumb: "Lagos Run",
+        kicker: "SISTER GAME",
+        faq: FAQ["/lagos-run"],
+        title: "Lagos Run: the danfo driving game",
+        body:
+          "<p>Lagos Run is another browser game set in Lagos, built around driving a danfo (the yellow minibus) through traffic. It sits in the same family as Lagos Life \u2014 the developer has said Lagos Run was part of the inspiration for Lagos Life.</p>" +
+          "<h2>What you do in Lagos Run</h2>" +
+          "<ul><li>Drive a danfo through busy Lagos roads.</li><li>Weave through traffic and pick up the pace.</li><li>It is a quick arcade run rather than a life sim.</li></ul>" +
+          "<h2>How it differs from Lagos Life</h2>" +
+          "<table><thead><tr><th></th><th>Lagos Run</th><th>Lagos Life</th></tr></thead><tbody>" +
+          "<tr><td>Genre</td><td>Arcade driving</td><td>Life simulation</td></tr>" +
+          "<tr><td>Goal</td><td>Drive and survive the traffic</td><td>Work, pay rent, build a life</td></tr>" +
+          "<tr><td>World</td><td>Roads, one run at a time</td><td>A shared city with real players</td></tr>" +
+          "</tbody></table>" +
+          "<h2>Where to play</h2>" +
+          "<p>Lagos Run runs in a browser. Search for it by name, or look for the developer\u2019s shared link.</p>" +
+          '<div class="note-box">This is an independent guide. Lagos Run is a separate game from Lagos Life.</div>',
+        related: [
+          { t: "Games like Lagos Life", r: "/similar-games" },
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "Danfo and transport", r: "/danfo" },
+          { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
   PAGES["/privacy"] = {
     title: "Privacy Policy",
     render: function () {
@@ -2657,6 +2717,8 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/similar-games": "Games like Lagos Life: Lagos Run, Surviving Nigeria, The Sims 4 and BitLife \u2014 the titles players mention alongside it.",
     "/daily-hunt": "The Lagos Life daily hunt: how the daily clue works, how to solve it fast, and where the answer usually points on the map.",
     "/activities": "All Lagos Life activities with time, cost and what they train \u2014 filter by venue and search the full list of things to do.",
+    "/download": "No, Lagos Life has no download or APK \u2014 it is a browser game. How to add it to your home screen, and how to avoid fake downloads.",
+    "/lagos-run": "Lagos Run: the browser game about driving a danfo through Lagos traffic, how it differs from Lagos Life, and where to play it.",
     "/privacy": "How Lagos Life Guide handles data, cookies and advertising, including the third-party ad networks and analytics we use.",
     "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
     "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
@@ -2826,6 +2888,16 @@ button{font:inherit;color:inherit;cursor:pointer}
       { q: "How many activities are in Lagos Life?", a: "Around 275 across the map, from free chats to a billion-naira club takeover." },
       { q: "Which Lagos Life activities are free?", a: "Many: gisting, dancing at the Shrine, reading in the library, jogging, and most gigs that pay you." },
       { q: "What is the most expensive Lagos Life activity?", a: "Shutting down a club for about \u20a61 billion, or the \u20a61 billion diamond bottle at Ikoyi Golf Club." }
+    ],
+    "/download": [
+      { q: "Is there a Lagos Life download?", a: "No. It is a browser game with no official download or app." },
+      { q: "Is there a Lagos Life APK?", a: "No official APK exists; treat any download as unsafe." },
+      { q: "How do I get Lagos Life as an app?", a: "Add the website to your home screen for a full-screen, app-like icon." }
+    ],
+    "/lagos-run": [
+      { q: "Is Lagos Run the same as Lagos Life?", a: "No. Lagos Run is a danfo driving game; Lagos Life is a life sim." },
+      { q: "Did Lagos Run inspire Lagos Life?", a: "The developer has said Lagos Run was part of the inspiration." },
+      { q: "Is Lagos Run free?", a: "It is a browser game you can play online." }
     ]
   };
 
