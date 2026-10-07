@@ -492,6 +492,12 @@ button{font:inherit;color:inherit}
 <!-- ===== ROUTED CONTENT ===== -->
 <main id="app" aria-live="polite"></main>
 
+<!-- ===== BOTTOM AD (like lagoslife.org) ===== -->
+<aside class="ad-slot" aria-label="Advertisement">
+  <span class="ad-slot-label">Advertisement</span>
+  <div class="ad-slot-frame"><iframe title="Advertisement" scrolling="no" loading="lazy" src="/ads/banner-mobile" width="320" height="50" style="width:320px;height:50px"></iframe></div>
+</aside>
+
 <!-- ===== COOKIE CONSENT ===== -->
 <div class="cookie-bar" id="cookieBar" hidden>
   <p>We use cookies and similar technologies for advertising and analytics. See our <a href="/privacy">Privacy Policy</a>.</p>
@@ -1457,6 +1463,23 @@ button{font:inherit;color:inherit}
         '<aside class="facts"><h3>Game at a glance</h3><dl>' + factsHtml + '</dl></aside>' +
       '</section>' +
 
+      '<section class="content-shell" style="padding-top:36px">' +
+        '<div class="section-heading"><div><span class="eyebrow">THE GAME</span><h2>What is Lagos Life?</h2></div>' +
+        '<a class="text-link" href="/what-is-lagos-life">Full overview <span>\u2192</span></a></div>' +
+        '<div class="feature">' +
+          '<div class="feature-text">' +
+            '<p class="feature-lead">A shared, Lagos-inspired life sim you play free in a browser.</p>' +
+            '<p>Lagos Life is a free browser life-simulation game set in a shared, Lagos-inspired city. You create a Sim, take a job, pay rent every Saturday, and move through a world with real players. People also search for it as the \u201cLagos Life Sims game\u201d.</p>' +
+            '<ul><li>Instant access \u2014 one link, no download.</li><li>Local humour \u2014 danfo fares, Saturday rent, NEPA.</li><li>Shared city \u2014 visit friends, chat, vote in the election.</li></ul>' +
+            '<a class="text-link" href="/what-is-lagos-life">Read the full overview <span>\u2192</span></a>' +
+          '</div>' +
+          '<figure class="feature-media">' +
+            '<img src="/screenshot.png" width="1070" height="594" alt="A Lagos Life game screenshot showing the shared Lagos-inspired city map">' +
+            '<figcaption>Inside Lagos Life \u2014 the shared Lagos-inspired city.</figcaption>' +
+          '</figure>' +
+        '</div>' +
+      '</section>' +
+
       '<section class="content-shell" style="padding-top:28px">' +
         '<div class="qactions">' + actionsHtml + '</div>' +
       '</section>' +
@@ -1481,23 +1504,6 @@ button{font:inherit;color:inherit}
         '<div class="section-heading"><div><span class="eyebrow">DIRECTORY</span><h2>Browse the guide</h2></div>' +
         '<a class="text-link" href="/guides">All guides <span>\u2192</span></a></div>' +
         '<div class="loc-grid">' + tilesHtml + '</div>' +
-      '</section>' +
-
-      '<section class="content-shell" style="padding-top:44px">' +
-        '<div class="section-heading"><div><span class="eyebrow">THE GAME</span><h2>What is Lagos Life?</h2></div>' +
-        '<a class="text-link" href="/what-is-lagos-life">Full overview <span>\u2192</span></a></div>' +
-        '<div class="feature">' +
-          '<div class="feature-text">' +
-            '<p class="feature-lead">A shared, Lagos-inspired life sim you play free in a browser.</p>' +
-            '<p>Lagos Life is a free browser life-simulation game set in a shared, Lagos-inspired city. You create a Sim, take a job, pay rent every Saturday, and move through a world with real players. People also search for it as the \u201cLagos Life Sims game\u201d.</p>' +
-            '<ul><li>Instant access \u2014 one link, no download.</li><li>Local humour \u2014 danfo fares, Saturday rent, NEPA.</li><li>Shared city \u2014 visit friends, chat, vote in the election.</li></ul>' +
-            '<a class="text-link" href="/what-is-lagos-life">Read the full overview <span>\u2192</span></a>' +
-          '</div>' +
-          '<figure class="feature-media">' +
-            '<img src="/screenshot.png" width="1070" height="594" alt="A Lagos Life game screenshot showing the shared Lagos-inspired city map">' +
-            '<figcaption>Inside Lagos Life \u2014 the shared Lagos-inspired city.</figcaption>' +
-          '</figure>' +
-        '</div>' +
       '</section>' +
 
       '<section class="content-shell" style="padding-top:48px">' +
