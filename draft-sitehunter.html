@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lagos Life Guide — dark draft (SiteHunter-style)</title>
+<meta name="theme-color" content="#09090b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DRAFT — Lagos Life guide re-skinned in a SiteHunter-style
+   dark, data-tool aesthetic (shadcn/Tailwind palette).
+   Standalone file; does not touch index.html.
+   ============================================================ */
+:root{
+  --bg:#09090b;
+  --fg:#fafafa;
+  --card:#18181b;
+  --muted:#27272a;
+  --accent:#3f3f46;
+  --muted-fg:#a1a1aa;
+  --border:rgba(255,255,255,.10);
+  --input:rgba(255,255,255,.15);
+  --primary:#ea580c;
+  --primary-fg:#fff7ed;
+  --ring:#a1a1aa;
+  --radius:10px;
+  --radius-md:8px;
+  --font-brand:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --font-body:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{color:var(--primary)}
+h1,h2,h3,h4{margin:0;font-family:var(--font-brand);font-weight:600;letter-spacing:-.03em;line-height:1.05}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
+::selection{background:var(--primary);color:var(--primary-fg)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-fg)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--primary)}
+.muted{color:var(--muted-fg)}
+.mono{font-family:var(--font-mono)}
+
+/* ---- nav ---- */
+.nav{position:sticky;top:0;z-index:40;background:rgba(9,9,11,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-brand);font-weight:700;font-size:16px;letter-spacing:-.03em}
+.brand .mark{width:26px;height:26px;border-radius:7px;background:var(--primary);display:grid;place-items:center;color:var(--primary-fg);font-size:12px}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{font-size:13px;color:var(--muted-fg);font-weight:500}
+.nav-links a:hover{color:var(--fg)}
+@media(max-width:820px){.nav-links{display:none}}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 18px;border-radius:var(--radius-md);font-size:13px;font-weight:600;border:1px solid transparent;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--primary);color:var(--primary-fg)}
+.btn-primary:hover{background:#f97316;color:var(--primary-fg)}
+.btn-outline{background:transparent;border-color:var(--border);color:var(--fg)}
+.btn-outline:hover{background:var(--muted)}
+.btn-sm{height:34px;padding:0 14px;font-size:12px}
+
+/* ---- hero ---- */
+.hero{padding:72px 0 40px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:auto -20% 40% -20%;height:420px;background:radial-gradient(60% 60% at 50% 0%,rgba(234,88,12,.16),transparent 70%);pointer-events:none}
+.hero h1{margin:18px 0 16px;font-size:clamp(38px,6vw,64px);font-weight:700;letter-spacing:-.04em;max-width:16ch}
+.hero h1 em{font-style:normal;color:var(--primary)}
+.hero p.lead{max-width:56ch;color:var(--muted-fg);font-size:16px;line-height:1.7}
+.hero .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--muted-fg)}
+.chip b{color:var(--fg)}
+
+/* ---- stat cards ---- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:36px 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.stat .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-fg)}
+.stat .v{margin-top:8px;font-family:var(--font-brand);font-weight:700;font-size:30px;letter-spacing:-.03em}
+.stat .v span{color:var(--primary)}
+@media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ---- section ---- */
+.section{padding:44px 0;border-top:1px solid var(--border)}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px}
+.head h2{font-size:26px}
+.link{font-size:13px;font-weight:600;color:var(--primary)}
+
+/* ---- data table ---- */
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border)}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-fg);font-weight:600;background:rgba(255,255,255,.02)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:rgba(255,255,255,.03)}
+td.num{font-family:var(--font-mono);text-align:right;white-space:nowrap}
+.bar{display:inline-block;height:6px;border-radius:3px;background:var(--primary);vertical-align:middle;margin-left:10px}
+.rank{color:var(--muted-fg);font-family:var(--font-mono);font-size:12px}
+td .up{color:#4ade80;font-family:var(--font-mono);font-size:12px}
+
+/* ---- card grid ---- */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:rgba(234,88,12,.5);transform:translateY(-2px)}
+.card .tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--primary)}
+.card h3{margin:12px 0 6px;font-size:19px}
+.card p{margin:0;color:var(--muted-fg);font-size:13px}
+
+/* ---- faq ---- */
+.faq{border:1px solid var(--border);border-radius:var(--radius);background:var(--card);overflow:hidden}
+.faq details{border-bottom:1px solid var(--border)}
+.faq details:last-child{border-bottom:0}
+.faq summary{padding:16px 18px;cursor:pointer;list-style:none;font-weight:600;font-size:14px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;color:var(--primary);font-weight:400;font-size:18px}
+.faq details[open] summary::after{content:"\2212"}
+.faq p{margin:0;padding:0 18px 16px;color:var(--muted-fg);font-size:13px}
+
+/* ---- footer ---- */
+.footer{border-top:1px solid var(--border);margin-top:20px;padding:36px 0 28px;color:var(--muted-fg);font-size:12px}
+.footer .cols{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between}
+.footer a{color:var(--muted-fg)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#"><span class="mark">LL</span> Lagos Life Guide</a>
+    <nav class="nav-links">
+      <a href="#">What Is It</a>
+      <a href="#">Jobs</a>
+      <a href="#">Money</a>
+      <a href="#">Activities</a>
+      <a href="#">Venues</a>
+      <a href="#">Guides</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#">Play ↗</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <span class="eyebrow"><span class="dot"></span> Unofficial player guide</span>
+    <h1>The Lagos Life guide, <em>backed by real data</em></h1>
+    <p class="lead">Every career, salary, business, item and venue in the Lagos Life browser game — in one dark, data-first dashboard. Independent and unofficial.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#">Open the game link ↗</a>
+      <a class="btn btn-outline" href="#">Start with how to play</a>
+      <span class="chip">Updated <b>2026-10-07</b></span>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="k">Total players</div><div class="v">1.2<span>M</span></div></div>
+      <div class="stat"><div class="k">Online now</div><div class="v">62<span>K</span></div></div>
+      <div class="stat"><div class="k">Careers</div><div class="v">21</div></div>
+      <div class="stat"><div class="k">Activities</div><div class="v">263</div></div>
+    </div>
+  </section>
+
+  <!-- CAREERS LEADERBOARD -->
+  <section class="section wrap">
+    <div class="head">
+      <div><span class="eyebrow"><span class="dot"></span> Career data</span><h2>Careers by top pay</h2></div>
+      <a class="link" href="#">All 105 levels →</a>
+    </div>
+    <div class="panel">
+      <table>
+        <thead><tr><th>#</th><th>Career</th><th>Top level</th><th class="num">Pay / shift</th><th class="num">Growth</th></tr></thead>
+        <tbody>
+          <tr><td class="rank">01</td><td>Music</td><td class="muted">Afrobeats Giant</td><td class="num">₦99,000<span class="bar" style="width:80px"></span></td><td class="num up">13.4×</td></tr>
+          <tr><td class="rank">02</td><td>Aviation</td><td class="muted">Chief Pilot</td><td class="num">₦95,000<span class="bar" style="width:76px"></span></td><td class="num up">5.0×</td></tr>
+          <tr><td class="rank">03</td><td>DJ</td><td class="muted">Global DJ</td><td class="num">₦93,000<span class="bar" style="width:74px"></span></td><td class="num up">11.2×</td></tr>
+          <tr><td class="rank">04</td><td>Product Management</td><td class="muted">Chief Product Officer</td><td class="num">₦92,000<span class="bar" style="width:73px"></span></td><td class="num up">4.6×</td></tr>
+          <tr><td class="rank">05</td><td>Content Creator</td><td class="muted">Celebrity Influencer</td><td class="num">₦90,000<span class="bar" style="width:71px"></span></td><td class="num up">13.6×</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- QUICK GUIDES -->
+  <section class="section wrap">
+    <div class="head"><div><span class="eyebrow"><span class="dot"></span> Browse</span><h2>Explore by topic</h2></div><a class="link" href="#">All guides →</a></div>
+    <div class="grid">
+      <a class="card" href="#"><span class="tag">Data</span><h3>Jobs &amp; salaries</h3><p>21 careers, 105 levels, pay per shift and promotions.</p></a>
+      <a class="card" href="#"><span class="tag">Data</span><h3>Money &amp; businesses</h3><p>Businesses, land plots, side gigs and weekly tax.</p></a>
+      <a class="card" href="#"><span class="tag">Tools</span><h3>Activities &amp; prices</h3><p>263 things to do, with time, cost and what they train.</p></a>
+      <a class="card" href="#"><span class="tag">Tools</span><h3>Items &amp; prices</h3><p>Furniture and appliances, and which need power.</p></a>
+      <a class="card" href="#"><span class="tag">City</span><h3>Venues &amp; hours</h3><p>Every place on the map, with opening hours.</p></a>
+      <a class="card" href="#"><span class="tag">Compare</span><h3>Lagos Life vs others</h3><p>The Sims, BitLife, Roblox and more, compared.</p></a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section wrap">
+    <div class="head"><div><span class="eyebrow"><span class="dot"></span> FAQ</span><h2>Frequently asked</h2></div></div>
+    <div class="faq">
+      <details open><summary>Is Lagos Life free?</summary><p>Yes. Signing up and playing are free in a browser; the official site may offer optional top-ups.</p></details>
+      <details><summary>Is there a download or APK?</summary><p>No. It is a browser game with no official app. Add the website to your home screen for an app-like icon.</p></details>
+      <details><summary>When is rent due?</summary><p>Rent is charged every Saturday, so keep the money aside before you spend.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer class="footer wrap">
+  <div class="cols">
+    <div><strong style="font-family:var(--font-brand);color:var(--fg)">Lagos Life Guide</strong><p class="muted" style="margin:8px 0 0">Independent, unofficial player guide · not affiliated with the developer.</p></div>
+    <div><a href="#">Jobs</a> · <a href="#">Money</a> · <a href="#">Activities</a> · <a href="#">Venues</a> · <a href="#">Guides</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
