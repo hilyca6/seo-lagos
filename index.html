@@ -722,6 +722,10 @@ button{font:inherit;color:inherit;cursor:pointer}
   function faqItem(q, a, open) {
     return '<details class="faq-item"' + (open ? " open" : "") + '><summary>' + q + '</summary><p>' + a + '</p></details>';
   }
+  function faqSection(list) {
+    return '<section class="faq-section"><h2>Frequently asked questions</h2><div class="faq-list">' +
+      list.map(function (f) { return faqItem(f.q, f.a, false); }).join("") + '</div></section>';
+  }
   function related(links) {
     return '<div class="related"><h2>Keep reading</h2><div class="related-links">' +
       links.map(function (l) { return '<a href="' + l.r + '">' + l.t + '</a>'; }).join("") +
@@ -752,6 +756,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       '<h1>' + o.title + '</h1>' +
       (o.noAds ? "" : adSlot()) +
       '<div class="prose">' + o.body + '</div>' +
+      (o.faq && o.faq.length ? faqSection(o.faq) : "") +
       (o.noAds ? "" : adSlotNative()) +
       (o.related ? related(o.related) : "") +
       '</article>' +
@@ -1253,6 +1258,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       return article({
         crumb: "How to Play",
         kicker: "FIRST STEPS",
+        faq: FAQ["/how-to-play"],
         title: "Lagos Life: how to play your first week",
         body:
           "<p>Starting out is mostly about staying fed, rested and solvent. Follow these steps and you will survive the first few rent cycles.</p>" +
@@ -1486,11 +1492,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/items"] = {
-    title: "Lagos Life Items and Prices",
+    title: "Lagos Life Items & Prices: Full List",
     render: function () {
       return article({
         crumb: "Items and prices",
         kicker: "SHOPPING",
+        faq: FAQ["/items"],
         title: "Lagos Life items and prices",
         body:
           "<p>A furniture and item price list, grouped by what it does. Anything marked as needing power is useless during a NEPA cut unless you own a generator or an inverter.</p>" +
@@ -1508,11 +1515,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/venues"] = {
-    title: "Lagos Life Venues and Hours",
+    title: "Lagos Life Venues & Opening Hours",
     render: function () {
       return article({
         crumb: "Venues and hours",
         kicker: "THE MAP",
+        faq: FAQ["/venues"],
         title: "Lagos Life venues and opening hours",
         body:
           "<p>Places keep real opening hours, and some only open at night. Knowing what is open when your shift ends is most of the game's routing puzzle.</p>" +
@@ -1533,6 +1541,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       return article({
         crumb: "Support",
         kicker: "FIXES",
+        faq: FAQ["/support"],
         title: "Lagos Life not working: fixes",
         body:
           "<p>The most common problem is lag rather than queueing, because the world is shared and busy. Here are the messages players see most and what actually helps.</p>" +
@@ -1668,11 +1677,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 
   /* ---------- city-life article pages ------------------------------------- */
   PAGES["/nepo-vs-lapo"] = {
-    title: "Lagos Life Nepo vs Lapo",
+    title: "Lagos Life Nepo vs Lapo: Birth Lottery",
     render: function () {
       return article({
         crumb: "Nepo vs Lapo",
         kicker: "STARTING LIFE",
+        faq: FAQ["/nepo-vs-lapo"],
         title: "Nepo vs Lapo: the birth lottery",
         body:
           "<p>One of the most talked-about parts of Lagos Life is the birth lottery. It runs once per account and decides your starting background, and you cannot reroll it.</p>" +
@@ -1699,12 +1709,13 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/jobs"] = {
-    title: "Lagos Life Jobs and Salaries",
+    title: "Lagos Life Jobs & Salaries: All 21 Careers",
     after: bindJobs,
     render: function () {
       return article({
         crumb: "Jobs",
         kicker: "INCOME",
+        faq: FAQ["/jobs"],
         title: "Lagos Life jobs and salaries",
         body:
           "<p>Every career in Lagos Life runs five levels and is tied to a single skill. You apply from your in-game phone, then show up, keep performance high and climb. The table lists all " + CAREERS.length + " careers and their " + (CAREERS.length * 5) + " positions. Click any column heading to sort, and use the Growth column to compare a level against that career's first level (for example " + (99000 / 7400).toFixed(1) + "\u00d7 for Afrobeats Giant).</p>" +
@@ -1892,11 +1903,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/money"] = {
-    title: "Lagos Life Money",
+    title: "How to Make Money in Lagos Life",
     render: function () {
       return article({
         crumb: "Money",
         kicker: "NAIRA & BUSINESS",
+        faq: FAQ["/money"],
         title: "Lagos Life money: jobs, businesses and land",
         body:
           "<p>The Lagos Life economy has three dials: your job, your side businesses and land. The loop is simple and unforgiving - earn more than your Saturday rent, then reinvest.</p>" +
@@ -2142,15 +2154,15 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/game-link": "Where to play Lagos Life: it runs in your browser (no app) at the official lagoslife.app \u2014 sign-up, safety and what to expect before you start.",
     "/locations": "Lagos Life locations: how the city map is organised by transport, markets, housing, nightlife and landmarks, plus single places like Quilox.",
     "/locations/quilox": "Quilox in Lagos Life: how the nightlife venue plays into social and fun needs, when to visit and what a night out costs.",
-    "/venues": "Every Lagos Life venue with opening hours, the jobs based there and its signature activity \u2014 from Amala Shitta to Eko Casino and UNILAG.",
+    "/venues": "Lagos Life venues and opening hours: every place on the map, the jobs based there and what you can do \u2014 from Amala Shitta to Eko Casino and UNILAG.",
     "/updates": "Lagos Life updates and timeline: how the browser game grew from launch to a million players, with the latest notes on new features.",
     "/stats": "Lagos Life player stats: total players, concurrent counts and daily growth explained \u2014 and what the numbers actually mean.",
-    "/jobs": "All 21 Lagos Life careers and 105 job levels with pay per shift, skill and workplace. Sort by pay, level or growth and filter by skill.",
+    "/jobs": "Lagos Life jobs and salaries: all 21 careers and 105 levels with pay per shift, skill and workplace. Sort and filter the full 105-position table.",
     "/skills": "Lagos Life skills and traits: all 10 traits, every skill and how to raise it, the six needs, and the skill gates behind each promotion.",
     "/houses": "Lagos Life homes and rent: all five housing tiers plus student halls, weekly rents, move-in costs and the rules that decide where you can live.",
-    "/money": "How to make money in Lagos Life: every business, all land plots, side gigs, the sending-money fee and the weekly tax bands.",
-    "/items": "Lagos Life items and prices: a full furniture and appliance price list, what each item does, and which ones need power during a NEPA cut.",
-    "/nepo-vs-lapo": "Nepo Baby vs LAPO Baby in Lagos Life: the birth lottery, starting cash, the LAPO loan and the UNILAG fresher option compared.",
+    "/money": "How to make money in Lagos Life: the best businesses, all land plots, side gigs, the sending-money fee and the weekly tax bands.",
+    "/items": "Lagos Life items and prices: the full furniture and appliance list, what each item does, and which ones need power during a NEPA cut.",
+    "/nepo-vs-lapo": "Lagos Life nepo vs lapo: the birth lottery explained, with starting cash, the LAPO loan and the UNILAG fresher option.",
     "/danfo": "Danfo and transport in Lagos Life: walking, keke, danfo, okada and taxis compared, with the money-and-energy trade-off of each.",
     "/nepa": "NEPA in Lagos Life: how power cuts are a real mechanic, which items stop working, and how to budget for a generator.",
     "/lagos-slang": "Lagos Life slang: the Nigerian terms used in the game \u2014 danfo, okada, NEPA, Nepo Baby, LAPO \u2014 what they mean and how they appear.",
@@ -2188,21 +2200,29 @@ button{font:inherit;color:inherit;cursor:pointer}
     ],
     "/jobs": [
       { q: "How many careers are in Lagos Life?", a: "There are 21 careers, each with five levels, for 105 positions in total." },
-      { q: "Which jobs pay the most?", a: "Music tops the table: Afrobeats Giant is the highest-paid level per shift." },
-      { q: "How do promotions work?", a: "Each promotion needs the career skill at a set level plus full performance on your shifts." },
+      { q: "Which jobs pay the most in Lagos Life?", a: "Music tops the table: Afrobeats Giant is the highest-paid level per shift, followed by DJ and Aviation." },
+      { q: "What is the best career for beginners in Lagos Life?", a: "Banking has the best entry pay and a Monday-to-Friday day shift, so it is the easiest start. In general, pick the career that matches your trait." },
+      { q: "How do promotions work in Lagos Life?", a: "Each promotion needs the career skill at a set level plus full performance on your shifts." },
       { q: "What does the Growth column mean?", a: "It shows how many times a level pays compared with that career's first level." }
     ],
     "/money": [
       { q: "How do I make money in Lagos Life?", a: "Work shifts, run businesses and buy land, while always keeping next Saturday's rent aside." },
+      { q: "What is the best business in Lagos Life?", a: "Bigger businesses earn more but cost more. Start with the cheapest (Recharge & Data Kiosk) and reinvest the profit." },
       { q: "Is in-game naira worth real money?", a: "No. In-game naira cannot be cashed out and has no real-world value." },
       { q: "What is omo-onile?", a: "A local family levy on land deals, shown as a percentage on each plot." },
       { q: "How much tax do I pay?", a: "The first million naira of weekly shift income is tax-free, then rates rise with income." }
     ],
     "/items": [
       { q: "What should I buy first in Lagos Life?", a: "A cheap bed or mattress for energy, then anything that fixes hunger cheaply." },
-      { q: "Which items need power?", a: "Fridges, TVs, air conditioners and similar appliances stop working during a NEPA cut." },
+      { q: "Which items need power in Lagos Life?", a: "Fridges, TVs, air conditioners and similar appliances stop working during a NEPA cut." },
+      { q: "How do I survive a NEPA power cut?", a: "Buy a generator or a solar and inverter setup, and keep non-powered items such as the cooler box, kerosene stove and rechargeable lamp." },
       { q: "How many items are there?", a: "Around sixty purchasable items, from a wall calendar to a gold lion statue." },
       { q: "Do expensive items matter?", a: "Higher tiers restore more and add decor, but the cheapest item often gives most of the practical benefit." }
+    ],
+    "/venues": [
+      { q: "How many venues are in Lagos Life?", a: "The map has around 30 named places, some open 24 hours and some only open at night." },
+      { q: "Which Lagos Life places are open at night?", a: "Quilox, The Library, New Afrika Shrine, Ivory Rooftop and Elegushi Beach are open past midnight." },
+      { q: "Where is my job in Lagos Life?", a: "Each career is based at one place, such as General Hospital for Nursing and Medicine, or Marina Towers for Banking and Civil Service." }
     ],
     "/support": [
       { q: "Why is Lagos Life stuck on Reconnecting to Lagos?", a: "The real-time connection dropped. Hard refresh, leave the in-app browser and turn off any VPN." },
@@ -2212,6 +2232,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     ],
     "/nepo-vs-lapo": [
       { q: "Can I choose Nepo or LAPO?", a: "No. The birth lottery is decided once per account and cannot be rerolled." },
+      { q: "Which start is better, Nepo or LAPO?", a: "Nepo is easier; LAPO grows skills faster and makes better stories, and UNILAG is a softer LAPO start." },
       { q: "What does the LAPO Baby start with?", a: "A loan repaid weekly on top of rent, plus faster skill growth." },
       { q: "What is the UNILAG fresher option?", a: "A LAPO-only student start with a cheap hall bunk and a weekly allowance." }
     ]
