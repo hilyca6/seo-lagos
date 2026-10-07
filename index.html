@@ -529,6 +529,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       <a href="/game-link">Game Link</a>
       <a href="/locations">Locations</a>
       <a href="/stats">Stats</a>
+      <a href="/guides">Guides</a>
       <a href="/updates">Updates</a>
     </nav>
     <details class="menu">
@@ -539,6 +540,7 @@ button{font:inherit;color:inherit;cursor:pointer}
         <a href="/game-link">Game Link</a>
         <a href="/locations">Locations</a>
         <a href="/stats">Stats</a>
+        <a href="/guides">Guides</a>
         <a href="/updates">Updates</a>
       </nav>
     </details>
@@ -1525,6 +1527,15 @@ button{font:inherit;color:inherit;cursor:pointer}
             return '<a href="/similar-games">' + x + '</a>'; }).join("") +
         '</div></section>' +
 
+        '<section class="inside-section"><div class="section-heading"><div><span class="eyebrow">BROWSE THE GUIDE</span><h2>Explore by topic</h2></div>' +
+        '<a class="text-link" href="/guides">All guides <span>↗</span></a></div>' +
+        '<div class="inside-grid">' +
+          insideCard("DATA", "Jobs & salaries", "Careers, pay and promotions", "/jobs") +
+          insideCard("DATA", "Money", "Businesses, land and tax", "/money") +
+          insideCard("TOOLS", "Activities", "All 263 things to do", "/activities") +
+          insideCard("TOOLS", "Items & prices", "Furniture and appliances", "/items") +
+          insideCard("CITY", "Venues & hours", "Every place on the map", "/venues") +
+        '</div></section>' +
         adSlotNative() +
         '<section class="faq-section"><h2>Frequently asked questions</h2><div class="faq-list">' +
           faqItem("What is Lagos Life?", "Lagos Life is a free life-simulation game played in your browser. It is set in Lagos, Nigeria, and is often compared with The Sims.", true) +
@@ -2644,6 +2655,111 @@ button{font:inherit;color:inherit;cursor:pointer}
     }
   };
 
+  PAGES["/not-loading"] = {
+    title: "Lagos Life Not Loading? Fixes",
+    render: function () {
+      return article({
+        crumb: "Not loading",
+        kicker: "TROUBLESHOOTING",
+        faq: FAQ["/not-loading"],
+        title: "Lagos Life not loading?",
+        body:
+          "<p>If the game will not load, it is usually a stale cache, an in-app browser or heavy server load \u2014 not a blocked account.</p>" +
+          "<h2>Try this, in order</h2>" +
+          "<ol><li>Hard refresh the page (Ctrl+F5, or pull to refresh on mobile).</li>" +
+          "<li>Leave the in-app browser: open the link in Safari or Chrome, not inside Instagram, TikTok or Facebook.</li>" +
+          "<li>Turn off any VPN or proxy.</li>" +
+          "<li>Update your browser, or update iOS (the game needs iOS 16.4 or newer).</li>" +
+          "<li>Try again off-peak if the shared world is busy.</li></ol>" +
+          '<div class="note-box">See the full <a href="/support">fixes page</a> for every message the game shows.</div>',
+        related: [
+          { t: "Fixes hub", r: "/support" },
+          { t: "Stuck reconnecting", r: "/reconnecting" },
+          { t: "Lag and stutter", r: "/lag" },
+          { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/reconnecting"] = {
+    title: "Lagos Life Stuck on Reconnecting to Lagos",
+    render: function () {
+      return article({
+        crumb: "Reconnecting",
+        kicker: "TROUBLESHOOTING",
+        faq: FAQ["/reconnecting"],
+        title: "Lagos Life stuck on \u201cReconnecting to Lagos\u201d",
+        body:
+          "<p>\u201cReconnecting to Lagos\u2026\u201d means the game\u2019s live connection dropped. It is a shared, real-time world, so it needs a steady link between your browser and the server.</p>" +
+          "<h2>How to fix it</h2>" +
+          "<ul><li>Hard refresh the page.</li><li>Make sure you are in a real browser, not an in-app viewer.</li><li>Turn off any VPN or proxy \u2014 they add latency and break the socket.</li><li>Switch between Wi-Fi and mobile data to rule out a weak connection.</li></ul>" +
+          '<div class="note-box">More messages and fixes are on the <a href="/support">support page</a>.</div>',
+        related: [
+          { t: "Fixes hub", r: "/support" },
+          { t: "Not loading", r: "/not-loading" },
+          { t: "Lag and stutter", r: "/lag" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/lag"] = {
+    title: "Lagos Life Lag & Stuttering",
+    render: function () {
+      return article({
+        crumb: "Lag",
+        kicker: "TROUBLESHOOTING",
+        faq: FAQ["/lag"],
+        title: "Lagos Life lag and stuttering",
+        body:
+          "<p>Lagos Life is a shared world, so when tens of thousands of players are online the servers can strain. Lag is usually about load, not your device.</p>" +
+          "<h2>How to reduce it</h2>" +
+          "<ul><li>Play off-peak when fewer players are online.</li><li>Use a desktop browser for long sessions.</li><li>Close other heavy tabs and apps.</li><li>Turn off any VPN.</li><li>Give it a moment and retry \u2014 it often smooths out.</li></ul>" +
+          '<div class="note-box">This is not a bug you can patch; it is the cost of a busy, real-time city. See the <a href="/support">support page</a> for other messages.</div>',
+        related: [
+          { t: "Fixes hub", r: "/support" },
+          { t: "Not loading", r: "/not-loading" },
+          { t: "Stuck reconnecting", r: "/reconnecting" },
+          { t: "Stats", r: "/stats" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/guides"] = {
+    title: "All Lagos Life Guides",
+    render: function () {
+      var groups = [
+        ["Start here", [["What is Lagos Life?", "/what-is-lagos-life"], ["How to play", "/how-to-play"], ["Game link", "/game-link"], ["Account", "/account"], ["Age limit", "/age-requirement"]]],
+        ["Data & tools", [["Jobs & salaries", "/jobs"], ["Skills & traits", "/skills"], ["Money & businesses", "/money"], ["Homes & rent", "/houses"], ["Items & prices", "/items"], ["Activities & prices", "/activities"], ["Venues & hours", "/venues"]]],
+        ["City & systems", [["Locations", "/locations"], ["Governor election", "/governor-election"], ["Sea plots", "/sea-plots"], ["Danfo & transport", "/danfo"], ["NEPA & power", "/nepa"], ["Lagos slang", "/lagos-slang"], ["Daily hunt", "/daily-hunt"]]],
+        ["Fixes", [["All fixes", "/support"], ["Not loading", "/not-loading"], ["Reconnecting", "/reconnecting"], ["Lag", "/lag"]]],
+        ["Compare", [["Compare games", "/compare"], ["vs The Sims", "/lagos-life-vs-sims"], ["vs BitLife", "/lagos-life-vs-bitlife"], ["vs Roblox", "/lagos-life-vs-roblox"], ["vs Surviving Nigeria", "/lagos-life-vs-surviving-nigeria"], ["Lagos Run", "/lagos-run"], ["Similar games", "/similar-games"]]]
+      ];
+      var html = groups.map(function (g) {
+        return "<h2>" + g[0] + "</h2><div class='related-links'>" +
+          g[1].map(function (l) { return "<a href='" + l[1] + "'>" + l[0] + "</a>"; }).join("") + "</div>";
+      }).join("");
+      html += "<h2>Venues</h2><div class='related-links'><a href='/locations/quilox'>Quilox</a>" +
+        VENUE_PAGE_NAMES.map(function (n) { return "<a href='/locations/" + slugify(n) + "'>" + n + "</a>"; }).join("") + "</div>";
+      html += "<h2>Site</h2><div class='related-links'><a href='/about'>About</a><a href='/contact'>Contact</a><a href='/privacy'>Privacy Policy</a><a href='/terms'>Terms</a></div>";
+      return article({
+        crumb: "Guides",
+        kicker: "ALL GUIDES",
+        title: "All Lagos Life guides",
+        body: "<p>Every guide on this site, in one place. Start with \u201cwhat is\u201d and \u201chow to play\u201d, then dive into the data pages.</p>" + html,
+        related: [
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "Jobs & salaries", r: "/jobs" },
+          { t: "Activities & prices", r: "/activities" },
+          { t: "Compare games", r: "/compare" }
+        ]
+      });
+    }
+  };
+
   PAGES["/privacy"] = {
     title: "Privacy Policy",
     render: function () {
@@ -2836,6 +2952,9 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/lagos-life-vs-bitlife": "Lagos Life vs BitLife: a shared browser life sim against a single-player text life sim, compared.",
     "/lagos-life-vs-roblox": "Is Lagos Life a Roblox game? No. How the standalone Lagos Life browser game compares with the Roblox platform.",
     "/lagos-life-vs-surviving-nigeria": "Lagos Life vs Surviving Nigeria: two Nigerian-life games with different genres, compared.",
+    "/not-loading": "Lagos Life not loading? Fixes for a blank screen, stale cache and in-app browser problems.",
+    "/reconnecting": "Lagos Life stuck on Reconnecting to Lagos? What it means and how to fix the dropped connection.",
+    "/lag": "Lagos Life lag and stuttering: why it happens in a shared world and how to reduce it.",
     "/privacy": "How Lagos Life Guide handles data, cookies and advertising, including the third-party ad networks and analytics we use.",
     "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
     "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
@@ -3031,8 +3150,71 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/lagos-life-vs-surviving-nigeria": [
       { q: "Are Lagos Life and Surviving Nigeria the same?", a: "No; one is a life sim, the other a survival game." },
       { q: "Which is more Nigerian?", a: "Both are rooted in Nigerian life, but they focus on different things." }
+    ],
+    "/not-loading": [
+      { q: "Why is Lagos Life not loading?", a: "Usually a stale cache or an in-app browser. Hard refresh and open in Safari or Chrome." },
+      { q: "Does Lagos Life need a download to load?", a: "No; if a page asks you to download, it is not the real game." }
+    ],
+    "/reconnecting": [
+      { q: "What does Reconnecting to Lagos mean?", a: "The live connection dropped. Hard refresh and leave the in-app browser." },
+      { q: "Why does Lagos Life keep reconnecting?", a: "An unstable connection or a VPN can cause it." }
+    ],
+    "/lag": [
+      { q: "Why is Lagos Life laggy?", a: "It is a shared, busy world, so heavy load causes lag rather than your device." },
+      { q: "How do I reduce Lagos Life lag?", a: "Play off-peak and use a desktop browser." }
     ]
   };
+
+  /* ---------- generated venue detail pages -------------------------------- */
+  function slugify(s) { return String(s).toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
+  function venueBody(name, v, acts) {
+    var area = v[1] || "", hours = v[2] || "", jobs = v[3] || "-", sig = v[4] || "";
+    var body = "<p>" + name + " is one of the places on the Lagos Life map, in " + area + ". It is open " + hours + " (in-game time)." +
+      (jobs !== "-" ? " It is also where the " + jobs + " career is based." : "") +
+      (sig ? " Signature activity: " + sig + "." : "") + "</p>";
+    body += "<h2>Details</h2>" + dt(["Detail", "Info"], [["Area", area], ["Hours", hours], ["Jobs based here", jobs === "-" ? "-" : jobs]]);
+    if (acts && acts.length) {
+      body += "<h2>Things to do at " + name + "</h2>" +
+        dt(["Activity", "Time", "Cost", "Details"], acts.map(function (a) {
+          var mins = a[2], time = mins >= 60 ? (Math.floor(mins / 60) + "h" + (mins % 60 ? " " + (mins % 60) + "m" : "")) : mins + "m";
+          return [a[1], time, a[3] === 0 ? "Free" : nai(a[3]), a[4]];
+        }));
+    }
+    body += "<h2>Tips</h2><ul><li>Check the opening hours before you travel, so you do not arrive somewhere closed.</li><li>Keep Saturday rent money aside before you spend here.</li></ul>";
+    return body;
+  }
+  var VENUE_PAGE_NAMES = ["Amala Shitta","Balogun Market","CcHub","Eko Hotels & Suites","Elegushi Beach","Freedom Park","General Hospital","i-Fitness","Lagos High Court","Lekki Conservation Centre","Mama Bisi's Salon","New Afrika Shrine","Oga Sunday Viewing Centre","Teslim Balogun Stadium","University of Lagos"];
+  VENUE_PAGE_NAMES.forEach(function (name) {
+    var v = VENUES.filter(function (x) { return x[0] === name; })[0] || [];
+    var acts = ACTIVITIES.filter(function (x) { return x[0] === name; });
+    var route = "/locations/" + slugify(name);
+    var faq = [];
+    if (v.length) {
+      faq.push({ q: "What are the opening hours of " + name + " in Lagos Life?", a: name + " is open " + v[2] + " (in-game time)." });
+      if (v[3] && v[3] !== "-") faq.push({ q: "What job is based at " + name + " in Lagos Life?", a: "The " + v[3] + " career is based at " + name + "." });
+    }
+    faq.push({ q: "What can you do at " + name + "?", a: "See the activity table above for everything you can do there, with its time and cost." });
+    FAQ[route] = faq;
+    DESCS[route] = name + " in Lagos Life: opening hours, the jobs based there, things to do and costs.";
+    PAGES[route] = {
+      title: name + ", Lagos Life: Hours & Things to Do",
+      render: function () {
+        return article({
+          crumb: name,
+          kicker: "VENUE",
+          faq: faq,
+          title: name + " in Lagos Life",
+          body: venueBody(name, v, acts),
+          related: [
+            { t: "Venues & hours", r: "/venues" },
+            { t: "Activities & prices", r: "/activities" },
+            { t: "All locations", r: "/locations" },
+            { t: "Jobs & salaries", r: "/jobs" }
+          ]
+        });
+      }
+    };
+  });
 
   var LABELS = { "/locations": "Locations" };
   var SITE_LD = "https://lagoslife.homes";
