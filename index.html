@@ -531,6 +531,7 @@ button{font:inherit;color:inherit}
     <a href="/download">Download / APK?</a>
     <a href="/tips">Tips</a>
     <a href="/support">Not working?</a>
+    <a href="/unblocked">Unblocked</a>
   </nav>
   <nav class="footer-links footer-guides" aria-label="Site">
     <a href="/about">About</a>
@@ -1623,7 +1624,20 @@ button{font:inherit;color:inherit}
           "<h2>Before you sign in</h2>" +
           "<ul><li>Use a real browser tab, not an in-app viewer.</li><li>Have an email address ready for password recovery.</li><li>Confirm you meet the age requirement shown at sign-up.</li></ul>" +
           "<h2>Staying safe</h2>" +
-          "<p>Only trust the address the game itself publishes. This guide does not host the game and cannot recover accounts.</p>" +
+          "<p>Only trust the address the game itself publishes. This guide does not host the game and cannot recover accounts. Check the domain in your address bar before you enter any credentials.</p>" +
+          "<h2>Official addresses</h2>" +
+          dt(["Address", "What you will find"], [
+            ["lagoslife.app", "The main official browser game and its Terms and Privacy pages."],
+            ["lagoslife.eliysites.com", "A second official address for the same browser game."]
+          ]) +
+          "<h2>Lagos Life Sims website</h2>" +
+          "<p>Some people search for a \u201cLagos Life sims game\u201d or \u201cLagos Life sims website\u201d \u2014 these official addresses are the browser entry points. \u201cSims-style\u201d describes the genre; Lagos Life and The Sims are separate games, and you do not need Roblox or a Sims download.</p>" +
+          "<h2>App, payment or computer?</h2>" +
+          dt(["Question", "Short answer"], [
+            ["Do I need to download anything?", "No; open the website in a browser."],
+            ["Is it free?", "You can start free; virtual-currency top-ups are optional."],
+            ["Does it work on mobile?", "The map and sign-up open in a phone browser."]
+          ]) +
           '<div class="note-box">New here? <a href="/how-to-play">Read the first-steps guide</a> before you open the game. If the official address ever changes, confirm it on the game\u2019s own public pages.</div>',
         related: [
           { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
@@ -1986,6 +2000,12 @@ button{font:inherit;color:inherit}
           "<p>If you do not attach an email, a forgotten password may be impossible to recover. Add one when you sign up, not later.</p>" +
           "<h2>One account per person</h2>" +
           "<p>Shared systems such as the governor election assume one account per person. Do not run multiple accounts to game those systems.</p>" +
+          "<h2>What registration may ask for</h2>" +
+          "<p>The terms list fields such as a display name, a username or handle, an email address, a password, and an avatar choice. Always follow the live sign-up form; this guide is not a transcript of it.</p>" +
+          "<h2>Account rules</h2>" +
+          "<ul><li>Keep your login secure and your details accurate.</li><li>Selling, renting, sharing or trading an account needs the operator's written permission.</li><li>Account farming, fraud and attempts to evade restrictions are prohibited.</li></ul>" +
+          "<h2>Deleting an account</h2>" +
+          "<p>Deletion is usually a \u201csoft\u201d deletion: access may stop while some records remain for transactions, security, moderation or legal reasons.</p>" +
           '<div class="note-box">This guide cannot access, recover or modify any account. For account issues, use the game\u2019s own support channels.</div>',
         related: [
           { t: "Age requirement", r: "/age-requirement" },
@@ -2063,6 +2083,10 @@ button{font:inherit;color:inherit}
           "<tr><td>LAPO Baby</td><td>" + nai(60000) + " loan</td><td>Mushin " + nai(2400) + "/week or Yaba " + nai(6000) + "/week</td><td>Hustle 2, +25% skill growth; Lekki locked</td></tr>" +
           "<tr><td>UNILAG fresher (LAPO only)</td><td>" + nai(14000) + " cash, no loan</td><td>UNILAG hall bunk " + nai(1200) + "/week</td><td>Hustle 2, +25% growth, degree bonus of up to +25% pay</td></tr>" +
           "</tbody></table>" +
+          "<h2>What the creation screens say</h2>" +
+          "<p>From reported playthrough screens, the LAPO start shows these lines:</p>" +
+          "<ul><li>\u201c\u20a660,000 LAPO loan to start \u2014 repay \u20a612,000 every week\u201d</li><li>\u201cHustle skill starts at 2\u201d</li><li>\u201cYou learn every skill 25% faster\u201d</li><li>\u201cSelf-made hits different.\u201d, with the footer \u201cDecided once for your account. Starting a new life won\u2019t change it.\u201d</li></ul>" +
+          "<p>The housing screen shows starting funds such as \u201cStart with \u20a676,000\u201d for the Mushin room and \u201cStart with \u20a696,000\u201d for the Yaba self-contain. Treat these as screen declarations rather than audited balances.</p>" +
           "<h2>The LAPO debt</h2>" +
           "<p>The higher reported figure is a " + nai(60000) + " loan repaid at " + nai(12000) + " a week, about " + nai(72000) + " in total. On top of rent that is roughly " + nai(14400) + "/week in Mushin or " + nai(18000) + "/week in Yaba, so clearing it fast is the whole early game.</p>" +
           "<h2>Which start is better?</h2>" +
@@ -2740,6 +2764,31 @@ button{font:inherit;color:inherit}
     }
   };
 
+  PAGES["/unblocked"] = {
+    title: "Lagos Life Unblocked: Why It Won't Load",
+    render: function () {
+      return article({
+        crumb: "Unblocked",
+        kicker: "TROUBLESHOOTING",
+        faq: FAQ["/unblocked"],
+        title: "Lagos Life unblocked: safe troubleshooting",
+        body:
+          "<p>Whether Lagos Life opens at school or work depends on that network's access policy. If the game will not load, try normal browser and connection checks \u2014 this guide does not help bypass restrictions.</p>" +
+          "<h2>Why it might not load</h2>" +
+          "<p>Common causes: a temporary service issue, a browser problem, a weak connection, or a network policy that blocks the game. The exact cause is only confirmed once you check the official page and your connection.</p>" +
+          "<h2>What to try</h2>" +
+          "<ul><li>Confirm you are on the official <a href='/game-link'>game link</a>.</li><li>Reload the page and check your connection.</li><li>Try a current browser on a permitted network.</li><li>If the service seems busy, wait a little and retry.</li><li>On a managed school or work network, ask the administrator about access rules.</li></ul>" +
+          "<div class='note-box'>Do not try to evade a school, workplace or network provider's restrictions. Use another network only when you are allowed to do so.</div>",
+        related: [
+          { t: "Game link", r: "/game-link" },
+          { t: "Not loading?", r: "/not-loading" },
+          { t: "Download / APK?", r: "/download" },
+          { t: "All fixes", r: "/support" }
+        ]
+      });
+    }
+  };
+
   PAGES["/privacy"] = {
     title: "Privacy Policy",
     render: function () {
@@ -2935,6 +2984,7 @@ button{font:inherit;color:inherit}
     "/not-loading": "Lagos Life not loading? Fixes for a blank screen, stale cache and in-app browser problems.",
     "/reconnecting": "Lagos Life stuck on Reconnecting to Lagos? What it means and how to fix the dropped connection.",
     "/lag": "Lagos Life lag and stuttering: why it happens in a shared world and how to reduce it.",
+    "/unblocked": "Lagos Life unblocked and won't load: safe browser and connection checks, and why some networks block it.",
     "/privacy": "How Lagos Life Guide handles data, cookies and advertising, including the third-party ad networks and analytics we use.",
     "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
     "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
@@ -3144,6 +3194,10 @@ button{font:inherit;color:inherit}
     "/lag": [
       { q: "Why is Lagos Life laggy?", a: "It is a shared, busy world, so heavy load causes lag rather than your device." },
       { q: "How do I reduce Lagos Life lag?", a: "Play off-peak and use a desktop browser." }
+    ],
+    "/unblocked": [
+      { q: "Can I play Lagos Life at school or work?", a: "It depends on that network's access policy; this guide does not provide ways to bypass restrictions." },
+      { q: "The game will not load \u2014 what should I do?", a: "Check the official address, use a current browser, try another permitted network, or retry later if the service is busy." }
     ]
   };
 
