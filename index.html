@@ -1212,11 +1212,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   PAGES["/"] = { title: "Lagos Life: What It Is, How to Play & Where to Play Free", render: home };
 
   PAGES["/what-is-lagos-life"] = {
-    title: "What Is Lagos Life?",
+    title: "What Is Lagos Life? Browser Game Explained",
     render: function () {
       return article({
         crumb: "What Is Lagos Life?",
         kicker: "THE GAME",
+        faq: FAQ["/what-is-lagos-life"],
         title: "What is Lagos Life?",
         body:
           "<p>Lagos Life is a free browser life-simulation game set in a virtual Lagos, Nigeria. You play a character (a \u201cSim\u201d) living in a shared city alongside other players, and you spend your time on everyday things: working, paying rent, moving around, and socialising.</p>" +
@@ -1295,11 +1296,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/game-link"] = {
-    title: "Lagos Life Game Link",
+    title: "Lagos Life Game Link: Where to Play",
     render: function () {
       return article({
         crumb: "Game Link",
         kicker: "START PLAYING",
+        faq: FAQ["/game-link"],
         title: "Where to play Lagos Life",
         body:
           "<p>Lagos Life is played on its official website. There is no App Store or Google Play listing, so treat any download that claims to be an official Lagos Life app with suspicion.</p>" +
@@ -1320,7 +1322,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/locations"] = {
-    title: "Lagos Life Locations",
+    title: "Lagos Life Locations & Map Guide",
     render: function () {
       var cats = [
         ["TRANSPORT", "Hubs and routes", "Where shared minibuses, keke and motorcycles load and drop, and the routes that connect districts."],
@@ -1333,6 +1335,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       return article({
         crumb: "Locations",
         kicker: "THE MAP",
+        faq: FAQ["/locations"],
         title: "Lagos Life locations",
         body:
           "<p>The city map groups its named places into a handful of roles. Rather than a fixed list that goes stale, this page explains how the map is organised so you can find whatever you need.</p>" +
@@ -1346,6 +1349,16 @@ button{font:inherit;color:inherit;cursor:pointer}
               return '<div class="loc-card"><span class="tag">' + c[0] + '</span><h3>' + c[1] + '</h3><p>' + c[2] + '</p></div>';
             }).join("") +
           '</div>' +
+          "<h2>A few places to know</h2>" +
+          dt(["Place", "Area", "Open"], [
+            ["Amala Shitta", "Surulere", "07:00-22:00"],
+            ["Balogun Market", "Lagos Island", "07:00-19:00"],
+            ["CcHub", "Yaba", "08:00-23:00"],
+            ["General Hospital", "Ikeja", "24 hours"],
+            ["Quilox", "Victoria Island", "22:00-05:00"],
+            ["University of Lagos", "Akoka, Yaba", "24 hours"]
+          ]) +
+          "<p>See the <a href='/venues'>full venues list</a> for opening hours and the jobs based at each place.</p>" +
           "<h2>Reading the map</h2>" +
           "<p>Places usually combine a purpose with a cost. Transport gets you somewhere quickly but drains money or energy; leisure restores fun and social needs but costs time. Match the place to the need you are trying to fix.</p>" +
           "<h2>One place, in detail</h2>" +
@@ -1363,16 +1376,33 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/locations/quilox"] = {
-    title: "Lagos Life Quilox",
+    title: "Quilox, Lagos Life: Nightlife Guide",
     render: function () {
       return article({
         crumb: "Quilox",
         kicker: "NIGHTLIFE SPOT",
+        faq: FAQ["/locations/quilox"],
         title: "Quilox: a nightlife spot on the map",
         body:
           "<p>Quilox is the kind of place that shows how a single location can hold more than one system. It is a leisure venue, so it mainly serves social and fun needs — but visiting it also interacts with money, energy and time.</p>" +
           "<h2>What it is for</h2>" +
-          "<p>Treat a nightlife venue as a trade: spend money and energy now to restore fun and social needs, and sometimes to meet other players who happen to be there too.</p>" +
+          "<p>Treat a nightlife venue as a trade: spend money and energy now to restore fun and social needs, and sometimes to meet other players who happen to be there too. Quilox opens late, around 10 PM, and runs into the small hours.</p>" +
+          "<h2>What you can do at Quilox</h2>" +
+          dt(["Activity", "Cost", "Notes"], [
+            ["Dance Till Dawn", nai(800), "Restores fun"],
+            ["Enter the Dance Battle", nai(500), "Needs Dance 3"],
+            ["Signature Cocktail", nai(900), "Restores fun"],
+            ["Pay the DJ for a Shout-out", nai(3000), "-"],
+            ["Pay the Hype Man", nai(5000), "-"],
+            ["Bottle Service (VIP)", nai(9600), "Fancier night"],
+            ["Order the Gold Bottle", nai(50000), "-"],
+            ["Book a VIP Table", nai(250000), "-"],
+            ["Ace of Spades Parade (10 bottles)", nai(1000000), "-"],
+            ["Take Over Quilox for the Night", nai(10000000), "-"],
+            ["Network with Big Men", "\u2014", "Trains Hustle"],
+            ["Selfies for the Gram", "\u2014", "Trains Photography"],
+            ["Sneak into the VIP Section", "\u2014", "Crime; can get you caught"]
+          ]) +
           "<h2>When to go</h2>" +
           "<ul><li>When fun or social needs are low and you can afford the trip.</li><li>After a shift, if it will not ruin your energy for the next one.</li><li>When other players are around and the shared world feels busy.</li></ul>" +
           "<h2>Watch the cost</h2>" +
@@ -1388,7 +1418,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/updates"] = {
-    title: "Lagos Life Updates",
+    title: "Lagos Life Updates & Timeline",
     render: function () {
       return '<div class="content-shell article-shell">' +
         '<nav class="breadcrumbs"><a href="/">Home</a><span>/</span><span>Updates</span></nav>' +
@@ -1398,6 +1428,7 @@ button{font:inherit;color:inherit;cursor:pointer}
         '<div class="section-heading" style="margin-top:44px"><div><span class="eyebrow">HOW IT GREW</span><h2>Timeline</h2></div></div>' +
         timelineBlock() +
         '<p class="source-note" style="margin-top:24px"><strong>Note:</strong> Dates follow this guide\u2019s most recent review. In-game features change, so check the official game for the current state.</p>' +
+        faqSection(FAQ["/updates"]) +
         '</div>';
     }
   };
@@ -1423,6 +1454,7 @@ button{font:inherit;color:inherit;cursor:pointer}
         '</ul>' +
         '<div class="note-box">These numbers are reported, not audited, and change constantly. Check the game\u2019s own pages for the current state.</div>' +
         '</div>' +
+        faqSection(FAQ["/stats"]) +
         related([
           { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
           { t: "Game link", r: "/game-link" },
@@ -1447,6 +1479,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       return article({
         crumb: "Similar games",
         kicker: "IF YOU LIKE THIS",
+        faq: FAQ["/similar-games"],
         title: "Games like Lagos Life",
         body:
           "<p>If the shared, locally-flavoured life sim appeals to you, these are the titles players most often mention alongside it. They come from different genres and platforms, but they scratch a similar itch.</p>" +
@@ -1558,11 +1591,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/tips"] = {
-    title: "Lagos Life Tips",
+    title: "Lagos Life Tips & Tricks",
     render: function () {
       return article({
         crumb: "Tips",
         kicker: "PLAY BETTER",
+        faq: FAQ["/tips"],
         title: "Lagos Life tips and tricks",
         body:
           "<p>Short, practical tips that make the early game far less stressful.</p>" +
@@ -1581,11 +1615,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 
   /* ---------- account / safety pages -------------------------------------- */
   PAGES["/age-requirement"] = {
-    title: "Lagos Life Age Requirement",
+    title: "Lagos Life Age Limit (18+)",
     render: function () {
       return article({
         crumb: "Age Requirement",
         kicker: "ACCOUNT RULES",
+        faq: FAQ["/age-requirement"],
         title: "Lagos Life age requirement",
         body:
           "<p>The sign-up flow asks players to confirm they are 18 or older. This is an adult gate, and it exists because the game includes social features and, potentially, paid options.</p>" +
@@ -1604,11 +1639,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/account"] = {
-    title: "Lagos Life Account",
+    title: "Lagos Life Account & Password Reset",
     render: function () {
       return article({
         crumb: "Account",
         kicker: "SIGN UP",
+        faq: FAQ["/account"],
         title: "Lagos Life account: sign up and recovery",
         body:
           "<p>Your account is the key to everything — your Sim, your home, your progress. Set it up carefully the first time.</p>" +
@@ -1629,11 +1665,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/top-up"] = {
-    title: "Lagos Life Top Up",
+    title: "Lagos Life Top Up: What to Know",
     render: function () {
       return article({
         crumb: "Top Up",
         kicker: "PAYMENTS",
+        faq: FAQ["/top-up"],
         title: "Lagos Life top up: what to know first",
         body:
           "<p>Lagos Life can be started for free. The official site may offer optional purchases, and a top-up usually means adding virtual naira or another in-game currency to your account.</p>" +
@@ -1652,11 +1689,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/safety-and-privacy"] = {
-    title: "Lagos Life Safety and Privacy",
+    title: "Lagos Life Safety & Privacy",
     render: function () {
       return article({
         crumb: "Safety and Privacy",
         kicker: "GOOD PRACTICE",
+        faq: FAQ["/safety-and-privacy"],
         title: "Lagos Life safety and privacy",
         body:
           "<p>Because the city is shared, some information is visible to other players by nature. Keep that in mind when you choose a username and share anything.</p>" +
@@ -1885,11 +1923,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/sea-plots"] = {
-    title: "Lagos Life Sea Plots",
+    title: "Lagos Life Sea Plots Explained",
     render: function () {
       return article({
         crumb: "Sea Plots",
         kicker: "MAP ADS & HOMES",
+        faq: FAQ["/sea-plots"],
         title: "Sea Plots: map ad space explained",
         body:
           "<p>Sea Plots are paid space on the city map where a player can place a picture and a link. They are, in effect, small advertisements built into the world itself.</p>" +
@@ -1981,6 +2020,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       return article({
         crumb: "Lagos Life vs The Sims",
         kicker: "COMPARISON",
+        faq: FAQ["/lagos-life-vs-sims"],
         title: "Lagos Life vs The Sims",
         body:
           "<p>Players reach for the comparison because the two share a core loop: manage a character\u2019s needs, home and work. The differences are what give Lagos Life its character.</p>" +
@@ -2005,11 +2045,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   };
 
   PAGES["/shalom-rayhamen"] = {
-    title: "Lagos Life Developer",
+    title: "Lagos Life Developer: Shalom Rayhamen",
     render: function () {
       return article({
         crumb: "Developer",
         kicker: "THE MAKER",
+        faq: FAQ["/shalom-rayhamen"],
         title: "Shalom Rayhamen, the Lagos Life developer",
         body:
           "<p>Lagos Life is credited to Shalom Rayhamen. The idea is described as growing out of childhood familiarity with games like The Sims and a local appetite for city-themed browser games.</p>" +
@@ -2185,9 +2226,9 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/": "Independent, unofficial guide to Lagos Life, the free browser life-sim set in Lagos, Nigeria \u2014 how to play, all 21 careers, money, homes, venues and items.",
     "/what-is-lagos-life": "What is Lagos Life? A shared-world, browser life sim set in Lagos, Nigeria: what it is, how it plays and who made it, in plain English.",
     "/how-to-play": "How to play Lagos Life: sign up, build your Sim, take the birth lottery, choose a home, get a job and survive your first Saturday rent, step by step.",
-    "/game-link": "Where to play Lagos Life: it runs in your browser (no app) at the official lagoslife.app \u2014 sign-up, safety and what to expect before you start.",
+    "/game-link": "Where to play Lagos Life: the official game link, why there is no app, and what to know before you sign up.",
     "/locations": "Lagos Life locations: how the city map is organised by transport, markets, housing, nightlife and landmarks, plus single places like Quilox.",
-    "/locations/quilox": "Quilox in Lagos Life: how the nightlife venue plays into social and fun needs, when to visit and what a night out costs.",
+    "/locations/quilox": "Quilox in Lagos Life: the full activity list with costs, when to visit, and how the nightlife venue plays into social and fun needs.",
     "/venues": "Lagos Life venues and opening hours: every place on the map, the jobs based there and what you can do \u2014 from Amala Shitta to Eko Casino and UNILAG.",
     "/updates": "Lagos Life updates and timeline: how the browser game grew from launch to a million players, with the latest notes on new features.",
     "/stats": "Lagos Life player stats: total players, concurrent counts and daily growth explained \u2014 and what the numbers actually mean.",
@@ -2203,7 +2244,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/governor-election": "The Lagos Life governor election: how to vote at Polling Unit 001, the rules, and the city-wide policies the winner sets.",
     "/sea-plots": "Sea Plots in Lagos Life: paid map space for a picture and link \u2014 what it is, and why it is not real property or an investment.",
     "/age-requirement": "The Lagos Life age limit is 18+. Here is why the sign-up gate exists and what it means if you are younger.",
-    "/account": "Lagos Life account help: how to sign up, why you should add an email, and what to do about password resets.",
+    "/account": "Lagos Life account help: how to sign up, why you should add an email, and how password resets work.",
     "/top-up": "Lagos Life top up: what optional purchases buy, what they do not, and how to pay safely before you spend anything.",
     "/safety-and-privacy": "Lagos Life safety and privacy: what is public in a shared world, what to protect, and simple rules that keep your account safe.",
     "/support": "Lagos Life not working? Fixes for Reconnecting to Lagos, stuck loading, lag, in-app browser problems and lost passwords.",
@@ -2298,6 +2339,76 @@ button{font:inherit;color:inherit;cursor:pointer}
       { q: "How do I vote in Lagos Life?", a: "Go to Polling Unit 001, get accredited and cast your vote; polls close Sunday at 8 PM." },
       { q: "What does the governor do in Lagos Life?", a: "The winner sets city-wide policies such as minimum wage, transport and food subsidies, and steadier power." },
       { q: "How much does it cost to run for governor?", a: "Reported at about \u20a650,000 to run, with a \u20a625,000 daily allowance for a week if you win." }
+    ],
+    "/what-is-lagos-life": [
+      { q: "What is Lagos Life?", a: "A free browser life-simulation game set in a shared, Lagos-inspired city where you work, pay rent and meet other players." },
+      { q: "Is Lagos Life free to play?", a: "Yes, it is free to start in a browser; the official site may offer optional in-game purchases." },
+      { q: "Who made Lagos Life?", a: "It is credited to developer Shalom Rayhamen and run by Eliy, according to the game's public pages." }
+    ],
+    "/game-link": [
+      { q: "What is the Lagos Life game link?", a: "The game loads at lagoslife.app; its first address lagoslife.eliysites.com also works." },
+      { q: "Is there a Lagos Life app?", a: "No. It is a browser game with no App Store or Google Play listing." },
+      { q: "Is the Lagos Life game link safe?", a: "Only use the address the game itself publishes; this guide does not host the game." }
+    ],
+    "/locations": [
+      { q: "How many locations are in Lagos Life?", a: "The map groups its places into categories such as transport, markets, housing, nightlife and landmarks." },
+      { q: "What is the best area in Lagos Life?", a: "Cheap areas like Mushin keep rent low early on, while nightlife and landmarks restore fun and social." },
+      { q: "Where is the full venue list?", a: "See the venues page for names, opening hours and the jobs based at each place." }
+    ],
+    "/locations/quilox": [
+      { q: "Is Quilox expensive in Lagos Life?", a: "Yes. From an \u20a6800 dance to bottle service and VIP tables, Quilox is a premium night out." },
+      { q: "What can you do at Quilox?", a: "Dance, enter the dance battle, buy bottle service, network with big men and more." },
+      { q: "When is Quilox open?", a: "It opens at night and runs into the small hours." }
+    ],
+    "/updates": [
+      { q: "How often is Lagos Life updated?", a: "It is in active development, so content and numbers change quickly." },
+      { q: "What are the Lagos Life launch milestones?", a: "It crossed 100,000 players within days and passed a million players in about three days." }
+    ],
+    "/stats": [
+      { q: "How many people play Lagos Life?", a: "Reported figures include around 1.2 million total players and tens of thousands online at once." },
+      { q: "Are the Lagos Life stats accurate?", a: "They are reported, not audited, and move fast, so treat them as a snapshot." },
+      { q: "Where do the Lagos Life numbers come from?", a: "The game's own public pages and press reports." }
+    ],
+    "/sea-plots": [
+      { q: "What is a Sea Plot in Lagos Life?", a: "Paid map space where you can place a picture and a link." },
+      { q: "Is a Sea Plot worth real money?", a: "No. It is a game object with no real-world value." },
+      { q: "Can a Sea Plot be an investment?", a: "No; treat it as a cosmetic or promotional upgrade." }
+    ],
+    "/age-requirement": [
+      { q: "What is the Lagos Life age limit?", a: "18 and over; the sign-up flow asks you to confirm." },
+      { q: "Can under-18s play Lagos Life?", a: "No official way; the terms say younger accounts can be closed." }
+    ],
+    "/account": [
+      { q: "How do I create a Lagos Life account?", a: "Pick a username, a password of at least six characters, and add an email." },
+      { q: "How do I reset my Lagos Life password?", a: "Password recovery needs an email, so add one when you sign up." },
+      { q: "Can I have more than one Lagos Life account?", a: "Shared systems assume one account per person." }
+    ],
+    "/top-up": [
+      { q: "Does Lagos Life need real money?", a: "No. You can play free; top-ups are optional." },
+      { q: "Is topping up safe?", a: "Only pay through the official site, and read the current terms first." },
+      { q: "Can I cash out in-game naira?", a: "No; in-game money has no real-world value." }
+    ],
+    "/safety-and-privacy": [
+      { q: "Is Lagos Life safe?", a: "It is a shared world, so keep your password private and never send real money to players." },
+      { q: "What data does Lagos Life store?", a: "See the game's own privacy page; this guide stores nothing about your account." },
+      { q: "Should I reuse my password?", a: "No. Use a unique password for the game." }
+    ],
+    "/tips": [
+      { q: "What is the most important Lagos Life tip?", a: "Keep next Saturday's rent money aside before anything else." },
+      { q: "How do I make Lagos Life easier?", a: "Match your career to your trait, eat cheap, and keep needs topped up before shifts." }
+    ],
+    "/shalom-rayhamen": [
+      { q: "Who made Lagos Life?", a: "The game is credited to developer Shalom Rayhamen." },
+      { q: "Is Lagos Life by a big studio?", a: "No; it is credited to a small, named creator and run by Eliy." }
+    ],
+    "/lagos-life-vs-sims": [
+      { q: "Is Lagos Life the same as The Sims?", a: "No; it is a standalone browser game, Sims-style in genre but not a Sims product." },
+      { q: "Which is better, Lagos Life or The Sims?", a: "The Sims is a private sandbox; Lagos Life is a shared, locally-flavoured world." },
+      { q: "Is Lagos Life a Sims mod?", a: "No, it is its own game." }
+    ],
+    "/similar-games": [
+      { q: "What games are like Lagos Life?", a: "Lagos Run, Surviving Nigeria, The Sims 4 and BitLife are the common comparisons." },
+      { q: "Is Lagos Life like BitLife?", a: "Both are life sims, but Lagos Life is a live shared world in a browser." }
     ]
   };
 
