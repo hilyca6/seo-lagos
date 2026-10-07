@@ -597,6 +597,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     <a href="/activities">Activities &amp; prices</a>
     <a href="/daily-hunt">Daily hunt</a>
     <a href="/lagos-run">Lagos Run</a>
+    <a href="/compare">Compare games</a>
     <a href="/download">Download / APK?</a>
     <a href="/tips">Tips</a>
     <a href="/support">Not working?</a>
@@ -1834,6 +1835,7 @@ button{font:inherit;color:inherit;cursor:pointer}
           { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
           { t: "Lagos Life vs The Sims", r: "/lagos-life-vs-sims" },
           { t: "Player stats", r: "/stats" },
+          { t: "Compare games", r: "/compare" },
           { t: "Game link", r: "/game-link" }
         ]
       });
@@ -2379,6 +2381,7 @@ button{font:inherit;color:inherit;cursor:pointer}
         related: [
           { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
           { t: "How to play", r: "/how-to-play" },
+          { t: "More comparisons", r: "/compare" },
           { t: "Locations", r: "/locations" }
         ]
       });
@@ -2526,6 +2529,116 @@ button{font:inherit;color:inherit;cursor:pointer}
           { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
           { t: "Danfo and transport", r: "/danfo" },
           { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/compare"] = {
+    title: "Lagos Life Compared to Other Games",
+    render: function () {
+      return article({
+        crumb: "Compare",
+        kicker: "COMPARISONS",
+        faq: FAQ["/compare"],
+        title: "Lagos Life compared to other games",
+        body:
+          "<p>How Lagos Life compares with the games people most often mention alongside it. Each comparison has its own page.</p>" +
+          '<div class="guide-stack">' +
+            '<a class="guide-card" href="/lagos-life-vs-sims"><span class="guide-thumb">◈</span><span><h3>Lagos Life vs The Sims</h3><p>Shared, Lagos-set browser sim against the classic household sim.</p></span><span class="go">↗</span></a>' +
+            '<a class="guide-card" href="/lagos-life-vs-bitlife"><span class="guide-thumb">◈</span><span><h3>Lagos Life vs BitLife</h3><p>A live shared world against a single-player text life sim.</p></span><span class="go">↗</span></a>' +
+            '<a class="guide-card" href="/lagos-life-vs-roblox"><span class="guide-thumb">◈</span><span><h3>Lagos Life vs Roblox</h3><p>Is it a Roblox game? No &mdash; here is why.</p></span><span class="go">↗</span></a>' +
+            '<a class="guide-card" href="/lagos-life-vs-surviving-nigeria"><span class="guide-thumb">◈</span><span><h3>Lagos Life vs Surviving Nigeria</h3><p>Two Nigerian-life games with different genres.</p></span><span class="go">↗</span></a>' +
+            '<a class="guide-card" href="/lagos-run"><span class="guide-thumb">◈</span><span><h3>Lagos Run</h3><p>The danfo driving game that helped inspire Lagos Life.</p></span><span class="go">↗</span></a>' +
+          '</div>',
+        related: [
+          { t: "Games like Lagos Life", r: "/similar-games" },
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" },
+          { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/lagos-life-vs-bitlife"] = {
+    title: "Lagos Life vs BitLife",
+    render: function () {
+      return article({
+        crumb: "vs BitLife",
+        kicker: "COMPARISON",
+        faq: FAQ["/lagos-life-vs-bitlife"],
+        title: "Lagos Life vs BitLife",
+        body:
+          "<p>Both are life simulators, but they play very differently. BitLife is a single-player, text-based app; Lagos Life is a live, shared browser world set in Lagos.</p>" +
+          "<h2>At a glance</h2>" +
+          "<table><thead><tr><th></th><th>BitLife</th><th>Lagos Life</th></tr></thead><tbody>" +
+          "<tr><td>Platform</td><td>Mobile app</td><td>Web browser</td></tr>" +
+          "<tr><td>Format</td><td>Text choices and random life events</td><td>A visual city you move around</td></tr>" +
+          "<tr><td>Players</td><td>Single-player</td><td>Multiplayer shared world</td></tr>" +
+          "<tr><td>Setting</td><td>Generic</td><td>Lagos, Nigeria</td></tr>" +
+          "</tbody></table>" +
+          "<h2>Which should you play?</h2>" +
+          "<p>Pick BitLife for quick, private storytelling driven by random events. Pick Lagos Life for a live, social city where you pay rent, work shifts and meet other players.</p>" +
+          '<div class="note-box">This is an independent comparison; both games belong to their own owners.</div>',
+        related: [
+          { t: "Compare hub", r: "/compare" },
+          { t: "Games like Lagos Life", r: "/similar-games" },
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/lagos-life-vs-roblox"] = {
+    title: "Lagos Life vs Roblox (Is It a Roblox Game?)",
+    render: function () {
+      return article({
+        crumb: "vs Roblox",
+        kicker: "COMPARISON",
+        faq: FAQ["/lagos-life-vs-roblox"],
+        title: "Is Lagos Life a Roblox game?",
+        body:
+          "<p>No. Lagos Life is not a Roblox game. Roblox is a platform of millions of user-created games; Lagos Life is a single standalone game that runs in your browser on its own website.</p>" +
+          "<h2>At a glance</h2>" +
+          "<table><thead><tr><th></th><th>Roblox</th><th>Lagos Life</th></tr></thead><tbody>" +
+          "<tr><td>What it is</td><td>A platform of many games</td><td>One game</td></tr>" +
+          "<tr><td>How you play</td><td>Roblox app</td><td>Web browser</td></tr>" +
+          "<tr><td>Account</td><td>Roblox account</td><td>Its own account</td></tr>" +
+          "<tr><td>Setting</td><td>Anything creators make</td><td>Lagos, Nigeria</td></tr>" +
+          "</tbody></table>" +
+          "<h2>Why people ask</h2>" +
+          "<p>Both are free, social and popular, so they get grouped together in search results. But you do not need Roblox or a Roblox account to play Lagos Life.</p>",
+        related: [
+          { t: "Compare hub", r: "/compare" },
+          { t: "Game link", r: "/game-link" },
+          { t: "Similar games", r: "/similar-games" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/lagos-life-vs-surviving-nigeria"] = {
+    title: "Lagos Life vs Surviving Nigeria",
+    render: function () {
+      return article({
+        crumb: "vs Surviving Nigeria",
+        kicker: "COMPARISON",
+        faq: FAQ["/lagos-life-vs-surviving-nigeria"],
+        title: "Lagos Life vs Surviving Nigeria",
+        body:
+          "<p>Both games lean on Nigerian everyday life, but they are different genres. Surviving Nigeria is a survival game; Lagos Life is a shared life simulator.</p>" +
+          "<h2>At a glance</h2>" +
+          "<table><thead><tr><th></th><th>Surviving Nigeria</th><th>Lagos Life</th></tr></thead><tbody>" +
+          "<tr><td>Genre</td><td>Survival</td><td>Life simulation</td></tr>" +
+          "<tr><td>Focus</td><td>Getting by day to day</td><td>Work, rent and social life</td></tr>" +
+          "<tr><td>World</td><td>Single-player</td><td>Shared multiplayer city</td></tr>" +
+          "</tbody></table>" +
+          "<h2>Which is it for?</h2>" +
+          "<p>Choose Surviving Nigeria for a survival challenge; choose Lagos Life for a social life sim set in a live Lagos.</p>",
+        related: [
+          { t: "Compare hub", r: "/compare" },
+          { t: "Similar games", r: "/similar-games" },
+          { t: "What is Lagos Life?", r: "/what-is-lagos-life" }
         ]
       });
     }
@@ -2719,6 +2832,10 @@ button{font:inherit;color:inherit;cursor:pointer}
     "/activities": "All Lagos Life activities with time, cost and what they train \u2014 filter by venue and search the full list of things to do.",
     "/download": "No, Lagos Life has no download or APK \u2014 it is a browser game. How to add it to your home screen, and how to avoid fake downloads.",
     "/lagos-run": "Lagos Run: the browser game about driving a danfo through Lagos traffic, how it differs from Lagos Life, and where to play it.",
+    "/compare": "How Lagos Life compares with The Sims, BitLife, Roblox, Lagos Run and Surviving Nigeria, in one place.",
+    "/lagos-life-vs-bitlife": "Lagos Life vs BitLife: a shared browser life sim against a single-player text life sim, compared.",
+    "/lagos-life-vs-roblox": "Is Lagos Life a Roblox game? No. How the standalone Lagos Life browser game compares with the Roblox platform.",
+    "/lagos-life-vs-surviving-nigeria": "Lagos Life vs Surviving Nigeria: two Nigerian-life games with different genres, compared.",
     "/privacy": "How Lagos Life Guide handles data, cookies and advertising, including the third-party ad networks and analytics we use.",
     "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
     "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
@@ -2898,6 +3015,22 @@ button{font:inherit;color:inherit;cursor:pointer}
       { q: "Is Lagos Run the same as Lagos Life?", a: "No. Lagos Run is a danfo driving game; Lagos Life is a life sim." },
       { q: "Did Lagos Run inspire Lagos Life?", a: "The developer has said Lagos Run was part of the inspiration." },
       { q: "Is Lagos Run free?", a: "It is a browser game you can play online." }
+    ],
+    "/compare": [
+      { q: "What is Lagos Life most like?", a: "The Sims for the life-sim feel, and BitLife for life events, but it is its own shared browser game." },
+      { q: "Is Lagos Life on Roblox?", a: "No. It is a standalone browser game, not a Roblox experience." }
+    ],
+    "/lagos-life-vs-bitlife": [
+      { q: "Is Lagos Life like BitLife?", a: "Both are life sims, but BitLife is a single-player text game and Lagos Life is a shared browser world." },
+      { q: "Which is better, Lagos Life or BitLife?", a: "It depends: quick private stories on BitLife, or a live social city on Lagos Life." }
+    ],
+    "/lagos-life-vs-roblox": [
+      { q: "Is Lagos Life on Roblox?", a: "No, it is a standalone browser game on its own website." },
+      { q: "Do I need a Roblox account for Lagos Life?", a: "No. Lagos Life has its own account and is not connected to Roblox." }
+    ],
+    "/lagos-life-vs-surviving-nigeria": [
+      { q: "Are Lagos Life and Surviving Nigeria the same?", a: "No; one is a life sim, the other a survival game." },
+      { q: "Which is more Nigerian?", a: "Both are rooted in Nigerian life, but they focus on different things." }
     ]
   };
 
