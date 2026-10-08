@@ -389,7 +389,7 @@ button{font:inherit;color:inherit}
 @media(max-width:650px){.qactions{grid-template-columns:1fr}}
 
 /* 15c. TOOLS / CALCULATORS ------------------------------------------------- */
-.tool{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;margin:16px 0}
+.tool{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;margin:16px 0;scroll-margin-top:80px}
 .tool h3{font-size:18px}
 .tool .tool-hint{color:var(--muted-fg);font-size:13px;margin:4px 0 14px}
 .tool-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
@@ -568,6 +568,7 @@ button{font:inherit;color:inherit}
     <a href="/venues">Venues &amp; hours</a>
     <a href="/activities">Activities &amp; prices</a>
     <a href="/tools">Tools &amp; calculators</a>
+    <a href="/progression">Progression routes</a>
     <a href="/daily-hunt">Daily hunt</a>
     <a href="/lagos-run">Lagos Run</a>
     <a href="/compare">Compare games</a>
@@ -581,6 +582,10 @@ button{font:inherit;color:inherit}
     <a href="/contact">Contact</a>
     <a href="/privacy">Privacy Policy</a>
     <a href="/terms">Terms of Use</a>
+    <a href="/is-it-legit">Is it legit?</a>
+    <a href="/refunds">Refunds</a>
+    <a href="/delete-account">Delete account</a>
+    <a href="/bans">Bans</a>
   </nav>
   <p class="disclaimer">This guide is independently run and is not affiliated with or endorsed by the game's developer. Game details can change; check the official site for the latest in-game information.</p>
   <p class="copyright"><span>© 2026 Lagos Life Guide · unofficial fan project</span><a href="/">Back to top ↑</a></p>
@@ -1604,10 +1609,10 @@ button{font:inherit;color:inherit}
         '<div class="section-heading"><div><span class="eyebrow">FREE TOOLS</span><h2>Calculators</h2></div>' +
         '<a class="text-link" href="/tools">Open tools <span>\u2192</span></a></div>' +
         '<div class="loc-grid">' +
-          '<a class="loc-card" href="/tools"><span class="tag">TOOL</span><h3>First-week budget</h3><p>Weekly pay minus rent.</p></a>' +
-          '<a class="loc-card" href="/tools"><span class="tag">TOOL</span><h3>Compare careers</h3><p>Entry vs top pay and growth.</p></a>' +
-          '<a class="loc-card" href="/tools"><span class="tag">TOOL</span><h3>Business payback</h3><p>Days to earn back the cost.</p></a>' +
-          '<a class="loc-card" href="/tools"><span class="tag">TOOL</span><h3>Rent planner</h3><p>Which homes fit your income.</p></a>' +
+          '<a class="loc-card" href="/tools#budget"><span class="tag">TOOL</span><h3>First-week budget</h3><p>Weekly pay minus rent.</p></a>' +
+          '<a class="loc-card" href="/tools#compare"><span class="tag">TOOL</span><h3>Compare careers</h3><p>Entry vs top pay and growth.</p></a>' +
+          '<a class="loc-card" href="/tools#payback"><span class="tag">TOOL</span><h3>Business payback</h3><p>Days to earn back the cost.</p></a>' +
+          '<a class="loc-card" href="/tools#rent"><span class="tag">TOOL</span><h3>Rent planner</h3><p>Which homes fit your income.</p></a>' +
         '</div>' +
       '</section>' +
 
@@ -2690,7 +2695,7 @@ button{font:inherit;color:inherit}
         faq: FAQ["/lagos-run"],
         title: "Lagos Run: the danfo driving game",
         body:
-          "<p>Lagos Run is another browser game set in Lagos, built around driving a danfo (the yellow minibus) through traffic. It sits in the same family as Lagos Life \u2014 the developer has said Lagos Run was part of the inspiration for Lagos Life.</p>" +
+          "<p>Lagos Run is another browser game set in Lagos, built around driving a danfo (the yellow minibus) through traffic. It sits in the same family as Lagos Life \u2014 the developer has said Lagos Run was part of the inspiration for Lagos Life. They are different games: Lagos Life is a life sim, Lagos Run is an arcade driving game.</p>" +
           "<h2>What you do in Lagos Run</h2>" +
           "<ul><li>Drive a danfo through busy Lagos roads.</li><li>Weave through traffic and pick up the pace.</li><li>It is a quick arcade run rather than a life sim.</li></ul>" +
           "<h2>How it differs from Lagos Life</h2>" +
@@ -2966,7 +2971,7 @@ button{font:inherit;color:inherit}
         title: "Lagos Life tools and calculators",
         body:
           "<p>Free calculators that turn the guide's data into quick answers: can you afford your rent, which career pays more, how long a business takes to pay off, and which home fits your income.</p>" +
-          "<div class='tool'><h3>First-week budget</h3><p class='tool-hint'>Your weekly pay minus rent.</p>" +
+          "<div class='tool' id='budget'><h3>First-week budget</h3><p class='tool-hint'>Your weekly pay minus rent.</p>" +
             "<div class='tool-row'>" +
               "<label>Career<select id='tCareer'>" + careerOpts + "</select></label>" +
               "<label>Level<select id='tLevel'><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>" +
@@ -2974,13 +2979,13 @@ button{font:inherit;color:inherit}
               "<label>Home<select id='tHome'>" + homeOpts + "</select></label>" +
             "</div>" +
             "<div class='out' id='tBudgetOut'></div></div>" +
-          "<div class='tool'><h3>Compare two careers</h3><p class='tool-hint'>Entry pay, top pay and growth multiple.</p>" +
+          "<div class='tool' id='compare'><h3>Compare two careers</h3><p class='tool-hint'>Entry pay, top pay and growth multiple.</p>" +
             "<div class='tool-row'><label>Career A<select id='c1'>" + careerOpts + "</select></label><label>Career B<select id='c2'>" + careerOpts + "</select></label></div>" +
             "<div class='out' id='cCompareOut'></div></div>" +
-          "<div class='tool'><h3>Business payback</h3><p class='tool-hint'>How many days to earn back the cost.</p>" +
+          "<div class='tool' id='payback'><h3>Business payback</h3><p class='tool-hint'>How many days to earn back the cost.</p>" +
             "<div class='tool-row'><label>Business<select id='biz'>" + bizOpts + "</select></label></div>" +
             "<div class='out' id='bizOut'></div></div>" +
-          "<div class='tool'><h3>Rent planner</h3><p class='tool-hint'>Which homes fit your weekly income.</p>" +
+          "<div class='tool' id='rent'><h3>Rent planner</h3><p class='tool-hint'>Which homes fit your weekly income.</p>" +
             "<div class='tool-row'><label>Weekly income (\u20a6)<input id='rentIncome' type='number' min='0' value='40000'></label></div>" +
             "<div class='out' id='rentOut'></div></div>" +
           "<div class='note-box'>Calculators use the guide's reported figures and are for reference only; the game can change its numbers.</div>",
@@ -2989,6 +2994,140 @@ button{font:inherit;color:inherit}
           { t: "Homes & rent", r: "/houses" },
           { t: "Money & businesses", r: "/money" },
           { t: "Activities & prices", r: "/activities" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/is-it-legit"] = {
+    title: "Is Lagos Life Legit or a Scam?",
+    render: function () {
+      return article({
+        crumb: "Is it legit?",
+        kicker: "TRUST",
+        faq: FAQ["/is-it-legit"],
+        title: "Is Lagos Life legit or a scam?",
+        body:
+          "<p>Lagos Life is a real browser game run on its own website (lagoslife.app). This guide is an <strong>independent, unofficial fan site</strong> \u2014 we do not run the game and cannot access accounts or payments.</p>" +
+          "<h2>Why it is legitimate</h2>" +
+          "<ul><li>It runs on its own official address, not an app store or a random download.</li><li>It is free to start; top-ups are optional.</li><li>It is 18+ and has published Terms and a Privacy policy.</li></ul>" +
+          "<h2>Warning signs (avoid these)</h2>" +
+          "<ul><li>Lookalike domains that ask for your password \u2014 always check the address bar.</li><li>Any \u201cLagos Life APK\u201d or app-store listing \u2014 there is no official app.</li><li>Sites selling accounts, in-game naira, or promising easy money.</li></ul>" +
+          "<div class='note-box'>In-game naira, items and houses have no real-world value and cannot be cashed out. Never send real money to another player.</div>",
+        related: [
+          { t: "Game link", r: "/game-link" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" },
+          { t: "Download / APK?", r: "/download" },
+          { t: "Top up", r: "/top-up" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/refunds"] = {
+    title: "Lagos Life Refunds",
+    render: function () {
+      return article({
+        crumb: "Refunds",
+        kicker: "PAYMENTS",
+        faq: FAQ["/refunds"],
+        title: "Lagos Life refunds",
+        body:
+          "<p>Top-ups are optional purchases of in-game naira. As with most digital goods, a delivered purchase is generally final \u2014 a refund is typically possible only if you paid but did not receive the currency.</p>" +
+          "<h2>When a refund may apply</h2>" +
+          "<ul><li>You were charged but the naira never arrived.</li><li>A duplicate or failed transaction.</li></ul>" +
+          "<h2>How to request one</h2>" +
+          "<p>Contact the game's own support (the official site lists <strong>support@lagoslife.app</strong>) with your payment details and the time of purchase. Refunds are handled by the game, not by this guide.</p>" +
+          "<h2>What is not refundable</h2>" +
+          "<p>In-game naira you have already spent, and any non-delivery caused by using a non-official site.</p>" +
+          "<div class='note-box'>This guide cannot process payments or refunds; it is an independent fan site.</div>",
+        related: [
+          { t: "Top up", r: "/top-up" },
+          { t: "Is it legit?", r: "/is-it-legit" },
+          { t: "Account help", r: "/account" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/delete-account"] = {
+    title: "Delete Your Lagos Life Account",
+    render: function () {
+      return article({
+        crumb: "Delete account",
+        kicker: "ACCOUNT",
+        faq: FAQ["/delete-account"],
+        title: "Delete your Lagos Life account",
+        body:
+          "<p>You can ask the game to delete your account. In practice this is usually a <strong>soft deletion</strong>: your access stops, but some records may be kept for transactions, security, moderation or legal reasons.</p>" +
+          "<h2>How to request it</h2>" +
+          "<p>Use the game's own support channel (or the delete option if the game offers one). This guide cannot delete or modify accounts.</p>" +
+          "<h2>What deletion means</h2>" +
+          "<ul><li>You lose access to your Sim, home and progress.</li><li>Some data may be retained for a period.</li><li>In-game purchases generally are not refunded on deletion.</li></ul>" +
+          "<div class='note-box'>Deletion is handled by the game operator, not by this guide.</div>",
+        related: [
+          { t: "Account help", r: "/account" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" },
+          { t: "Refunds", r: "/refunds" },
+          { t: "Game link", r: "/game-link" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/bans"] = {
+    title: "Lagos Life Account Bans",
+    render: function () {
+      return article({
+        crumb: "Bans",
+        kicker: "ACCOUNT",
+        faq: FAQ["/bans"],
+        title: "Lagos Life account bans",
+        body:
+          "<p>Accounts can be restricted or suspended for breaking the game's rules. Understanding the common triggers helps you avoid it.</p>" +
+          "<h2>Common triggers</h2>" +
+          "<ul><li>Account farming or running multiple accounts to game shared systems.</li><li>Fraud, scams or sending real money to players.</li><li>Harassment, impersonation or exposing private information.</li><li>Selling, renting or sharing an account.</li><li>Evading restrictions or using lookalike sites.</li></ul>" +
+          "<h2>If you are banned</h2>" +
+          "<p>Use the game's own support or appeal channel. Bans are decided and handled by the game operator; this guide cannot lift a ban or access your account.</p>",
+        related: [
+          { t: "Account help", r: "/account" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" },
+          { t: "Is it legit?", r: "/is-it-legit" },
+          { t: "Governor election", r: "/governor-election" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/progression"] = {
+    title: "Lagos Life Progression Routes",
+    render: function () {
+      return article({
+        crumb: "Progression",
+        kicker: "STRATEGY",
+        faq: FAQ["/progression"],
+        title: "Lagos Life progression routes",
+        body:
+          "<p>There is no single way to play Lagos Life, but most players follow one of a few routes from a bare room to real money. Pick the one that matches your trait and your taste.</p>" +
+          "<h2>The three phases</h2>" +
+          "<ul><li><strong>Early (Lv 1-10):</strong> survive rent \u2014 cheap home, entry job, keep needs up.</li><li><strong>Mid (Lv 11-30):</strong> stack income \u2014 promotions, a side business, first land.</li><li><strong>Late (Lv 31+):</strong> compound \u2014 sea plots, a franchise, the governor election.</li></ul>" +
+          "<h2>Five routes</h2>" +
+          "<table><thead><tr><th>Route</th><th>Core idea</th><th>Best for</th></tr></thead><tbody>" +
+          "<tr><td>Salary ladder</td><td>Climb one career to level 5 as fast as possible</td><td>A trait that matches one skill</td></tr>" +
+          "<tr><td>Business builder</td><td>Reinvest wages into businesses for compounding income</td><td>Hustle or Charisma types</td></tr>" +
+          "<tr><td>Land investor</td><td>Buy appreciating plots and mind the omo-onile levy</td><td>Patient, higher-income players</td></tr>" +
+          "<tr><td>Gig and skills</td><td>Run gigs while levelling skills, then move into a job</td><td>Early game, any trait</td></tr>" +
+          "<tr><td>Fame and politics</td><td>Build social capital and contest the governor election</td><td>Social players</td></tr>" +
+          "</tbody></table>" +
+          "<h2>A month-by-month plan</h2>" +
+          "<ul><li>Week 1: secure rent, enter a matched career, learn the map.</li><li>Weeks 2-4: hit full performance every shift; open the cheapest business that fits your money.</li><li>Months 2-3: promote to level 3-4, buy a first land plot, and move up one housing tier cautiously.</li><li>Later: buy a sea plot for visibility, try the election, and never spend rent money.</li></ul>" +
+          "<div class='note-box'>Use the <a href='/tools'>calculators</a> to check each step before you commit money.</div>",
+        related: [
+          { t: "Tools & calculators", r: "/tools" },
+          { t: "Jobs & salaries", r: "/jobs" },
+          { t: "Money & businesses", r: "/money" },
+          { t: "Houses & rent", r: "/houses" }
         ]
       });
     }
@@ -3191,6 +3330,11 @@ button{font:inherit;color:inherit}
     "/lag": "Lagos Life lag and stuttering: why it happens in a shared world and how to reduce it.",
     "/unblocked": "Lagos Life unblocked and won't load: safe browser and connection checks, and why some networks block it.",
     "/tools": "Free Lagos Life calculators: first-week budget, career comparison, business payback and a rent planner.",
+    "/is-it-legit": "Is Lagos Life legit or a scam? Why it is a real browser game, plus warning signs and how to stay safe.",
+    "/refunds": "Lagos Life refunds: when a top-up can be refunded, how to request one, and what is not refundable.",
+    "/delete-account": "How to delete your Lagos Life account, what soft deletion means, and what happens to your purchases.",
+    "/bans": "Lagos Life account bans: common triggers and how to appeal, from an independent guide.",
+    "/progression": "Lagos Life progression routes: early, mid and late game, and five paths from a bare room to real money.",
     "/privacy": "How Lagos Life Guide handles data, cookies and advertising, including the third-party ad networks and analytics we use.",
     "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
     "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
@@ -3410,6 +3554,31 @@ button{font:inherit;color:inherit}
       { q: "Can I calculate my Lagos Life income?", a: "Yes \u2014 use the first-week budget tool: pick a career, level and shifts, then subtract your rent." },
       { q: "Which Lagos Life career pays the most?", a: "Music tops the table; use the career compare tool to see entry pay, top pay and the growth multiple." },
       { q: "How long does a Lagos Life business take to pay back?", a: "Use the business payback tool: bigger businesses pay back in fewer days but cost far more to start." }
+    ],
+    "/is-it-legit": [
+      { q: "Is Lagos Life a scam?", a: "No. It is a real browser game on its own official website. This guide is an independent fan site, not the game." },
+      { q: "Is it safe to pay for a top-up?", a: "Only pay on the official site and read its current terms. Top-ups are optional and in-game naira has no real-world value." },
+      { q: "Why do some sites look like the game?", a: "Lookalike sites try to capture players. Always check the address bar and never enter your password off-site." }
+    ],
+    "/refunds": [
+      { q: "Can I get a Lagos Life refund?", a: "Delivered digital purchases are generally final; a refund is usually possible only if you paid and did not receive the naira." },
+      { q: "What if my payment failed?", a: "Contact the game's support with your payment details; refunds are handled by the game, not this guide." },
+      { q: "Can I refund spent naira?", a: "No. Naira you have already spent, and purchases made on non-official sites, are not refundable." }
+    ],
+    "/delete-account": [
+      { q: "How do I delete my Lagos Life account?", a: "Request it through the game's own support. This guide cannot delete or modify accounts." },
+      { q: "Is deletion permanent?", a: "It is usually a soft deletion: access stops, but some records may be kept for legal or security reasons." },
+      { q: "Do I get purchases back if I delete my account?", a: "Generally no; in-game purchases are not refunded on deletion." }
+    ],
+    "/bans": [
+      { q: "Why was my Lagos Life account banned?", a: "Common causes are account farming, fraud, harassment, multiple accounts, or sharing and selling accounts." },
+      { q: "Can I appeal a ban?", a: "Use the game's own support or appeal channel; this guide cannot lift bans." },
+      { q: "Does this guide handle bans?", a: "No. This is an independent fan site with no access to game accounts." }
+    ],
+    "/progression": [
+      { q: "What is the best route in Lagos Life?", a: "The salary ladder is fastest for a single-skill climb; the business builder is best if you like compounding income." },
+      { q: "How do I make money early in Lagos Life?", a: "Keep a cheap home, enter a trait-matched career, keep needs up, and run the guaranteed gigs." },
+      { q: "When should I buy a business?", a: "Once you can afford the cheapest one without touching your rent money." }
     ]
   };
 
@@ -3618,7 +3787,11 @@ button{font:inherit;color:inherit}
       document.title = page.title + " \u00b7 Lagos Life Guide";
       app.innerHTML = page.render();
       if (page.after) page.after();
-      window.scrollTo(0, 0);
+      var hash = location.hash;
+      if (hash && hash.length > 1) {
+        var target = document.getElementById(hash.slice(1));
+        if (target) { target.scrollIntoView({ behavior: "smooth", block: "start" }); } else { window.scrollTo(0, 0); }
+      } else { window.scrollTo(0, 0); }
       setActiveNav(route);
       closeMenu();
       setMeta(page, route);
