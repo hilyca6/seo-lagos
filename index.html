@@ -348,7 +348,7 @@ button{font:inherit;color:inherit}
 .facts dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;margin:0 0 16px;font-size:13px}
 .facts dt{color:var(--faint)}
 .facts dd{margin:0;text-align:right;color:var(--fg)}
-.qactions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.qactions{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
 .qa{display:flex;align-items:center;gap:12px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);transition:transform .15s,border-color .15s,box-shadow .15s}
 .qa:hover{transform:translateY(-2px);border-color:var(--border-strong);box-shadow:var(--shadow)}
 .qa .ic{width:34px;height:34px;flex:none;border-radius:var(--r-md);background:var(--muted);display:grid;place-items:center;color:var(--primary);font-size:16px}
@@ -488,9 +488,8 @@ button{font:inherit;color:inherit}
       <a href="/how-to-play">How to Play</a>
       <a href="/game-link">Game Link</a>
       <a href="/locations">Locations</a>
-      <a href="/stats">Stats</a>
+      <a href="/tools">Tools</a>
       <a href="/guides">Guides</a>
-      <a href="/updates">Updates</a>
     </nav>
     <details class="menu">
       <summary aria-label="Open navigation menu"><span></span><span></span><span></span></summary>
@@ -499,9 +498,8 @@ button{font:inherit;color:inherit}
         <a href="/how-to-play">How to Play</a>
         <a href="/game-link">Game Link</a>
         <a href="/locations">Locations</a>
-        <a href="/stats">Stats</a>
+        <a href="/tools">Tools</a>
         <a href="/guides">Guides</a>
-        <a href="/updates">Updates</a>
       </nav>
     </details>
   </div>
@@ -1506,6 +1504,7 @@ button{font:inherit;color:inherit}
       ["\u2197", "Play now", "Official game link", "/game-link"],
       ["\u25c9", "First steps", "How to play", "/how-to-play"],
       ["\u20a6", "Jobs & salaries", "21 careers", "/jobs"],
+      ["\u2699", "Tools", "Free calculators", "/tools"],
       ["\u2316", "Activities", "263 things to do", "/activities"]
     ];
     var careers = [
@@ -1526,11 +1525,13 @@ button{font:inherit;color:inherit}
     var tiles = [
       ["DATA", "Jobs & salaries", "Careers, pay and promotions", "/jobs"],
       ["DATA", "Money", "Businesses, land and tax", "/money"],
+      ["TOOL", "Tools", "Budgets, pay and rent", "/tools"],
       ["TOOLS", "Activities", "263 things to do", "/activities"],
       ["TOOLS", "Items & prices", "Furniture and appliances", "/items"],
       ["CITY", "Locations", "Every place on the map", "/locations"],
       ["CITY", "Homes & rent", "Housing tiers and costs", "/houses"],
       ["SYSTEM", "Daily hunt", "The daily puzzle", "/daily-hunt"],
+      ["COMPARE", "Compare games", "The Sims, BitLife, Roblox", "/compare"],
       ["HELP", "Fixes", "Lag, loading, reconnecting", "/support"]
     ];
 
@@ -1558,7 +1559,7 @@ button{font:inherit;color:inherit}
           '<div class="hero-intro"><p>Every career, salary, business, item and venue in the Lagos Life browser game \u2014 organised, searchable and free.</p></div>' +
           '<div class="hero-actions">' +
             '<a class="button button-primary" href="/game-link">Play the game <span aria-hidden="true">\u2197</span></a>' +
-            '<a class="button button-secondary" href="/how-to-play">Start with how to play</a>' +
+            '<a class="button button-secondary" href="/tools">Try the tools</a>' +
           '</div>' +
           '<p class="hero-disclaimer">Independent, unofficial guide \u00b7 not affiliated with the developer.</p>' +
         '</div>' +
@@ -1596,6 +1597,17 @@ button{font:inherit;color:inherit}
             '<table class="data-table"><thead><tr><th>#</th><th>Career</th><th class="num">Pay / shift</th><th class="num">Growth</th></tr></thead><tbody>' + careersHtml + '</tbody></table></div>' +
           '<div class="panel"><div class="ph"><b>Best early moves</b><a class="text-link" href="/activities">Activities <span>\u2192</span></a></div>' +
             '<div class="dlist">' + movesHtml + '</div></div>' +
+        '</div>' +
+      '</section>' +
+
+      '<section class="content-shell" style="padding-top:44px">' +
+        '<div class="section-heading"><div><span class="eyebrow">FREE TOOLS</span><h2>Calculators</h2></div>' +
+        '<a class="text-link" href="/tools">Open tools <span>\u2192</span></a></div>' +
+        '<div class="loc-grid">' +
+          '<a class="loc-card" href="/tools"><span class="tag">TOOL</span><h3>First-week budget</h3><p>Weekly pay minus rent.</p></a>' +
+          '<a class="loc-card" href="/tools"><span class="tag">TOOL</span><h3>Compare careers</h3><p>Entry vs top pay and growth.</p></a>' +
+          '<a class="loc-card" href="/tools"><span class="tag">TOOL</span><h3>Business payback</h3><p>Days to earn back the cost.</p></a>' +
+          '<a class="loc-card" href="/tools"><span class="tag">TOOL</span><h3>Rent planner</h3><p>Which homes fit your income.</p></a>' +
         '</div>' +
       '</section>' +
 
