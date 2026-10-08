@@ -388,6 +388,27 @@ button{font:inherit;color:inherit}
 @media(max-width:900px){.qactions{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr}.feature{grid-template-columns:1fr;gap:20px}}
 @media(max-width:650px){.qactions{grid-template-columns:1fr}}
 
+/* 15c. TOOLS / CALCULATORS ------------------------------------------------- */
+.tool{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;margin:16px 0}
+.tool h3{font-size:18px}
+.tool .tool-hint{color:var(--muted-fg);font-size:13px;margin:4px 0 14px}
+.tool-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.tool label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted-fg)}
+.tool select,.tool input{min-height:42px;padding:0 12px;border:1px solid var(--border);border-radius:var(--r-md);background:var(--bg);color:var(--fg);font:inherit;font-size:13px}
+.tool select:focus,.tool input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(234,88,12,.25)}
+.tool .out{background:var(--muted);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px;font-size:14px;line-height:1.7}
+.tool .out b{font-family:var(--font-display);font-size:20px;color:var(--primary)}
+.tool .out b.neg{color:var(--danger)}
+.tool .out .muted{color:var(--muted-fg)}
+.tool-list{margin-top:14px;border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden}
+.tool-list .row{display:flex;gap:12px;justify-content:space-between;align-items:baseline;padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px}
+.tool-list .row:last-child{border-bottom:0}
+.tool-list .row .d{color:var(--faint);font-family:var(--font-mono);font-size:11px;min-width:90px}
+.tool-list .row .ans{color:var(--fg);font-weight:600}
+.tool-list .row .clue{color:var(--muted-fg);flex:1}
+.tool-list .del{color:var(--danger);cursor:pointer;background:none;border:0;font:inherit;padding:0}
+.tool-list .empty{padding:14px;color:var(--faint);font-size:13px}
+
 /* 16. FOOTER --------------------------------------------------------------- */
 .site-footer{margin-top:56px;padding:40px max(24px,calc((100vw - 1224px)/2)) 26px;background:var(--bg);border-top:1px solid var(--border);color:var(--muted-fg)}
 .footer-top{display:flex;align-items:center;gap:20px}
@@ -548,6 +569,7 @@ button{font:inherit;color:inherit}
     <a href="/items">Items &amp; prices</a>
     <a href="/venues">Venues &amp; hours</a>
     <a href="/activities">Activities &amp; prices</a>
+    <a href="/tools">Tools &amp; calculators</a>
     <a href="/daily-hunt">Daily hunt</a>
     <a href="/lagos-run">Lagos Run</a>
     <a href="/compare">Compare games</a>
@@ -861,6 +883,16 @@ button{font:inherit;color:inherit}
     ["Car Wash",15000000,"\u20a662,000-204,000/day","Lekki"],
     ["Event Centre",60000000,"\u20a6155,000-741,000/day","Ikoyi"],
     ["Quilox Share (5%)",250000000,"\u20a6645,000-2,435,000/day","Victoria Island"]
+  ];
+  var BIZ_NET = [
+    ["Recharge & Data Kiosk",150000,700,3200],
+    ["Zobo & Chapman Stand",300000,1800,5800],
+    ["POS Stand",500000,3000,9500],
+    ["Buka (Mama Put)",2500000,12000,43000],
+    ["Barbing Salon",6000000,26000,93000],
+    ["Car Wash",15000000,62000,204000],
+    ["Event Centre",60000000,155000,741000],
+    ["Quilox Share (5%)",250000000,645000,2435000]
   ];
   var LAND = [
     ["Imota, Ikorodu (quarter plot)",250000,"40%","+2.5%/week"],
@@ -1328,6 +1360,73 @@ button{font:inherit;color:inherit}
     });
     s.addEventListener("input", apply); k.addEventListener("change", apply); apply();
   }
+  function bindTools() {
+    var C = {}; CAREERS.forEach(function (c) { C[c[0]] = c; });
+    var g = function (id) { return document.getElementById(id); };
+    if (!g("tCareer")) return;
+    function calcBudget() {
+      var c = C[g("tCareer").value], lvl = parseInt(g("tLevel").value, 10),
+          shifts = parseInt(g("tShifts").value, 10) || 0, rent = parseInt(g("tHome").value, 10) || 0;
+      var pay = c[4][lvl - 1], week = pay * shifts, net = week - rent;
+      g("tBudgetOut").innerHTML = "Weekly pay <b>" + nai(week) + "</b> &nbsp; Rent <span class='muted'>" + nai(rent) +
+        "</span> &nbsp; Left over <b class='" + (net < 0 ? "neg" : "") + "'>" + nai(net) + "</b>" +
+        (net < 0 ? " <span class='muted'>\u2014 short; add shifts or pick a cheaper home.</span>" : " <span class='muted'>\u2014 put rent aside first.</span>");
+    }
+    function calcCompare() {
+      function row(c) { var lo = c[4][0], hi = c[4][4]; return "<tr><td>" + c[0] + "</td><td>" + c[3][0] + "</td><td class='num'>" + nai(lo) + "</td><td class='num'>" + nai(hi) + "</td><td class='num'>" + (hi / lo).toFixed(1) + "\u00d7</td></tr>"; }
+      g("cCompareOut").innerHTML = "<table class='data-table'><thead><tr><th>Career</th><th>Entry</th><th class='num'>Entry pay</th><th class='num'>Top pay</th><th class='num'>Growth</th></tr></thead><tbody>" + row(C[g("c1").value]) + row(C[g("c2").value]) + "</tbody></table>";
+    }
+    function calcBiz() {
+      var b = BIZ_NET.filter(function (x) { return x[0] === g("biz").value; })[0];
+      var cost = b[1], lo = b[2], hi = b[3], avg = (lo + hi) / 2;
+      g("bizOut").innerHTML = "Cost <b>" + nai(cost) + "</b> &nbsp; Net <span class='muted'>" + nai(lo) + "\u2013" + nai(hi) +
+        "/day</span> &nbsp; Payback <b>" + Math.ceil(cost / hi) + "\u2013" + Math.ceil(cost / avg) + " days</b>";
+    }
+    function calcRent() {
+      var inc = parseInt(g("rentIncome").value, 10) || 0;
+      var rows = HOMES.map(function (h) {
+        var r = h[2], pct = inc ? Math.round(r / inc * 100) : 999;
+        var tag = r <= inc * 0.5 ? "<span class='pill paid'>comfortable</span>" : (r <= inc * 0.8 ? "<span class='pill'>tight</span>" : "<span class='pill free'>risky</span>");
+        return "<tr><td>" + h[0] + "</td><td>" + h[1] + "</td><td class='num'>" + nai(r) + "/wk</td><td class='num'>" + (inc ? pct + "%" : "\u2014") + "</td><td>" + tag + "</td></tr>";
+      }).join("");
+      g("rentOut").innerHTML = "<table class='data-table'><thead><tr><th>Home</th><th>Area</th><th class='num'>Weekly rent</th><th class='num'>% of income</th><th></th></tr></thead><tbody>" + rows + "</tbody></table>";
+    }
+    ["tCareer", "tLevel", "tShifts", "tHome"].forEach(function (id) { g(id).addEventListener("input", calcBudget); g(id).addEventListener("change", calcBudget); });
+    ["c1", "c2"].forEach(function (id) { g(id).addEventListener("change", calcCompare); });
+    g("biz").addEventListener("change", calcBiz);
+    g("rentIncome").addEventListener("input", calcRent);
+    calcBudget(); calcCompare(); calcBiz(); calcRent();
+  }
+
+  function bindDailyHunt() {
+    var KEY = "ll-hunt-log";
+    var list = document.getElementById("hList");
+    if (!list) return;
+    function load() { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; } }
+    function save(a) { try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {} }
+    function render() {
+      var a = load();
+      if (!a.length) { list.innerHTML = "<div class='empty'>No entries yet. Add your first clue above.</div>"; return; }
+      list.innerHTML = a.map(function (e, i) {
+        return "<div class='row'><span class='d'>" + e.d + "</span><span class='clue'>" + (e.c || "\u2014") + "</span><span class='ans'>" + (e.a || "?") + "</span><button class='del' data-i='" + i + "' type='button'>delete</button></div>";
+      }).join("");
+    }
+    var d = document.getElementById("hDate");
+    if (d && !d.value) d.value = new Date().toISOString().slice(0, 10);
+    document.getElementById("hAdd").addEventListener("click", function () {
+      var date = d.value || "", clue = document.getElementById("hClue").value.trim(), ans = document.getElementById("hAnswer").value.trim();
+      if (!ans && !clue) return;
+      var a = load(); a.unshift({ d: date, c: clue, a: ans }); save(a);
+      document.getElementById("hClue").value = ""; document.getElementById("hAnswer").value = "";
+      render();
+    });
+    list.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest(".del") : null; if (!b) return;
+      var a = load(); a.splice(parseInt(b.getAttribute("data-i"), 10), 1); save(a); render();
+    });
+    render();
+  }
+
   function careerTable() {
     var rows = "";
     CAREERS.forEach(function (c) {
@@ -2481,6 +2580,7 @@ button{font:inherit;color:inherit}
 
   PAGES["/daily-hunt"] = {
     title: "Lagos Life Daily Hunt",
+    after: bindDailyHunt,
     render: function () {
       return article({
         crumb: "Daily hunt",
@@ -2493,6 +2593,15 @@ button{font:inherit;color:inherit}
           "<ul><li>The game posts a clue that describes a place, a landmark or an activity.</li><li>You find the matching location on the map and go there.</li><li>Solving it pays out and teaches you the map.</li></ul>" +
           "<h2>How to solve it faster</h2>" +
           "<ul><li>Read the clue for an area name (Mushin, Yaba, Lekki, Victoria Island) or a landmark.</li><li>Think about which venue matches the activity: markets, transport hubs, nightlife, institutions.</li><li>Note opening hours so you do not travel somewhere that is closed.</li><li>Use the venues list to narrow it down.</li></ul>" +
+          "<h2>Your hunt log</h2>" +
+          "<div class='tool'><p class='tool-hint'>Log each day's clue and the place you found. Saved only in your browser.</p>" +
+            "<div class='tool-row'>" +
+              "<label>Date<input id='hDate' type='date'></label>" +
+              "<label>Clue<input id='hClue' type='text' placeholder='the clue'></label>" +
+              "<label>Found at<input id='hAnswer' type='text' placeholder='venue'></label>" +
+            "</div>" +
+            "<button class='button button-primary button-sm' id='hAdd' type='button'>Save entry</button>" +
+            "<div class='tool-list' id='hList'></div></div>" +
           '<div class="note-box">The exact clue and reward change daily, and the game is in active development, so treat any specific figure as a snapshot.</div>',
         related: [
           { t: "Venues and hours", r: "/venues" },
@@ -2831,6 +2940,48 @@ button{font:inherit;color:inherit}
     }
   };
 
+  PAGES["/tools"] = {
+    title: "Lagos Life Tools & Calculators",
+    after: bindTools,
+    render: function () {
+      var careerOpts = CAREERS.map(function (c) { return "<option value='" + c[0] + "'>" + c[0] + "</option>"; }).join("");
+      var homeOpts = HOMES.map(function (h) { return "<option value='" + h[2] + "'>" + h[0] + " \u00b7 " + h[1] + "</option>"; }).join("");
+      var bizOpts = BIZ_NET.map(function (b) { return "<option value='" + b[0] + "'>" + b[0] + "</option>"; }).join("");
+      return article({
+        crumb: "Tools",
+        kicker: "CALCULATORS",
+        faq: FAQ["/tools"],
+        title: "Lagos Life tools and calculators",
+        body:
+          "<p>Free calculators that turn the guide's data into quick answers: can you afford your rent, which career pays more, how long a business takes to pay off, and which home fits your income.</p>" +
+          "<div class='tool'><h3>First-week budget</h3><p class='tool-hint'>Your weekly pay minus rent.</p>" +
+            "<div class='tool-row'>" +
+              "<label>Career<select id='tCareer'>" + careerOpts + "</select></label>" +
+              "<label>Level<select id='tLevel'><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>" +
+              "<label>Shifts / week<input id='tShifts' type='number' min='0' max='7' value='5'></label>" +
+              "<label>Home<select id='tHome'>" + homeOpts + "</select></label>" +
+            "</div>" +
+            "<div class='out' id='tBudgetOut'></div></div>" +
+          "<div class='tool'><h3>Compare two careers</h3><p class='tool-hint'>Entry pay, top pay and growth multiple.</p>" +
+            "<div class='tool-row'><label>Career A<select id='c1'>" + careerOpts + "</select></label><label>Career B<select id='c2'>" + careerOpts + "</select></label></div>" +
+            "<div class='out' id='cCompareOut'></div></div>" +
+          "<div class='tool'><h3>Business payback</h3><p class='tool-hint'>How many days to earn back the cost.</p>" +
+            "<div class='tool-row'><label>Business<select id='biz'>" + bizOpts + "</select></label></div>" +
+            "<div class='out' id='bizOut'></div></div>" +
+          "<div class='tool'><h3>Rent planner</h3><p class='tool-hint'>Which homes fit your weekly income.</p>" +
+            "<div class='tool-row'><label>Weekly income (\u20a6)<input id='rentIncome' type='number' min='0' value='40000'></label></div>" +
+            "<div class='out' id='rentOut'></div></div>" +
+          "<div class='note-box'>Calculators use the guide's reported figures and are for reference only; the game can change its numbers.</div>",
+        related: [
+          { t: "Jobs & salaries", r: "/jobs" },
+          { t: "Homes & rent", r: "/houses" },
+          { t: "Money & businesses", r: "/money" },
+          { t: "Activities & prices", r: "/activities" }
+        ]
+      });
+    }
+  };
+
   PAGES["/privacy"] = {
     title: "Privacy Policy",
     render: function () {
@@ -3027,6 +3178,7 @@ button{font:inherit;color:inherit}
     "/reconnecting": "Lagos Life stuck on Reconnecting to Lagos? What it means and how to fix the dropped connection.",
     "/lag": "Lagos Life lag and stuttering: why it happens in a shared world and how to reduce it.",
     "/unblocked": "Lagos Life unblocked and won't load: safe browser and connection checks, and why some networks block it.",
+    "/tools": "Free Lagos Life calculators: first-week budget, career comparison, business payback and a rent planner.",
     "/privacy": "How Lagos Life Guide handles data, cookies and advertising, including the third-party ad networks and analytics we use.",
     "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
     "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
@@ -3192,7 +3344,8 @@ button{font:inherit;color:inherit}
     "/daily-hunt": [
       { q: "What is the Lagos Life daily hunt?", a: "A daily puzzle where a clue points to one location on the Lagos map, and players work out where it is." },
       { q: "How often is the Lagos Life hunt?", a: "Once a day." },
-      { q: "What do you get for the daily hunt?", a: "A reward shown in game; treat the exact prize as changing." }
+      { q: "What do you get for the daily hunt?", a: "A reward shown in game; treat the exact prize as changing." },
+      { q: "Can I log my daily hunt answers?", a: "Yes \u2014 the hunt log on this page saves each day's clue and answer in your browser." }
     ],
     "/activities": [
       { q: "How many activities are in Lagos Life?", a: "Around 275 across the map, from free chats to a billion-naira club takeover." },
@@ -3240,6 +3393,11 @@ button{font:inherit;color:inherit}
     "/unblocked": [
       { q: "Can I play Lagos Life at school or work?", a: "It depends on that network's access policy; this guide does not provide ways to bypass restrictions." },
       { q: "The game will not load \u2014 what should I do?", a: "Check the official address, use a current browser, try another permitted network, or retry later if the service is busy." }
+    ],
+    "/tools": [
+      { q: "Can I calculate my Lagos Life income?", a: "Yes \u2014 use the first-week budget tool: pick a career, level and shifts, then subtract your rent." },
+      { q: "Which Lagos Life career pays the most?", a: "Music tops the table; use the career compare tool to see entry pay, top pay and the growth multiple." },
+      { q: "How long does a Lagos Life business take to pay back?", a: "Use the business payback tool: bigger businesses pay back in fewer days but cost far more to start." }
     ]
   };
 
