@@ -250,6 +250,12 @@ button{font:inherit;color:inherit}
 .related-links a{padding:8px 12px;border:1px solid var(--border);border-radius:var(--r-pill);color:var(--muted-fg);font-size:12px;transition:background .15s,border-color .15s,color .15s}
 .related-links a:hover{background:var(--muted);border-color:var(--border-strong);color:var(--fg)}
 .source-note{max-width:860px;margin:16px auto 0;padding:14px 16px;background:var(--muted);color:var(--muted-fg);font-size:12px;line-height:1.6;border:1px solid var(--border);border-radius:var(--r-md)}
+.note-box{margin:22px 0;padding:14px 18px;background:var(--muted);border:1px solid var(--border);border-left:3px solid var(--primary);border-radius:var(--r-md);color:var(--muted-fg);font-size:13.5px;line-height:1.7}
+.note-box b{color:var(--fg)}
+.note-box a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}
+.hunt-today{background:var(--card);border-color:var(--primary)}
+.hunt-today .hunt-meta{margin:0 0 4px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.hunt-today .hunt-clue{font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.45;color:var(--fg);margin:6px 0 10px}
 .source-note strong{color:var(--fg)}
 .source-note a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}
 
@@ -763,6 +769,8 @@ button{font:inherit;color:inherit}
 
   /* ---------- update feed (reused by home + updates page) ----------------- */
   var UPDATES = [
+    { t: "Lagos Life Jobs: 33 Careers and Starting Pay", r: "/jobs" },
+    { t: "Lagos Life Daily Hunt: Today's Clue and Answer", r: "/daily-hunt" },
     { t: "Lagos Life How to Play: Your First Steps", r: "/how-to-play" },
     { t: "Lagos Life Game — Play It Here", r: "/game-link" },
     { t: "Lagos Life Locations: Map Places Explained", r: "/locations" },
@@ -785,7 +793,8 @@ button{font:inherit;color:inherit}
     { d: "1 Oct 2026", t: "Launch announced", p: "The developer shares that the browser game has gone live." },
     { d: "3 Oct 2026", t: "Crosses 100,000 players", p: "Reached within about 72 hours, with over 11,000 playing at once." },
     { d: "4 Oct 2026", t: "50,000+ playing together", p: "The peak crowd grows and more city content is announced." },
-    { d: "4 Oct 2026", t: "One million players", p: "Over 109,000 were online at the milestone, roughly three days after launch." }
+    { d: "4 Oct 2026", t: "One million players", p: "Over 109,000 were online at the milestone, roughly three days after launch." },
+    { d: "8 Oct 2026", t: "Cross-city jobs and the daily gem hunt", p: "The jobs board lists 33 routes across Lagos, Abuja and Port Harcourt, and the Home screen adds a Daily gem hunt with \u20a650,000 for the first finder." }
   ];
 
   function statCard(s) {
@@ -841,6 +850,28 @@ button{font:inherit;color:inherit}
     ["Real Estate","Charisma","Ikoyi Golf Club, Ikoyi",["Estate Agent","Senior Agent","Property Manager","Estate Developer","Property Mogul"],[18000,28000,41000,58000,88000]],
     ["Aviation","Fitness","Eko Hotels & Suites, VI",["Cabin Crew","Senior Purser","First Officer","Captain","Chief Pilot"],[19000,30000,44000,62000,95000]],
     ["Product Management","Charisma","CcHub, Yaba",["Associate PM","Product Manager","Senior PM","Head of Product","Chief Product Officer"],[20000,31000,45000,62000,92000]]
+  ];
+
+  /* Starting-role cards reported on the jobs board, 8 Oct 2026: 12 routes beyond
+     the 21 five-level Lagos ladders (23 Lagos + 5 Abuja + 5 Port Harcourt = 33). */
+  var CAREERS_NEW = [
+    ["Airport Staff","Check-in Agent","Lagos","Murtala Muhammed Airport",12000,5,"\u2014"],
+    ["Refining","Operator Trainee","Lagos","Lagos Oil Refinery, Apapa",14000,5,"\u2014"],
+    ["Oil & Gas","Field Technician","Port Harcourt","Trans-Amadi base",20000,5,"Fitness or Coding 3"],
+    ["Civil Service (Abuja)","Admin Officer","Abuja","Federal Secretariat",17000,5,"Charisma or Coding 2"],
+    ["Keke Riding","Keke Rider","Abuja","Gwagwalada motor park / Airport Road",7400,6,"\u2014"],
+    ["Wuse Market Trading","Shop Attendant","Abuja","Wuse Market",8300,6,"\u2014"],
+    ["Mai Shayi","Tea Spot Hand","Abuja","Mai shayi corner, Federal Secretariat",7400,6,"\u2014"],
+    ["Lounge Waiting","Waiter","Abuja","Kryxtal Lounge, Wuse 2",6600,4,"\u2014"],
+    ["Creek Road Trading","Market Trader","Port Harcourt","Creek Road Market",8300,6,"\u2014"],
+    ["Ferry Work","Ferry Hand","Port Harcourt","Bonny Jetty",7400,6,"\u2014"],
+    ["Bole & Fish","Bole Seller","Port Harcourt","Mama Ibiba\u2019s fire",7400,6,"\u2014"],
+    ["Security","Security Guard","Port Harcourt","Port Harcourt Mall",7400,6,"\u2014"]
+  ];
+
+  /* Daily gem hunt: clue log, newest first. Update the top entry every day. */
+  var HUNT_LOG = [
+    { d: "8 Oct 2026", c: "On the water, not the road: where the lagoon is the dance floor.", a: "Lagoon Boat Cruise, Five Cowries Creek \u2014 a water-party venue sitting on the lagoon.", s: "Candidate \u00b7 venue matches the riddle; gem not claimed by us yet" }
   ];
 
   var TRAITS = [
@@ -1516,7 +1547,7 @@ button{font:inherit;color:inherit}
     var actions = [
       ["\u2197", "Play now", "Official game link", "/game-link"],
       ["\u25c9", "First steps", "How to play", "/how-to-play"],
-      ["\u20a6", "Jobs & salaries", "21 careers", "/jobs"],
+      ["\u20a6", "Jobs & salaries", "33 careers", "/jobs"],
       ["\u2699", "Tools", "Free calculators", "/tools"],
       ["\u2316", "Activities", "263 things to do", "/activities"]
     ];
@@ -1543,7 +1574,7 @@ button{font:inherit;color:inherit}
       ["TOOLS", "Items & prices", "Furniture and appliances", "/items"],
       ["CITY", "Locations", "Every place on the map", "/locations"],
       ["CITY", "Homes & rent", "Housing tiers and costs", "/houses"],
-      ["SYSTEM", "Daily hunt", "The daily puzzle", "/daily-hunt"],
+      ["SYSTEM", "Daily hunt", "Today's clue & answer", "/daily-hunt"],
       ["COMPARE", "Compare games", "The Sims, BitLife, Roblox", "/compare"],
       ["HELP", "Fixes", "Lag, loading, reconnecting", "/support"]
     ];
@@ -1606,7 +1637,7 @@ button{font:inherit;color:inherit}
         '<div class="section-heading"><div><span class="eyebrow">POPULAR RIGHT NOW</span><h2>Careers &amp; early moves</h2></div>' +
         '<a class="text-link" href="/jobs">See all <span>\u2192</span></a></div>' +
         '<div class="split">' +
-          '<div class="panel"><div class="ph"><b>Careers by top pay</b><a class="text-link" href="/jobs">All 105 levels <span>\u2192</span></a></div>' +
+          '<div class="panel"><div class="ph"><b>Careers by top pay</b><a class="text-link" href="/jobs">All 33 careers <span>\u2192</span></a></div>' +
             '<table class="data-table"><thead><tr><th>#</th><th>Career</th><th class="num">Pay / shift</th><th class="num">Growth</th></tr></thead><tbody>' + careersHtml + '</tbody></table></div>' +
           '<div class="panel"><div class="ph"><b>Best early moves</b><a class="text-link" href="/activities">Activities <span>\u2192</span></a></div>' +
             '<div class="dlist">' + movesHtml + '</div></div>' +
@@ -2260,7 +2291,7 @@ button{font:inherit;color:inherit}
   };
 
   PAGES["/jobs"] = {
-    title: "Lagos Life Jobs & Salaries: All 21 Careers",
+    title: "Lagos Life Jobs & Salaries: All 33 Careers",
     after: bindJobs,
     render: function () {
       return article({
@@ -2269,14 +2300,18 @@ button{font:inherit;color:inherit}
         faq: FAQ["/jobs"],
         title: "Lagos Life jobs and salaries",
         body:
-          "<p>Every career in Lagos Life runs five levels and is tied to a single skill. You apply from your in-game phone, then show up, keep performance high and climb. The table lists all " + CAREERS.length + " careers and their " + (CAREERS.length * 5) + " positions. Click any column heading to sort, and use the Growth column to compare a level against that career's first level (for example " + (99000 / 7400).toFixed(1) + "\u00d7 for Afrobeats Giant).</p>" +
+          "<p>Careers pay the rent in Lagos Life, and the jobs board now lists 33 of them: 23 routes in Lagos plus boards in Abuja and Port Harcourt (reported 8 Oct 2026). The original 21 Lagos careers each climb a five-level ladder \u2014 all " + (CAREERS.length * 5) + " positions are in the sortable table below \u2014 and the 12 cross-city and airport routes follow with their starting pay. Click any column heading to sort, and use the Growth column to compare a level against that career\u2019s first level (for example " + (99000 / 7400).toFixed(1) + "\u00d7 for Afrobeats Giant).</p>" +
           '<div class="stats-row">' +
-            '<div class="stat"><b>' + CAREERS.length + '</b><span>Careers</span></div>' +
-            '<div class="stat"><b>' + (CAREERS.length * 5) + '</b><span>Job levels</span></div>' +
+            '<div class="stat"><b>33</b><span>Career routes</span></div>' +
+            '<div class="stat"><b>' + (CAREERS.length * 5) + '</b><span>Job levels tracked</span></div>' +
             '<div class="stat"><b>' + nai(99000) + '</b><span>Top pay / shift</span></div>' +
           '</div>' +
           "<h2>All careers and pay per shift</h2>" +
           careerTable() +
+          "<h2>New and cross-city starting roles</h2>" +
+          "<p>The jobs board also carries routes in Abuja and Port Harcourt, plus an airport job and a refinery job in Lagos. These cards advertise their starting pay per shift; their promotion ladders are still being mapped, so treat the figures as a snapshot (reported 8 Oct 2026).</p>" +
+          dt(["Career path", "Starts as", "City", "Workplace", "Pay / shift", "Days / week", "Skill shown"],
+            CAREERS_NEW.map(function (c) { return [c[0], c[1], c[2], c[3], nai(c[4]), c[5], c[6]]; })) +
           "<h2>How shifts and promotions work</h2>" +
           "<ul><li>Apply on your phone; the job starts the next day at level 1.</li>" +
           "<li>Each promotion needs the career skill at a set level plus 100% performance.</li>" +
@@ -2285,7 +2320,7 @@ button{font:inherit;color:inherit}
           "<li>A UNILAG degree adds up to +25% pay, and a First or 2:1 starts a new career one level higher.</li></ul>" +
           "<h2>Protect your performance</h2>" +
           "<p>Low needs hurt your work, so eat, sleep and wash before a shift, not during it. Arriving late costs performance, not the whole shift.</p>" +
-          '<div class="note-box">Pay figures are aggregated from unofficial guides and may be out of date. Where sources disagreed, the higher figure was used.</div>',
+          '<div class="note-box">Ladder pay is aggregated from unofficial guides and may be out of date; starting-role pay for the 12 newest routes is player-reported from the jobs board. Where sources disagreed, the higher figure was used.</div>',
         related: [
           { t: "Money and businesses", r: "/money" },
           { t: "Skills and traits", r: "/skills" },
@@ -2604,20 +2639,42 @@ button{font:inherit;color:inherit}
   };
 
   PAGES["/daily-hunt"] = {
-    title: "Lagos Life Daily Hunt",
+    title: "Lagos Life Daily Hunt: Today's Clue & Answer",
     after: bindDailyHunt,
     render: function () {
+      var latest = HUNT_LOG[0];
       return article({
         crumb: "Daily hunt",
-        kicker: "SHARED PUZZLE",
+        kicker: "DAILY GEM HUNT \u00b7 UPDATED DAILY",
         faq: FAQ["/daily-hunt"],
-        title: "Lagos Life daily hunt",
+        title: "Lagos Life daily hunt: today's clue and answer",
         body:
-          "<p>The daily hunt is one of the game\u2019s shared puzzles: every day a clue points to a single location on the Lagos map, and players race to work out where it is. It was drawing thousands of solvers at once when we last checked.</p>" +
-          "<h2>How it works</h2>" +
-          "<ul><li>The game posts a clue that describes a place, a landmark or an activity.</li><li>You find the matching location on the map and go there.</li><li>Solving it pays out and teaches you the map.</li></ul>" +
+          "<p>Every day the game posts one riddle and hides a sparkling gem at the place it describes. The first players to find it earn the most, so a fast answer is worth real naira. We read the clue each morning and post it here with where to look.</p>" +
+          "<h2>Latest clue and where to look</h2>" +
+          '<div class="note-box hunt-today">' +
+            '<p class="hunt-meta">Last checked 9 Oct 2026 \u00b7 new clue daily</p>' +
+            '<p class="hunt-clue">\u201c' + latest.c + '\u201d</p>' +
+            '<p><b>Where to look:</b> ' + latest.a + '</p>' +
+            '<p><b>Status:</b> ' + latest.s + '</p>' +
+          '</div>' +
+          "<h2>What the finders earn</h2>" +
+          "<p>The clue panel lists prize tiers, and earlier finds pay more (reported 8 Oct 2026):</p>" +
+          dt(["Finding rank", "Prize (Game Naira)"],
+            [["1st", nai(50000)], ["2nd\u20133rd", nai(25000)], ["4th\u201310th", nai(10000)], ["Every later find", nai(3000)]]) +
+          "<h2>How the hunt works</h2>" +
+          "<ul><li>Open the <b>Daily gem hunt</b> card on the Home screen \u2014 not the Phone menu\u2019s Games hub.</li>" +
+          "<li>Read the clue: it describes a place, a landmark or an activity somewhere on the map.</li>" +
+          "<li>Work out the location, travel there and look for the sparkling gem.</li>" +
+          "<li>A countdown to the next clue runs on the panel \u2014 about 14 hours were left when we last looked.</li></ul>" +
           "<h2>How to solve it faster</h2>" +
-          "<ul><li>Read the clue for an area name (Mushin, Yaba, Lekki, Victoria Island) or a landmark.</li><li>Think about which venue matches the activity: markets, transport hubs, nightlife, institutions.</li><li>Note opening hours so you do not travel somewhere that is closed.</li><li>Use the venues list to narrow it down.</li></ul>" +
+          "<ul><li>Pull the area name out of the clue first: Mushin, Yaba, Lekki, Victoria Island \u2014 or, since the cross-city update, Abuja and Port Harcourt.</li>" +
+          "<li>Match the activity to a venue type: markets, transport hubs, nightlife, institutions, water.</li>" +
+          "<li>Water words (lagoon, boat, a dance floor on water) point at cruise and beach venues; music words point at clubs and the Shrine.</li>" +
+          "<li>Check opening hours in the venues list so you do not travel somewhere that is closed.</li></ul>" +
+          "<h2>Clue log</h2>" +
+          "<p>Every clue we have recorded, newest first:</p>" +
+          dt(["Date", "Clue", "Where to look", "Status"],
+            HUNT_LOG.map(function (h) { return [h.d, "\u201c" + h.c + "\u201d", h.a, h.s]; })) +
           "<h2>Your hunt log</h2>" +
           "<div class='tool'><p class='tool-hint'>Log each day's clue and the place you found. Saved only in your browser.</p>" +
             "<div class='tool-row'>" +
@@ -2627,12 +2684,12 @@ button{font:inherit;color:inherit}
             "</div>" +
             "<button class='button button-primary button-sm' id='hAdd' type='button'>Save entry</button>" +
             "<div class='tool-list' id='hList'></div></div>" +
-          '<div class="note-box">The exact clue and reward change daily, and the game is in active development, so treat any specific figure as a snapshot.</div>',
+          '<div class="note-box">The clue, the hiding place and the prize tiers change daily, and the game is in active development. We mark an answer as confirmed only when the gem is found; until then it is our best reading of the riddle.</div>',
         related: [
           { t: "Venues and hours", r: "/venues" },
           { t: "Locations", r: "/locations" },
-          { t: "Tips", r: "/tips" },
-          { t: "Governor election", r: "/governor-election" }
+          { t: "Jobs and salaries", r: "/jobs" },
+          { t: "Tips", r: "/tips" }
         ]
       });
     }
@@ -3296,7 +3353,7 @@ button{font:inherit;color:inherit}
 
   /* ---------- per-page meta descriptions ---------------------------------- */
   var DESCS = {
-    "/": "Independent, unofficial guide to Lagos Life, the free browser life-sim set in Lagos, Nigeria \u2014 how to play, all 21 careers, money, homes, venues and items.",
+    "/": "Independent, unofficial guide to Lagos Life, the free browser life-sim set in Lagos, Nigeria \u2014 how to play, all 33 careers, money, homes, venues and items.",
     "/what-is-lagos-life": "What is Lagos Life? A shared-world, browser life sim set in Lagos, Nigeria: what it is, how it plays and who made it, in plain English.",
     "/how-to-play": "How to play Lagos Life: sign up, build your Sim, take the birth lottery, choose a home, get a job and survive your first Saturday rent, step by step.",
     "/game-link": "Where to play Lagos Life: the official game link, why there is no app, and what to know before you sign up.",
@@ -3305,7 +3362,7 @@ button{font:inherit;color:inherit}
     "/venues": "Lagos Life venues and opening hours: every place on the map, the jobs based there and what you can do \u2014 from Amala Shitta to Eko Casino and UNILAG.",
     "/updates": "Lagos Life updates and timeline: how the browser game grew from launch to a million players, with the latest notes on new features.",
     "/stats": "Lagos Life player stats: total players, concurrent counts and daily growth explained \u2014 and what the numbers actually mean.",
-    "/jobs": "Lagos Life jobs and salaries: all 21 careers and 105 levels with pay per shift, skill and workplace. Sort and filter the full 105-position table.",
+    "/jobs": "Lagos Life jobs and salaries: all 33 career routes \u2014 the full 105-level pay table plus the new Abuja and Port Harcourt starting roles, with pay per shift, skill and workplace.",
     "/skills": "Lagos Life skills and traits: all 10 traits, every skill and how to raise it, the six needs, and the skill gates behind each promotion.",
     "/houses": "Lagos Life homes and rent: all five housing tiers plus student halls, weekly rents, move-in costs and the rules that decide where you can live.",
     "/money": "How to make money in Lagos Life: the best businesses, all land plots, side gigs, the sending-money fee and the weekly tax bands.",
@@ -3325,7 +3382,7 @@ button{font:inherit;color:inherit}
     "/shalom-rayhamen": "Shalom Rayhamen is the developer credited with creating Lagos Life. What is known about the maker of the browser game.",
     "/lagos-life-vs-sims": "Lagos Life vs The Sims: how the shared, Lagos-set browser sim compares with the classic household life simulator.",
     "/similar-games": "Games like Lagos Life: Lagos Run, Surviving Nigeria, The Sims 4 and BitLife \u2014 the titles players mention alongside it.",
-    "/daily-hunt": "The Lagos Life daily hunt: how the daily clue works, how to solve it fast, and where the answer usually points on the map.",
+    "/daily-hunt": "Today's Lagos Life daily hunt clue and answer: where the gem is hiding, the prize tiers, the reset time and a full clue log \u2014 updated daily.",
     "/activities": "All Lagos Life activities with time, cost and what they train \u2014 filter by venue and search the full list of things to do.",
     "/download": "No, Lagos Life has no download or APK \u2014 it is a browser game. How to add it to your home screen, and how to avoid fake downloads.",
     "/lagos-run": "Lagos Run: the browser game about driving a danfo through Lagos traffic, how it differs from Lagos Life, and where to play it.",
@@ -3367,8 +3424,8 @@ button{font:inherit;color:inherit}
       { q: "What happens if I miss work?", a: "Arriving late lowers performance, which affects your pay and promotions." }
     ],
     "/jobs": [
-      { q: "How many careers are in Lagos Life?", a: "There are 21 careers, each with five levels, for 105 positions in total." },
-      { q: "Which jobs pay the most in Lagos Life?", a: "Music tops the table: Afrobeats Giant is the highest-paid level per shift, followed by DJ and Aviation." },
+      { q: "How many careers are in Lagos Life?", a: "The jobs board lists 33 career routes: 23 in Lagos, 5 in Abuja and 5 in Port Harcourt. The 21 original Lagos careers each run five levels, for 105 tracked positions." },
+      { q: "Which jobs pay the most in Lagos Life?", a: "Music tops the ladder table: Afrobeats Giant is the highest-paid level per shift, followed by DJ and Aviation. Among the newest starting cards, Oil & Gas leads at \u20a620,000 per shift." },
       { q: "What is the best career for beginners in Lagos Life?", a: "Banking has the best entry pay and a Monday-to-Friday day shift, so it is the easiest start. In general, pick the career that matches your trait." },
       { q: "How do promotions work in Lagos Life?", a: "Each promotion needs the career skill at a set level plus full performance on your shifts." },
       { q: "What does the Growth column mean?", a: "It shows how many times a level pays compared with that career's first level." }
@@ -3506,9 +3563,10 @@ button{font:inherit;color:inherit}
       { q: "Is Lagos Life like BitLife?", a: "Both are life sims, but Lagos Life is a live shared world in a browser." }
     ],
     "/daily-hunt": [
-      { q: "What is the Lagos Life daily hunt?", a: "A daily puzzle where a clue points to one location on the Lagos map, and players work out where it is." },
-      { q: "How often is the Lagos Life hunt?", a: "Once a day." },
-      { q: "What do you get for the daily hunt?", a: "A reward shown in game; treat the exact prize as changing." },
+      { q: "What is today's Lagos Life daily hunt clue?", a: "We post the latest clue and where to look at the top of this page, and update it every day." },
+      { q: "What are the daily hunt prizes?", a: "Reported tiers: \u20a650,000 for the first finder, \u20a625,000 for 2nd\u20133rd, \u20a610,000 for 4th\u201310th and \u20a63,000 for every later find." },
+      { q: "When does the daily hunt reset?", a: "Once a day. The clue panel showed a countdown of about 14 hours; the exact reset time is not published." },
+      { q: "Where do I find the daily hunt in the game?", a: "Open the Daily gem hunt card on the Home screen \u2014 it is not inside the Phone menu's Games hub." },
       { q: "Can I log my daily hunt answers?", a: "Yes \u2014 the hunt log on this page saves each day's clue and answer in your browser." }
     ],
     "/activities": [
