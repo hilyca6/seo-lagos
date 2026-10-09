@@ -47,6 +47,7 @@ function fmtDate(d) { return d.getDate() + " " + MONTHS[d.getMonth()] + " " + d.
 
 function esc(s) {
   return String(s).trim()
+    .replace(/\\u([0-9a-fA-F]{4})/g, function (m, h) { return String.fromCharCode(parseInt(h, 16)); })
     .replace(/\\/g, "\\\\")
     .replace(/"/g, "\\\"")
     .replace(/</g, "\\u003C");
