@@ -4,6 +4,8 @@
   "private": true,
   "description": "Independent, unofficial player guide to the Lagos Life browser game (static site, pre-rendered).",
   "scripts": {
-    "build": "node build.js"
+    "build": "node build.js",
+    "hunt": "node update-hunt.js",
+    "hunt-ui": "node hunt-ui.js"
   }
 }
