@@ -12,6 +12,13 @@ const lib = require("./hunt-lib");
 
 const PORT = 5214;
 
+process.on("uncaughtException", function (e) {
+  console.error("[error] " + (e && e.message ? e.message : e));
+});
+process.on("unhandledRejection", function (e) {
+  console.error("[error] " + (e && e.message ? e.message : e));
+});
+
 function page() {
   return `<!doctype html>
 <html lang="zh">
@@ -125,7 +132,7 @@ function page() {
       else html += '<p class="warn">已推送，60–90 秒后线上生效 → lagoslife.homes/daily-hunt</p>';
       out.innerHTML = html;
     })
-    .catch(function(e){ go.disabled = false; out.innerHTML = '<p class="err">' + esc(e.message) + '</p>'; });
+    .catch(function(e){ go.disabled = false; out.innerHTML = '<p class="err">连不上本地服务（' + esc(e.message) + '）。请确认黑色窗口还开着并显示 Daily Hunt UI，然后按 F5 刷新本页重试。</p>'; });
   });
 </script>
 </body>
@@ -133,6 +140,7 @@ function page() {
 }
 
 const server = http.createServer(function (req, res) {
+  console.log(new Date().toLocaleTimeString() + " " + req.method + " " + req.url);
   function json(code, obj) {
     res.writeHead(code, { "Content-Type": "application/json; charset=utf-8" });
     res.end(JSON.stringify(obj));
@@ -179,6 +187,17 @@ const server = http.createServer(function (req, res) {
     }
     json(404, { error: "not found" });
   });
+});
+
+server.on("error", function (e) {
+  if (e.code === "EADDRINUSE") {
+    console.error("端口 " + PORT + " 已被占用 —— 可能上次的服务还在运行。");
+    console.error("直接在浏览器打开 http://127.0.0.1:" + PORT + " 即可使用，或先关闭旧的 node 进程。");
+  } else {
+    console.error("[error] " + e.message);
+  }
+  console.error("按任意键关闭窗口…");
+  process.exit(1);
 });
 
 server.listen(PORT, "127.0.0.1", function () {

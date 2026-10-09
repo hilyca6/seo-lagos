@@ -45,12 +45,32 @@ function tokens(s) {
   });
 }
 
-/* Score every venue against the clue text using names, areas, hours and activity names. */
+function lev1(a, b) {
+  if (a === b) return true;
+  const la = a.length, lb = b.length;
+  if (Math.abs(la - lb) > 1) return false;
+  let i = 0, j = 0, diff = 0;
+  while (i < la && j < lb) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++diff > 1) return false;
+    if (la > lb) i++; else if (la < lb) j++; else { i++; j++; }
+  }
+  return true;
+}
+
+/* Score every venue against the clue text using names, areas, hours and activity names.
+   Unmatched clue tokens get a one-typo fuzzy pass against venue words (>=4 chars). */
 function suggest(clue, venues, acts) {
   const clueTokens = tokens(clue);
   const actsByVenue = {};
   (acts || []).forEach(function (a) {
     (actsByVenue[a[0]] = actsByVenue[a[0]] || []).push(a[1] + " " + (a[4] || ""));
+  });
+  const allVenueTokens = [];
+  venues.forEach(function (v) {
+    const hay = v[0] + " " + v[1] + " " + (v[3] || "") + " " + (v[4] || "") +
+      " " + (actsByVenue[v[0]] || []).join(" ");
+    tokens(hay).forEach(function (t) { if (t.length >= 4) allVenueTokens.push(t); });
   });
   return venues.map(function (v) {
     const hay = v[0] + " " + v[1] + " " + (v[2] || "") + " " + (v[3] || "") + " " + (v[4] || "") +
@@ -61,6 +81,13 @@ function suggest(clue, venues, acts) {
       const stem = t.replace(/(es|s)$/, "");
       if (hayTokens.has(t) || hayTokens.has(stem)) { score += 3; hits.push(t); }
       else if (hayL.indexOf(t) >= 0 || (stem.length > 3 && hayL.indexOf(stem) >= 0)) { score += 1; hits.push(t); }
+      else if (t.length >= 4) {
+        let fuzzy = 0;
+        for (let k = 0; k < allVenueTokens.length && fuzzy < 2; k++) {
+          const w = allVenueTokens[k];
+          if (w !== t && lev1(t, w)) { score += 1; hits.push(t + "~" + w); fuzzy++; }
+        }
+      }
     });
     return { venue: v[0], area: v[1], score: score, hits: hits };
   }).filter(function (r) { return r.score > 0; })
