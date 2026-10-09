@@ -184,6 +184,11 @@ const server = http.createServer(function (req, res) {
 server.listen(PORT, "127.0.0.1", function () {
   const url = "http://127.0.0.1:" + PORT;
   console.log("Daily Hunt UI -> " + url + "  (Ctrl+C to stop)");
-  const start = process.platform === "win32" ? "cmd /c start" : "open";
-  try { require("child_process").exec(start + ' "' + url + '"', { stdio: "ignore" }); } catch (e) { }
+  try {
+    if (process.platform === "win32") {
+      require("child_process").exec('cmd /c start "" "' + url + '"', { stdio: "ignore" });
+    } else {
+      require("child_process").exec("open \"" + url + "\"", { stdio: "ignore" });
+    }
+  } catch (e) { }
 });
