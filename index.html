@@ -2652,7 +2652,7 @@ button{font:inherit;color:inherit}
           "<p>Every day the game posts one riddle and hides a sparkling gem at the place it describes. The first players to find it earn the most, so a fast answer is worth real naira. We read the clue each morning and post it here with where to look.</p>" +
           "<h2>Latest clue and where to look</h2>" +
           '<div class="note-box hunt-today">' +
-            '<p class="hunt-meta">Last checked ' + latest.d + ' \u00b7 new clue daily</p>' +
+            '<p class="hunt-meta">Auto-updated ' + latest.d + ' \u00b7 new clue daily just after 00:00 WAT</p>' +
             '<p class="hunt-clue">\u201c' + latest.c + '\u201d</p>' +
             '<p><b>Where to look:</b> ' + latest.a + '</p>' +
             '<p><b>Status:</b> ' + latest.s + '</p>' +
@@ -2666,7 +2666,10 @@ button{font:inherit;color:inherit}
           "<li>Read the clue: it describes a place, a landmark or an activity somewhere on the map.</li>" +
           "<li>Work out the location, travel there and look for the sparkling gem.</li>" +
           "<li>A countdown to the next clue runs on the panel \u2014 on 9 Oct it ran out around midnight Nigeria time (WAT), so the new clue lands just after midnight WAT.</li>" +
-          "<li>The panel is social: it shows how many players have found today\u2019s gem and the first three finders\u2019 handles \u2014 29,182 had found it when we looked on 9 Oct.</li></ul>" +
+          "<li>The panel is social: it shows how many players have found today\u2019s gem and the first three finders\u2019 handles" +
+            (latest.f ? " \u2014 " + String(latest.f).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " had found it when we last checked" +
+              (latest.l && latest.l.length ? ", led by " + latest.l.slice(0, 3).join(", ") : "") : "") +
+            ".</li></ul>" +
           "<h2>How to solve it faster</h2>" +
           "<ul><li>Pull the area name out of the clue first: Mushin, Yaba, Lekki, Victoria Island \u2014 or, since the cross-city update, Abuja and Port Harcourt.</li>" +
           "<li>Match the activity to a venue type: markets, transport hubs, nightlife, institutions, water.</li>" +
@@ -2685,7 +2688,7 @@ button{font:inherit;color:inherit}
             "</div>" +
             "<button class='button button-primary button-sm' id='hAdd' type='button'>Save entry</button>" +
             "<div class='tool-list' id='hList'></div></div>" +
-          '<div class="note-box">The clue, the hiding place and the prize tiers change daily, and the game is in active development. We mark an answer as confirmed only when the gem is found; until then it is our best reading of the riddle.</div>',
+          '<div class="note-box">This page updates automatically from the game\u2019s public hunt feed and the clue log keeps every day we have recorded. We mark an answer confirmed only when the gem is found \u2014 otherwise it is our best reading of the riddle.</div>',
         related: [
           { t: "Venues and hours", r: "/venues" },
           { t: "Locations", r: "/locations" },

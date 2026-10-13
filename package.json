@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node build.js",
     "hunt": "node update-hunt.js",
+    "hunt:auto": "node auto-hunt.js",
     "hunt-ui": "node hunt-ui.js"
   }
 }

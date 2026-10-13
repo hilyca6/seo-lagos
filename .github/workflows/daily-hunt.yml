@@ -1,0 +1,38 @@
+name: Daily hunt auto-update
+
+# The game resets just after 00:00 WAT (Nigeria) = 23:00 UTC. GitHub cron can be
+# delayed by several minutes, so we fire a few times and the script is idempotent
+# (it keys off the feed's own "day" field and skips if that day is already logged).
+on:
+  schedule:
+    - cron: "10 23 * * *"
+    - cron: "45 23 * * *"
+    - cron: "20 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-hunt
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Configure git identity
+        run: |
+          git config user.name "lagoslife-bot"
+          git config user.email "bot@lagoslife.homes"
+
+      - name: Fetch the clue and update the site
+        run: node auto-hunt.js
