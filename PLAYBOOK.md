@@ -375,4 +375,24 @@ if (app && typeof window !== "undefined") { /* 路由（History API + 点击拦�
 
 ---
 
+## 17. 全自动日更页面（GitHub Actions 定时 + 目标站公开 API）
+
+**适用**：靠"每日答案/今日线索"吃流量的页面（Wordle 答案站模式）。目标是**零人工**——不登录游戏、不手抄、不点发布。
+
+**做法**
+1. **先找公开数据源**。很多游戏站点会把当日谜面放进一个不需登录的 JSON 接口（浏览器 DevTools → Network 看前端拉的请求）。本项目即 `https://lagoslife.app/api/hunt`，返回 `{ day, clue, endsAt, found, leaders }`。
+2. **写 `auto-hunt.js`**：拉接口 → 用本地关键词匹配猜答案 → 把新条目**插到日志数组顶部并保留历史** → 更新 sitemap lastmod → `node build.js` 校验 → `git commit` + `git push`。
+   - 幂等：以接口返回的 `day` 为准，当天已记录就跳过，所以定时跑多次都安全。
+3. **`.github/workflows/daily-hunt.yml`**：`on.schedule` 设多个 cron（重置时间后 5/40 分钟 + 次日再兜一次），`permissions: contents: write`，`actions/checkout` + `actions/setup-node` 后 `run: node auto-hunt.js`。GitHub cron 走 UTC 且可能延迟，多次触发 + 幂等可兜住。
+4. **分支必须是默认分支**（如 `main`）才会被调度；workflow 提交本身也让仓库保持"活跃"，避免 60 天后被停用。
+5. **推送 → Cloudflare Pages 自动重建 → 上线**。`dist/` 由 Cloudflare 构建，不用提交。
+
+**关键点**
+- 猜答案用**近义词/主题词库**（car/whip/dealership → 车行；pages/quiet/books → 图书馆），而不是歌名逐字匹配；命中弱时要降级为"best reading"措辞，别假装确认。
+- 本地会落后于机器人每天提交 → **改文件前先 `git pull`**。
+- 部署检查：`GET /repos/<owner>/<repo>/commits/<sha>/check-runs` 看 `Cloudflare Pages` 的 conclusion（`gh` 未登录时用公开 API + `Invoke-RestMethod`）；构建日志只在 Cloudflare Dashboard 里。
+- 定时任务失败不致命：页面停在旧内容，手动 `node auto-hunt.js` 即可补。
+
+---
+
 *文档随项目沉淀，可复制到新项目作为起步模板。*
