@@ -572,6 +572,9 @@ button{font:inherit;color:inherit}
     <a href="/lagos-slang">Lagos Life slang</a>
     <a href="/locations/quilox">Lagos Life Quilox</a>
     <a href="/shalom-rayhamen">Lagos Life developer</a>
+    <a href="/games">Lagos Life games</a>
+    <a href="/handi-hq">Lagos Life HANDI HQ</a>
+    <a href="/heala">Lagos Life Heala</a>
   </nav>
   <nav class="footer-links footer-guides" aria-label="Game data">
     <a href="/jobs">Jobs &amp; salaries</a>
@@ -615,7 +618,7 @@ button{font:inherit;color:inherit}
   "use strict";
 
   var app = (typeof document !== "undefined" && document.getElementById) ? document.getElementById("app") : null;
-  var UPDATED = "2026-10-09";
+  var UPDATED = "2026-10-13";
 
   /* ---------- hero art: original illustrated map (drawn for this guide) --- */
   var MAP_ART =
@@ -769,6 +772,9 @@ button{font:inherit;color:inherit}
 
   /* ---------- update feed (reused by home + updates page) ----------------- */
   var UPDATES = [
+    { t: "Lagos Life Games: Pool, Ayo, Whot and Ludo", r: "/games" },
+    { t: "Lagos Life HANDI HQ: Real Gigs and Bookings", r: "/handi-hq" },
+    { t: "Lagos Life Heala: Health in the Phone Menu", r: "/heala" },
     { t: "Lagos Life Jobs: 33 Careers and Starting Pay", r: "/jobs" },
     { t: "Lagos Life Daily Hunt: Today's Clue and Answer", r: "/daily-hunt" },
     { t: "Lagos Life How to Play: Your First Steps", r: "/how-to-play" },
@@ -783,9 +789,9 @@ button{font:inherit;color:inherit}
 
   /* ---------- player numbers + history (reused across pages) -------------- */
   var STATS = [
-    { n: "1.2M", l: "Total players" },
-    { n: "114K", l: "Playing now", live: true },
-    { n: "+890K", l: "New players / day" },
+    { n: "11.3M", l: "Total players" },
+    { n: "70K+", l: "Playing now", live: true },
+    { n: "10M", l: "Registrations in 11 days" },
     { n: "1 Oct 2026", l: "Released" }
   ];
 
@@ -794,7 +800,12 @@ button{font:inherit;color:inherit}
     { d: "3 Oct 2026", t: "Crosses 100,000 players", p: "Reached within about 72 hours, with over 11,000 playing at once." },
     { d: "4 Oct 2026", t: "50,000+ playing together", p: "The peak crowd grows and more city content is announced." },
     { d: "4 Oct 2026", t: "One million players", p: "Over 109,000 were online at the milestone, roughly three days after launch." },
-    { d: "8 Oct 2026", t: "Cross-city jobs and the daily gem hunt", p: "The jobs board lists 33 routes across Lagos, Abuja and Port Harcourt, and the Home screen adds a Daily gem hunt with \u20a650,000 for the first finder." }
+    { d: "8 Oct 2026", t: "Cross-city jobs and the daily gem hunt", p: "The jobs board lists 33 routes across Lagos, Abuja and Port Harcourt, and the Home screen adds a Daily gem hunt with \u20a650,000 for the first finder." },
+    { d: "9 Oct 2026", t: "Five million players", p: "The developer announces five million registrations in nine days; the figure is self-reported, not audited." },
+    { d: "10 Oct 2026", t: "Seven million and HANDI HQ", p: "A seven-million registrations announcement, plus the HANDI HQ venue in Yaba for service gigs and home bookings." },
+    { d: "11 Oct 2026", t: "Ten million players and new features", p: "A ten-million registrations milestone in eleven days; the developer announces stadium live-football, message pinning, home fixes and a lighter view, and Heala appears in the Phone menu." },
+    { d: "12 Oct 2026", t: "Stadium live screening", p: "Teslim Balogun Stadium shows a big-screen match with a reported real-money \u20a6500 seat, separate from game naira." },
+    { d: "13 Oct 2026", t: "Refinery reachable and a real-money IPO", p: "The Dangote Petroleum Refinery becomes reachable in the Lekki Free Zone, and a real-money Dangote IPO panel appears at Flutterwave with a \u20a6525-per-share offer window." }
   ];
 
   function statCard(s) {
@@ -871,6 +882,9 @@ button{font:inherit;color:inherit}
 
   /* Daily gem hunt: clue log, newest first. Update the top entry every day. */
   var HUNT_LOG = [
+    { d: "13 Oct 2026", c: "Shiny new whips under bright lights on VI, where Lagos buys its dream car.", a: "Polanco Motors, Victoria Island — matches car/whips/dream car/vi in the clue", s: "Best reading of the riddle (auto-updated daily); gem not confirmed",
+      f: 40045,
+      l: ["kboy222", "kswagsta", "Bigj221"] },
     { d: "10 Oct 2026", c: "Shhh. where pages turn quietly on the island", a: "The Library, Victoria Island — a library is where pages turn quietly, and The Library sits right on the island (open 22:00-04:00, with a Secret Bookcase inside)", s: "Candidate \u00b7 best reading of the riddle; gem not claimed yet" }
   ];
 
@@ -1964,10 +1978,10 @@ button{font:inherit;color:inherit}
         '<h2>Reported ranges</h2>' +
         '<p>Different public sources report different figures, so here is the spread we have seen:</p>' +
         '<ul>' +
-        '<li><strong>Total players:</strong> about 1.1 to 1.2 million.</li>' +
-        '<li><strong>All-time visits:</strong> around 8.4 million.</li>' +
-        '<li><strong>Online at once:</strong> reported from about 11,000 at launch up to 62,000 and beyond, with over 109,000 at the one-million-player milestone.</li>' +
-        '<li><strong>Early growth:</strong> roughly 100,000 players within about 72 hours.</li>' +
+        '<li><strong>Total players:</strong> about 11 million registrations and rising.</li>' +
+        '<li><strong>All-time visits:</strong> reported above 49 million.</li>' +
+        '<li><strong>Online at once:</strong> reported from about 11,000 at launch up to peaks over 100,000, with roughly 70,000 online in recent checks.</li>' +
+        '<li><strong>Growth:</strong> about 100,000 players within 72 hours, and a reported 10 million registrations within eleven days.</li>' +
         '</ul>' +
         '<div class="note-box">These numbers are reported, not audited, and change constantly. Check the game\u2019s own pages for the current state.</div>' +
         '</div>' +
@@ -3335,6 +3349,100 @@ button{font:inherit;color:inherit}
     }
   };
 
+  PAGES["/games"] = {
+    title: "Lagos Life Games: Pool, Ayo, Whot and Ludo",
+    render: function () {
+      return article({
+        crumb: "Games",
+        kicker: "PHONE MENU \u00b7 BUILT-IN GAMES",
+        faq: FAQ["/games"],
+        title: "Lagos Life Games: Pool, Ayo, Whot and Ludo",
+        body:
+          "<p>The Lagos Life Phone menu has a built-in <b>Games</b> hub where you play against other players. Alongside it sits a separate, sponsored <b>Games</b> entry that advertises a third-party puzzle app, so the two are easy to confuse. This page explains the difference and what the built-in hub offers.</p>" +
+          "<h2>Games you can play</h2>" +
+          "<p>The built-in hub lists four real-player games:</p>" +
+          "<ul><li><b>Pool (8-ball)</b> \u2014 create a table, optionally invite a friend by @username and play a frame.</li>" +
+          "<li><b>Ayo</b> \u2014 the traditional mancala board game, described as play against real players.</li>" +
+          "<li><b>Whot</b> \u2014 the Nigerian card game, listed for up to four players.</li>" +
+          "<li><b>Ludo</b> \u2014 the classic board race, also listed for up to four players.</li></ul>" +
+          "<h2>Pool stakes (reported)</h2>" +
+          "<p>When Pool is selected the panel states the following amounts in game naira. These are interface figures, not a verified payout:</p>" +
+          dt(["Pool detail", "Panel statement"],
+            [["Each player puts in", nai(5000)], ["Winner takes", nai(9500)], ["House keeps", "5% (reported)"], ["A draw", "both stakes returned"]]) +
+          "<p>The hub says these matches use <b>game money only</b>; they are not a real-money payout.</p>" +
+          "<h2>Where to play</h2>" +
+          "<p>The hub can send you to <b>Ojuelegba Snooker Spot</b> in Surulere, a venue whose panel describes 8-ball pool and Ayo against real players, or you can use <b>Play from here</b> to start a match from your current spot.</p>" +
+          "<h2>The sponsored Games app is different</h2>" +
+          "<p>The second <b>Games</b> entry is an advert for an external app (Whot, Chess, Snake, Word Connect and similar). Its buttons open an app store, and those titles belong to that other app \u2014 not to Lagos Life. If a title repeats between the two hubs, they are still separate products.</p>" +
+          '<div class="note-box">Game features change quickly and this is an independent guide. Amounts and menu entries are as last reported; confirm the current state in the official game.</div>',
+        related: [
+          { t: "Daily hunt", r: "/daily-hunt" },
+          { t: "Venues and hours", r: "/venues" },
+          { t: "Money and businesses", r: "/money" },
+          { t: "How to play", r: "/how-to-play" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/handi-hq"] = {
+    title: "Lagos Life HANDI HQ: Gigs and Booking a Pro",
+    render: function () {
+      return article({
+        crumb: "HANDI HQ",
+        kicker: "NEW VENUE \u00b7 YABA",
+        faq: FAQ["/handi-hq"],
+        title: "Lagos Life HANDI HQ: real gigs and booking a pro",
+        body:
+          "<p><b>HANDI HQ</b> is a venue added to the map in October 2026. Its panel places it in <b>Yaba</b>, described as \u201cYabacon Valley, by the Ojuelegba screen\u201d, and its introduction reads <b>Six bays, six trades</b>. It turns the real Lagos home-services app HANDI into a game location with two directions: take a paid gig, or book a pro for your home.</p>" +
+          "<h2>Take a gig: the Job board</h2>" +
+          "<p>Under <b>Phone \u2192 HANDI \u2192 HQ \u2192 Job board \u00b7 live requests</b>, service cards list a per-job amount and an unlock gate. A reported check saw <b>six categories \u00d7 four requests = 24 cards</b>, for example:</p>" +
+          dt(["Category", "Example job", "Reported pay"],
+            [["Beauty", "Bridal makeup for an owambe", nai(13000)], ["Cleaning", "Deep-clean a Lekki duplex", nai(14900)], ["Carpentry", "Build a TV console", nai(30200)], ["Electrical", "Wire an inverter &amp; solar", nai(13000)], ["Cooking", "Jollof for 50 guests", nai(41600)], ["Tattoo", "A sleeve session", nai(16000)]]) +
+          "<p>Cards show gates of <b>Rising</b>, <b>Pro</b> and <b>Top-rated</b>; higher-rated pros unlock the bigger jobs. The board states <b>one job at a time</b>, a short rest after each, up to <b>10 jobs a day</b>, and five-star tips. Pay is said to grow with your skills and HANDI rating.</p>" +
+          "<h2>Book a pro: Fix my stuff</h2>" +
+          "<p>Under <b>Phone \u2192 HANDI \u2192 Fix my stuff \u2192 Upgrade your home</b>, you pay game naira for a pro to fix or fit things at home. Reported quotes:</p>" +
+          dt(["Upgrade", "Reported quote"],
+            [["Smart Lighting", nai(45000)], ["Whole-Home Re-wire", nai(80000)], ["Inverter + Solar", nai(150000)], ["HANDI Premier Care", nai(5000000) + " (net worth " + nai(100000000) + "+)"]]) +
+          "<p>A reported booking of Smart Lighting deducted the amount with no second confirmation screen and progressed through a short \u201cpro on the way\u201d state. Treat the panel wording as the offer, not a guarantee of the result.</p>" +
+          "<h2>How to reach it</h2>" +
+          "<p>A verified route was <b>Phone \u2192 HANDI \u2192 Go to HANDI HQ</b>, or use the <b>Map</b> button. TREK was free in a reported check. HANDI HQ is a game venue that links out to the real HANDI service; the two are separate, and the app\u2019s real-world prices are not the game\u2019s numbers.</p>" +
+          '<div class="note-box">This is an independent guide. Gigs, gates and quotes change with the game and with each account; check the official game for the current state.</div>',
+        related: [
+          { t: "Jobs and salaries", r: "/jobs" },
+          { t: "Money and businesses", r: "/money" },
+          { t: "Venues and hours", r: "/venues" },
+          { t: "Locations", r: "/locations" }
+        ]
+      });
+    }
+  };
+
+  PAGES["/heala"] = {
+    title: "Lagos Life Heala: Health in the Phone Menu",
+    render: function () {
+      return article({
+        crumb: "Heala",
+        kicker: "PHONE MENU \u00b7 REAL-WORLD HEALTH",
+        faq: FAQ["/heala"],
+        title: "Lagos Life Heala: the health entry in the Phone menu",
+        body:
+          "<p><b>Heala</b> is an entry in the Lagos Life Phone menu added in October 2026. It is a partnership with a real-world healthcare service rather than a map location: opening it shows the Heala brand, an introduction to real-world healthcare, and labels covering <b>doctors</b>, <b>access anywhere</b> and <b>health plans</b>.</p>" +
+          "<h2>What it does</h2>" +
+          "<p>The panel\u2019s buttons open external websites or app stores, so Heala acts as a doorway to a real service rather than a game mechanic. In a reported check, opening the buttons caused no visible deduction from the game wallet \u2014 but that does not mean real-world healthcare is free. Any cost, plan or consultation belongs to the external service, not to Lagos Life.</p>" +
+          "<h2>Heala is not a location</h2>" +
+          "<p>Heala does not appear on the city map and is not counted as a venue. It sits with the other Phone menu services and is separate from in-game health features, such as visiting the General Hospital.</p>" +
+          '<div class="note-box">This is an independent guide. Partnerships and menu entries change; check the official game for the current list.</div>',
+        related: [
+          { t: "How to play", r: "/how-to-play" },
+          { t: "Locations", r: "/locations" },
+          { t: "Money and top-ups", r: "/money" },
+          { t: "Safety and privacy", r: "/safety-and-privacy" }
+        ]
+      });
+    }
+  };
+
   /* ---------- fallback ---------------------------------------------------- */
   PAGES["/404"] = {
     title: "Page not found",
@@ -3408,6 +3516,9 @@ button{font:inherit;color:inherit}
     "/about": "About Lagos Life Guide: an independent, unofficial player guide to the Lagos Life browser game, and how our content is made.",
     "/contact": "Contact Lagos Life Guide for corrections, questions or copyright requests.",
     "/terms": "Terms of use for Lagos Life Guide, an independent, unofficial fan site about the Lagos Life browser game.",
+    "/games": "Lagos Life Games: the built-in Phone menu hub with Pool (8-ball), Ayo, Whot and Ludo \u2014 how it differs from the sponsored Games app, Pool stakes and where to play.",
+    "/handi-hq": "Lagos Life HANDI HQ in Yaba: the real-gigs Job board, home-pro bookings, and the reported pay and quotes, from an independent guide.",
+    "/heala": "Heala in the Lagos Life Phone menu: the real-world healthcare entry explained, why it is not a map location, and how it stays separate from game money.",
     "/404": "That page does not exist on the Lagos Life Guide. Use the navigation to find what you need."
   };
 
@@ -3651,6 +3762,23 @@ button{font:inherit;color:inherit}
       { q: "What is the best route in Lagos Life?", a: "The salary ladder is fastest for a single-skill climb; the business builder is best if you like compounding income." },
       { q: "How do I make money early in Lagos Life?", a: "Keep a cheap home, enter a trait-matched career, keep needs up, and run the guaranteed gigs." },
       { q: "When should I buy a business?", a: "Once you can afford the cheapest one without touching your rent money." }
+    ],
+    "/games": [
+      { q: "What games can you play in Lagos Life?", a: "The Phone menu's built-in Games hub lists Pool (8-ball), Ayo, Whot and Ludo against real players." },
+      { q: "Is the Games app the same as the Games hub?", a: "No. One is Lagos Life's built-in Games hub; the other is a sponsored entry for a third-party puzzle app whose buttons open an app store." },
+      { q: "How much can you win at Pool in Lagos Life?", a: "The Pool panel reported each player puts in \u20a65,000, the winner takes \u20a69,500 and the house keeps 5%. These are game-naira interface figures, not a verified payout." },
+      { q: "Where do you play Pool in Lagos Life?", a: "The hub sends you to Ojuelegba Snooker Spot in Surulere, or you can use Play from here to start a match from your current spot." }
+    ],
+    "/handi-hq": [
+      { q: "What is HANDI HQ in Lagos Life?", a: "A venue in Yaba, described as Yabacon Valley by the Ojuelegba screen, where you can take a paid home-services gig or book a pro for your home." },
+      { q: "How do you take a gig at HANDI HQ?", a: "Open Phone \u2192 HANDI \u2192 HQ \u2192 Job board, then pick a service card. Cards show a per-job amount and an unlock gate such as Rising, Pro or Top-rated." },
+      { q: "How do you book a HANDI pro?", a: "Open Phone \u2192 HANDI \u2192 Fix my stuff \u2192 Upgrade your home. Reported quotes include Smart Lighting \u20a645,000, a re-wire \u20a680,000 and Inverter + Solar \u20a6150,000." },
+      { q: "Is HANDI the same as the Lagos Life jobs system?", a: "No. HANDI is a services gig board and home-booking venue; the 33 careers are separate roles on the Jobs board." }
+    ],
+    "/heala": [
+      { q: "What is Heala in Lagos Life?", a: "A Phone menu entry added in October 2026 that links to a real-world healthcare partner, with labels for doctors, access anywhere and health plans." },
+      { q: "Does Heala cost game money?", a: "In a reported check, opening the Heala links caused no visible game-wallet deduction, but any real-world healthcare cost belongs to the external service, not the game." },
+      { q: "Is Heala a location in Lagos Life?", a: "No. Heala is a Phone menu service entry, not a place on the map, and it is not counted as a venue." }
     ]
   };
 
@@ -3674,6 +3802,9 @@ button{font:inherit;color:inherit}
       { t: "NEPA & power", r: "/nepa" },
       { t: "Lagos slang", r: "/lagos-slang" },
       { t: "Daily hunt", r: "/daily-hunt" },
+      { t: "Games hub", r: "/games" },
+      { t: "HANDI HQ", r: "/handi-hq" },
+      { t: "Heala", r: "/heala" },
       { t: "Compare games", r: "/compare" },
       { t: "Fixes", r: "/support" }
     ],
