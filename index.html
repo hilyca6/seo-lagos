@@ -304,6 +304,17 @@ button{font:inherit;color:inherit}
 .cta-block .button{background:var(--primary);color:var(--primary-fg)}
 .cta-block .button:hover{background:var(--primary-hover);color:var(--primary-fg)}
 
+.game-preview{margin:22px 0;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--card)}
+.game-preview a{position:relative;display:block;overflow:hidden;color:inherit}
+.game-preview a:hover{color:inherit}
+.game-preview img{display:block;width:100%;height:auto;transition:transform .35s ease}
+.game-preview a:hover img{transform:scale(1.015)}
+.game-preview-play{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:rgba(9,9,11,.72);border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;backdrop-filter:blur(6px);box-shadow:var(--shadow);transition:background .15s,transform .15s}
+.game-preview-play::before{content:"";border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent;margin-left:6px}
+.game-preview a:hover .game-preview-play{background:var(--primary);transform:scale(1.05)}
+.game-preview-label{position:absolute;left:14px;bottom:14px;padding:7px 12px;border-radius:var(--r-pill);background:rgba(9,9,11,.78);border:1px solid var(--border);backdrop-filter:blur(8px);font-size:12px;font-weight:600;color:var(--fg)}
+.game-preview figcaption{padding:10px 14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted-fg)}
+
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
 .stats-row.cols-4{grid-template-columns:repeat(4,1fr)}
 .stat{padding:18px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--card)}
@@ -471,6 +482,9 @@ button{font:inherit;color:inherit}
   .guide-card{grid-template-columns:44px 1fr}
   .guide-card .go{display:none}
   .cta-block{flex-direction:column;align-items:flex-start}
+  .game-preview-play{width:56px;height:56px;margin:-28px 0 0 -28px}
+  .game-preview-play::before{border-left-width:18px;border-top-width:11px;border-bottom-width:11px;margin-left:5px}
+  .game-preview-label{left:10px;bottom:10px;font-size:11px;padding:6px 10px}
   .footer-top{flex-direction:column;align-items:flex-start;gap:10px}
   .copyright{flex-direction:column}
 }
@@ -1716,7 +1730,7 @@ button{font:inherit;color:inherit}
   /* ---------- generic article pages --------------------------------------- */
   var PAGES = {};
 
-  PAGES["/"] = { title: "Lagos Life: What It Is, How to Play & Where to Play Free", render: home };
+  PAGES["/"] = { title: "Lagos Life Sims App: Play Free in Browser", render: home };
 
   PAGES["/what-is-lagos-life"] = {
     title: "What Is Lagos Life? Browser Game Explained",
@@ -1828,6 +1842,14 @@ button{font:inherit;color:inherit}
         title: "Lagos Life game website and where to play",
         body:
           "<p>Lagos Life is played on its official website. There is no App Store or Google Play listing, so treat any download that claims to be an official Lagos Life app with suspicion.</p>" +
+          '<figure class="game-preview">' +
+            '<a href="https://lagoslife.app" target="_blank" rel="noopener nofollow" aria-label="Open the official Lagos Life game at lagoslife.app">' +
+              '<img src="/game-preview.png" width="1200" height="630" alt="Lagos Life map preview with Quilox, Balogun, Freedom Park and Elegushi labels">' +
+              '<span class="game-preview-play" aria-hidden="true"></span>' +
+              '<span class="game-preview-label">Play free at lagoslife.app \u2197</span>' +
+            '</a>' +
+            '<figcaption>Official map preview from lagoslife.app. The game blocks embedding, so the play button opens it in a new tab.</figcaption>' +
+          '</figure>' +
           '<div class="cta-block"><div><h2>Open the official game</h2><p>The game loads in your browser at <strong>lagoslife.app</strong>. Use Safari or Chrome, and avoid in-app browsers when signing in.</p></div><a class="button" style="text-decoration:none" href="https://lagoslife.app" target="_blank" rel="noopener nofollow">Start playing ↗</a></div>' +
           "<h2>Before you sign in</h2>" +
           "<ul><li>Use a real browser tab, not an in-app viewer.</li><li>Have an email address ready for password recovery.</li><li>Confirm you meet the age requirement shown at sign-up.</li></ul>" +
@@ -2127,7 +2149,7 @@ button{font:inherit;color:inherit}
   };
 
   PAGES["/support"] = {
-    title: "Lagos Life Not Working",
+    title: "Lagos Life Not Working? Fixes for Lag & Loading",
     render: function () {
       return article({
         crumb: "Support",
@@ -2198,7 +2220,7 @@ button{font:inherit;color:inherit}
   };
 
   PAGES["/account"] = {
-    title: "Lagos Life Account & Password Reset",
+    title: "Lagos Life Login, Sign Up & Password Reset",
     render: function () {
       return article({
         crumb: "Account",
@@ -2218,7 +2240,7 @@ button{font:inherit;color:inherit}
           "<h2>Account rules</h2>" +
           "<ul><li>Keep your login secure and your details accurate.</li><li>Selling, renting, sharing or trading an account needs the operator's written permission.</li><li>Account farming, fraud and attempts to evade restrictions are prohibited.</li></ul>" +
           "<h2>Deleting an account</h2>" +
-          "<p>Deletion is usually a \u201csoft\u201d deletion: access may stop while some records remain for transactions, security, moderation or legal reasons.</p>" +
+          "<p>Deletion is usually a \u201csoft\u201d deletion: access may stop while some records remain for transactions, security, moderation or legal reasons. <a href=\"/delete-account\">See the full account deletion guide</a> for the step-by-step route.</p>" +
           '<div class="note-box">This guide cannot access, recover or modify any account. For account issues, use the game\u2019s own support channels.</div>',
         related: [
           { t: "Age requirement", r: "/age-requirement" },
@@ -2476,7 +2498,7 @@ button{font:inherit;color:inherit}
 
   /* ---------- system pages ------------------------------------------------ */
   PAGES["/governor-election"] = {
-    title: "Lagos Life Governor Election Guide",
+    title: "Lagos Life Governor Election: How to Vote",
     render: function () {
       return article({
         crumb: "Governor Election",
@@ -2761,7 +2783,7 @@ button{font:inherit;color:inherit}
   };
 
   PAGES["/download"] = {
-    title: "Lagos Life Download & APK (Browser Only)",
+    title: "Lagos Life App Download? No APK \u2014 Play Free",
     render: function () {
       return article({
         crumb: "Download",
@@ -3483,7 +3505,7 @@ button{font:inherit;color:inherit}
 
   /* ---------- per-page meta descriptions ---------------------------------- */
   var DESCS = {
-    "/": "Independent, unofficial guide to Lagos Life, the free browser life-sim set in Lagos, Nigeria \u2014 how to play, all 33 careers, money, homes, venues and items.",
+    "/": "Looking for the Lagos Life sims app? It runs free in your browser \u2014 no APK or download. How to play, jobs, rent, money, homes and all 33 careers.",
     "/what-is-lagos-life": "What is Lagos Life? A shared-world, browser life sim set in Lagos, Nigeria: what it is, how it plays and who made it, in plain English.",
     "/how-to-play": "How to play Lagos Life: sign up, build your Sim, take the birth lottery, choose a home, get a job and survive your first Saturday rent, step by step.",
     "/game-link": "Lagos Life game website and official link: where to play the free browser game, why there is no app or download, and what to know before you sign up.",
@@ -3501,20 +3523,20 @@ button{font:inherit;color:inherit}
     "/danfo": "Lagos Life transport: danfo, keke, okada and taxis compared, plus every vehicle with its price and cost per kilometre.",
     "/nepa": "NEPA in Lagos Life: how power cuts work, which items stop working, and how a generator or solar setup keeps your home running.",
     "/lagos-slang": "Lagos Life slang explained: danfo, okada, keke, agbero, owambe, omo-onile, NEPA, Nepo Baby and LAPO, with what each means.",
-    "/governor-election": "The Lagos Life governor election: how to vote at Polling Unit 001, the rules, and the city-wide policies the winner sets.",
+    "/governor-election": "How to vote in the Lagos Life governor election: Polling Unit 001, the Sunday 8 PM cutoff, what the winner controls, and how to run for office.",
     "/sea-plots": "Sea Plots in Lagos Life: paid map space for a picture and link \u2014 what it is, and why it is not real property or an investment.",
     "/age-requirement": "The Lagos Life age limit is 18+. Here is why the sign-up gate exists and what it means if you are younger.",
-    "/account": "Lagos Life account help: how to sign up, why you should add an email, and how password resets work.",
+    "/account": "Lagos Life account help: how to log in, create an account, reset a forgotten password, and where to go if you need to delete your account.",
     "/top-up": "Lagos Life top up: what optional purchases buy, what they do not, and how to pay safely before you spend anything.",
     "/safety-and-privacy": "Lagos Life safety and privacy: what is public in a shared world, what to protect, and simple rules that keep your account safe.",
-    "/support": "Lagos Life not working? Fixes for Reconnecting to Lagos, stuck loading, lag, in-app browser problems and lost passwords.",
+    "/support": "Lagos Life stuck loading, reconnecting or lagging? Fixes for the messages players see most, in-app browser problems and lost passwords.",
     "/tips": "Lagos Life tips and tricks: 14 practical tips to survive rent, save money and play the early game better.",
     "/shalom-rayhamen": "Shalom Rayhamen is the developer credited with creating Lagos Life. What is known about the maker of the browser game.",
     "/lagos-life-vs-sims": "Lagos Life vs The Sims: how the shared, Lagos-set browser sim compares with the classic household life simulator.",
     "/similar-games": "Games like Lagos Life: Lagos Run, Surviving Nigeria, The Sims 4 and BitLife \u2014 the titles players mention alongside it.",
     "/daily-hunt": "Today's Lagos Life daily hunt clue and answer: where the gem is hiding, the prize tiers, the reset time and a full clue log \u2014 updated daily.",
     "/activities": "All Lagos Life activities with time, cost and what they train \u2014 filter by venue and search the full list of things to do.",
-    "/download": "No, Lagos Life has no download or APK \u2014 it is a browser game. How to add it to your home screen, and how to avoid fake downloads.",
+    "/download": "There is no official Lagos Life APK or app store download. Play free in Safari or Chrome and add the game to your home screen in two taps.",
     "/lagos-run": "Lagos Run: the browser game about driving a danfo through Lagos traffic, how it differs from Lagos Life, and where to play it.",
     "/compare": "How Lagos Life compares with The Sims, BitLife, Roblox, Lagos Run and Surviving Nigeria, in one place.",
     "/lagos-life-vs-bitlife": "Lagos Life vs BitLife: a shared browser life sim against a single-player text life sim, compared.",

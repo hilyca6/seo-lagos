@@ -6,6 +6,7 @@ node_modules/
 
 # Not part of the deployed site
 /design-system.html
+/reports/
 
 # Local notes and stray files (keep only the shipped assets)
 /*.txt
@@ -14,6 +15,7 @@ node_modules/
 /*.png
 !/og-image.png
 !/screenshot.png
+!/game-preview.png
 /draft-sitehunter.html
 /draft-home.html
 /draft-home2.html
