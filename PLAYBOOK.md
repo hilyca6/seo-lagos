@@ -163,6 +163,8 @@ node 简易静态服务器.js dist 5197
 
 ## 8. 阶段八：广告变现
 
+> **2026-10-23 update:** the live site now uses **AdSense + Adsterra Social Bar**. The banner/native iframe instructions below are historical; do not re-add them.
+
 ### 8.1 Adsterra（门槛低，先上）
 1. https://adsterra.com → **Sign up as a Publisher**。
    - **Login** 只能字母/数字/下划线（**不能含 `@`、`.`**）

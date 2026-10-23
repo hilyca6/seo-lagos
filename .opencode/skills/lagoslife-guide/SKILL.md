@@ -13,7 +13,8 @@ Everything needed to extend and refresh the unofficial Lagos Life guide at
   data-tool** style (near-black `#09090b`, card `#18181b`, orange `#ea580c`,
   Bricolage Grotesque headings + system sans body, radius 10px).
 - Independent / unofficial. Ads: **AdSense** (primary, `ca-pub-7013767592975009`)
-  + **Adsterra** (banners, backfill). Two ad slots per page (top + bottom).
+  + **Adsterra Social Bar** (site-wide script before `</body>`). No banner or
+  native iframes.
 
 ## 2. Repo, files, and architecture
 Project root: `E:\开发\seo\lagoslife` · Repo: `github.com/hilyca6/seo-lagos` · Host: Cloudflare Pages (project `lagoslife-homes`).
@@ -25,7 +26,7 @@ Project root: `E:\开发\seo\lagoslife` · Repo: `github.com/hilyca6/seo-lagos` 
 | `package.json` | `"build": "node build.js"` |
 | `sitemap.xml`, `robots.txt`, `ads.txt`, `_headers` | SEO / ads / headers (copied into dist by build.js) |
 | `favicon.svg`, `favicon.ico`, `og-image.png`, `screenshot.png` | assets (copied into dist) |
-| `ads/banner-desktop.html`, `ads/banner-mobile.html`, `ads/native.html` | Adsterra iframe templates |
+| Adsterra Social Bar | Inline `<script data-cfasync="false" src="https://bauval.org/14/...">` before `</body>` in `index.html`; no `ads/` folder |
 | `.nvmrc` (20) | Node version for Cloudflare |
 | `draft-*.html`, `*.txt`, `*.png` (except allowed) | ignored; `PLAYBOOK.md` is gitignored but kept locally |
 
@@ -66,7 +67,7 @@ Research these, then **rewrite in our own words** (never paste verbatim):
 - **JSON-LD**: `ldGraph()` auto-adds `Organization` + `Article` + `BreadcrumbList` (+ `FAQPage` if `FAQ[route]`, + `ItemList` if `ITEMS_LD[route]`). Pages already carry `canonical`/OG.
 - **Inner pages keep the lagoslife.org-style completeness**; only the **homepage** uses the custom data-portal layout (hero with screenshot, "What is Lagos Life?" first, quick actions, stats, careers board, directory tiles, FAQ).
 - **Dark theme tokens** live in `:root` (`--bg --fg --card --muted --muted-fg --border --primary --r-lg …`). Use them; never write light-mode colors.
-- **Ads**: two fixed slots (top after header, bottom after `</main>`) via `ads/banner-*.html` iframes; `initAds()` swaps desktop/mobile by width. Policy pages aren't special-cased anymore (ads are global). Don't stack more ads.
+- **Ads**: AdSense loader in `<head>`; Adsterra Social Bar loads once site-wide via a script before `</body>`. There are no banner/native iframes and no `initAds()`; do not re-add them. Social Bar appears on policy pages too.
 - **Escapes**: HTML attributes inside JS strings use **single quotes**; the body strings are double-quoted. Em dash = `\u2014`, ₦ = `\u20a6`, quotes = `\u201c/\u201d`.
 - **`.gitignore` trap**: `/*.txt` and `/*.png` are ignored except `robots.txt`, `ads.txt`, `og-image.png`, `screenshot.png`. If you add a new root `.txt`/`.png` asset, add a `!/name` exception or it won't deploy.
 
@@ -98,7 +99,7 @@ Cloudflare builds on push to `main` (build `npm run build`, output `dist`). Wait
 ## 9. Monetization quick facts
 - AdSense publisher id `ca-pub-7013767592975009`; loader script + `google-adsense-account` meta are in `<head>`; `ads.txt` line = `google.com, pub-7013767592975009, DIRECT, f08c47fec0942fa0`.
 - To show AdSense ads: enable **Auto ads** (no extra code) or paste manual `<ins class="adsbygoogle">` unit code into an ad slot.
-- **AdSense review / policy**: prefer AdSense primary; keep total ads ≤2–3 per page; avoid Adsterra popunder/social-bar; don't click own ads. Adsterra impressions vs AdSense RPM are both low for Nigeria-heavy traffic — **traffic is the lever**.
+- **AdSense review / policy**: AdSense is primary; the site also runs Adsterra Social Bar by owner decision. Social Bar is an overlay and can affect AdSense review/policy; don't click own ads. Adsterra impressions vs AdSense RPM are both low for Nigeria-heavy traffic — **traffic is the lever**.
 
 ## 10. Reference docs kept locally (not deployed)
 - `PLAYBOOK.md` — full build-and-launch playbook (Cloudflare, DNS, GSC, ads).
