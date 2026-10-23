@@ -64,12 +64,4 @@ for (const asset of ["favicon.svg", "favicon.ico", "og-image.png", "screenshot.p
   if (fs.existsSync(src)) write(asset, fs.readFileSync(src));
 }
 
-const adsDir = path.join(root, "ads");
-if (fs.existsSync(adsDir)) {
-  for (const f of fs.readdirSync(adsDir)) {
-    const fp = path.join(adsDir, f);
-    if (fs.statSync(fp).isFile()) write(path.join("ads", f), fs.readFileSync(fp));
-  }
-}
-
 console.log("pre-rendered " + count + " pages + assets -> dist/");

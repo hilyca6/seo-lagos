@@ -352,12 +352,6 @@ button{font:inherit;color:inherit}
 #jobTable tbody td,#actTable tbody td{white-space:nowrap}
 #jobTable tbody td:first-child,#actTable tbody td:first-child{font-weight:600}
 
-/* 14. AD SLOTS ------------------------------------------------------------- */
-.ad-slot{margin:20px auto 0;display:grid;justify-items:center;gap:8px;width:100%}
-.ad-slot-label{color:var(--muted-fg);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
-.ad-slot-frame{display:flex;justify-content:center;width:100%;min-height:50px;overflow:hidden}
-.ad-slot-frame iframe{display:block;flex:none;max-width:100%;border:0;background:transparent}
-
 /* 15. COOKIE CONSENT ------------------------------------------------------- */
 .cookie-bar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
   padding:14px max(16px,calc((100vw - var(--layout-max))/2));background:var(--card);border-top:1px solid var(--border);color:var(--fg);font-size:13px;box-shadow:0 -8px 24px rgba(0,0,0,.5)}
@@ -533,20 +527,8 @@ button{font:inherit;color:inherit}
   </div>
 </header>
 
-<!-- ===== TOP AD (like lagoslife.org) ===== -->
-<aside class="ad-slot" aria-label="Advertisement">
-  <span class="ad-slot-label">Advertisement</span>
-  <div class="ad-slot-frame"><iframe title="Advertisement" scrolling="no" loading="lazy" src="/ads/banner-mobile" width="320" height="50" style="width:320px;height:50px"></iframe></div>
-</aside>
-
 <!-- ===== ROUTED CONTENT ===== -->
 <main id="app" aria-live="polite"></main>
-
-<!-- ===== BOTTOM AD (like lagoslife.org) ===== -->
-<aside class="ad-slot" aria-label="Advertisement">
-  <span class="ad-slot-label">Advertisement</span>
-  <div class="ad-slot-frame"><iframe title="Advertisement" scrolling="no" loading="lazy" src="/ads/banner-mobile" width="320" height="50" style="width:320px;height:50px"></iframe></div>
-</aside>
 
 <!-- ===== COOKIE CONSENT ===== -->
 <div class="cookie-bar" id="cookieBar" hidden>
@@ -748,18 +730,6 @@ button{font:inherit;color:inherit}
   }
   function sourceNote(txt) {
     return '<p class="source-note"><strong>Note:</strong> ' + txt + '</p>';
-  }
-  function adSlot() {
-    return '<aside class="ad-slot" aria-label="Advertisement">' +
-      '<span class="ad-slot-label">Advertisement</span>' +
-      '<div class="ad-slot-frame"><iframe title="Advertisement" scrolling="no" loading="lazy" ' +
-      'src="/ads/banner-mobile" width="320" height="50" style="width:320px;height:50px"></iframe></div></aside>';
-  }
-  function adSlotNative() {
-    return '<aside class="ad-slot" aria-label="Advertisement">' +
-      '<span class="ad-slot-label">Advertisement</span>' +
-      '<div class="ad-slot-frame"><iframe title="Advertisement" scrolling="no" loading="lazy" data-native="1" ' +
-      'src="/ads/native" style="width:100%;max-width:728px;height:280px"></iframe></div></aside>';
   }
   function article(o) {
     var crumbs = '<a href="/">Home</a>';
@@ -4024,18 +3994,6 @@ button{font:inherit;color:inherit}
       if (m) m.removeAttribute("open");
     }
 
-    function initAds() {
-      var wide = window.matchMedia("(min-width: 768px)").matches;
-      var src = wide ? "/ads/banner-desktop" : "/ads/banner-mobile";
-      var w = wide ? 728 : 320, h = wide ? 90 : 50;
-      var frames = document.querySelectorAll(".ad-slot-frame iframe:not([data-native])");
-      Array.prototype.forEach.call(frames, function (f) {
-        if (f.getAttribute("src") !== src) f.setAttribute("src", src);
-        f.setAttribute("width", w); f.setAttribute("height", h);
-        f.style.width = w + "px"; f.style.height = h + "px";
-      });
-    }
-
     function render() {
       var route = currentRoute();
       var page = PAGES[route] || PAGES["/404"];
@@ -4050,7 +4008,6 @@ button{font:inherit;color:inherit}
       setActiveNav(route);
       closeMenu();
       setMeta(page, route);
-      initAds();
       if (typeof gtag === "function") {
         gtag("event", "page_view", {
           page_title: page.title,
@@ -4074,7 +4031,6 @@ button{font:inherit;color:inherit}
     });
 
     window.addEventListener("popstate", render);
-    try { window.matchMedia("(min-width: 768px)").addEventListener("change", initAds); } catch (e) {}
 
     var cookieBar = document.getElementById("cookieBar");
     if (cookieBar) {
@@ -4092,5 +4048,6 @@ button{font:inherit;color:inherit}
   }
 })();
 </script>
+<script data-cfasync="false" src="https://bauval.org/14/81b9fc9436f6a269d1023c82c2f3a62e"></script>
 </body>
 </html>
