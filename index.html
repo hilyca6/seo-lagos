@@ -2131,16 +2131,19 @@ button{font:inherit;color:inherit}
   };
 
   PAGES["/support"] = {
-    title: "Lagos Life Not Working? Fixes for Lag & Loading",
+    title: "Lagos Life Support: Fixes, Login & Contact",
     render: function () {
       return article({
         crumb: "Support",
         kicker: "FIXES",
         faq: FAQ["/support"],
-        title: "Lagos Life not working: fixes",
+        title: "Lagos Life support: fixes and contact",
         body:
           "<p>The most common problem is lag rather than queueing, because the world is shared and busy. Here are the messages players see most and what actually helps.</p>" +
           dt(["Symptom","What it means","Fix"], SUPPORT) +
+          "<h2>Contact Lagos Life support</h2>" +
+          "<p>For account recovery, login problems, payments or a bug that the fixes below do not solve, email the game's official support at <a href='mailto:support@lagoslife.app'>support@lagoslife.app</a>. Include your account email, device, browser and the exact message you see. Never send your password.</p>" +
+          "<p>Confirm the current support address on <a href='https://lagoslife.app' target='_blank' rel='noopener nofollow'>lagoslife.app</a> before you send account details. This guide cannot recover accounts or reset passwords.</p>" +
           '<div class="note-box">Only ever sign in at lagoslife.app. No legitimate page will ask for your password anywhere else.</div>',
         related: [
           { t: "Game link", r: "/game-link" },
@@ -3511,7 +3514,7 @@ button{font:inherit;color:inherit}
     "/account": "Lagos Life account help: how to log in, create an account, reset a forgotten password, and where to go if you need to delete your account.",
     "/top-up": "Lagos Life top up: what optional purchases buy, what they do not, and how to pay safely before you spend anything.",
     "/safety-and-privacy": "Lagos Life safety and privacy: what is public in a shared world, what to protect, and simple rules that keep your account safe.",
-    "/support": "Lagos Life stuck loading, reconnecting or lagging? Fixes for the messages players see most, in-app browser problems and lost passwords.",
+    "/support": "Lagos Life support: fixes for lag, loading, reconnecting and login problems, how to contact support@lagoslife.app, and safe browser tips.",
     "/tips": "Lagos Life tips and tricks: 14 practical tips to survive rent, save money and play the early game better.",
     "/shalom-rayhamen": "Shalom Rayhamen is the developer credited with creating Lagos Life. What is known about the maker of the browser game.",
     "/lagos-life-vs-sims": "Lagos Life vs The Sims: how the shared, Lagos-set browser sim compares with the classic household life simulator.",
@@ -3590,7 +3593,8 @@ button{font:inherit;color:inherit}
       { q: "Why is Lagos Life stuck on Reconnecting to Lagos?", a: "The real-time connection dropped. Hard refresh, leave the in-app browser and turn off any VPN." },
       { q: "Why is Lagos Life laggy?", a: "It is a shared, busy world. Retry off-peak and use a desktop browser." },
       { q: "Why can't I log in from Instagram or TikTok?", a: "In-app browsers break the persistent connection. Open the link in Safari or Chrome instead." },
-      { q: "How do I reset my password?", a: "Recovery needs an email, which is optional at sign-up, so add one in advance." }
+      { q: "How do I reset my password?", a: "Recovery needs an email, which is optional at sign-up, so add one in advance." },
+      { q: "How do I contact Lagos Life support?", a: "Email the game's official support at support@lagoslife.app. Include your account email, device, browser and the exact error message. Never send your password." }
     ],
     "/nepo-vs-lapo": [
       { q: "Can I choose Nepo or LAPO?", a: "No. The birth lottery is decided once per account and cannot be rerolled." },
